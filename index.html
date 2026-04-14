@@ -1029,7 +1029,7 @@ textarea.form-input { min-height: 120px; resize: vertical; }
           <div class="empty-state">
             <div class="empty-state-icon">⚡</div>
             <div class="empty-state-title">뉴스 검색 대기 중</div>
-            <div class="empty-state-desc">"전체 검색" 버튼을 누르면 5개 브랜드의 최신 기사를 가져옵니다.<br>네이버 API 키가 필요합니다 (설정에서 입력).</div>
+            <div class="empty-state-desc">"전체 검색" 버튼을 누르면 7개 브랜드의 최신 기사를 가져옵니다.<br>API 키 없이 바로 사용 가능합니다.</div>
           </div>
         </div>
       </div>
@@ -2847,39 +2847,29 @@ ${Object.entries(exclusiveMedia).map(([b,ms])=>`- ${b}: ${ms.slice(0,5).join(', 
 }
 
 // ============================================================
-//  뉴스 모니터링 (네이버 뉴스 검색 API)
+//  뉴스 모니터링 (구글 뉴스 RSS — API 키 불필요)
 // ============================================================
 const NEWS_BRANDS = [
-  { name: 'MLB', query: '"MLB" 패션', color: '#0d1b6f' },
+  { name: 'MLB', query: '"MLB" F&F 패션', color: '#0d1b6f' },
   { name: 'MLB키즈', query: '"MLB키즈"', color: '#7c4dff' },
   { name: '디스커버리', query: '"디스커버리 익스페디션"', color: '#e65100' },
-  { name: '듀베티카', query: '"듀베티카"', color: '#006064' },
-  { name: '세르지오 타키니', query: '"세르지오 타키니"', color: '#1b5e20' },
-  { name: '수프라', query: '"수프라" F&F', color: '#4a148c' },
   { name: '디스커버리키즈', query: '"디스커버리키즈"', color: '#00bfa5' },
+  { name: '듀베티카', query: '"듀베티카"', color: '#006064' },
+  { name: '세르지오 타키니', query: '세르지오타키니 OR "세르지오 타키니"', color: '#1b5e20' },
+  { name: '수프라', query: '"수프라" F&F 패션', color: '#4a148c' },
 ];
 
-let newsData = {}; // { brandName: [articles] }
+let newsData = {};
 let newsFilterBrand = '전체';
 
-async function searchNaverNews(query, display = 20) {
-  const clientId = localStorage.getItem('mpr_naver_client_id');
-  const clientSecret = localStorage.getItem('mpr_naver_client_secret');
-  if (!clientId || !clientSecret) throw new Error('네이버 API 키가 필요합니다. 설정에서 입력하세요.');
-
-  // 네이버 API는 브라우저에서 직접 호출 시 CORS 차단됨 → CORS 프록시 사용
-  const proxyUrl = 'https://corsproxy.io/?';
-  const apiUrl = `https://openapi.naver.com/v1/search/news.json?query=${encodeURIComponent(query)}&display=${display}&sort=date`;
-
-  const res = await fetch(proxyUrl + encodeURIComponent(apiUrl), {
-    headers: {
-      'X-Naver-Client-Id': clientId,
-      'X-Naver-Client-Secret': clientSecret,
-    }
-  });
-  if (!res.ok) throw new Error('API 오류 ' + res.status);
-  const json = await res.json();
-  return json.items || [];
+async function searchGoogleNews(query) {
+  const rssUrl = 'https://news.google.com/rss/search?q=' + encodeURIComponent(query) + '&hl=ko&gl=KR&ceid=KR:ko';
+  const apiUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssUrl);
+  const res = await fetch(apiUrl);
+  if (!res.ok) throw new Error('RSS 변환 실패');
+  const data = await res.json();
+  if (data.status !== 'ok') throw new Error(data.message || 'RSS 오류');
+  return data.items || [];
 }
 
 function stripHtml(html) {
@@ -2898,6 +2888,16 @@ function formatNewsDate(dateStr) {
   } catch { return dateStr; }
 }
 
+// 기사 제목에서 매체명 추출 (구글 뉴스는 "제목 - 매체명" 형식)
+function extractSource(title) {
+  const m = title.match(/\s-\s([^-]+)$/);
+  return m ? m[1].trim() : '';
+}
+
+function cleanTitle(title) {
+  return title.replace(/\s-\s[^-]+$/, '').trim();
+}
+
 async function fetchAllNews() {
   const btn = document.getElementById('newsRefreshBtn');
   btn.disabled = true;
@@ -2907,28 +2907,21 @@ async function fetchAllNews() {
 
   for (const brand of NEWS_BRANDS) {
     try {
-      const items = await searchNaverNews(brand.query, 20);
+      const items = await searchGoogleNews(brand.query);
       newsData[brand.name] = items.map(item => ({
-        title: stripHtml(item.title),
-        description: stripHtml(item.description),
-        link: item.originallink || item.link,
+        title: cleanTitle(stripHtml(item.title)),
+        source: extractSource(stripHtml(item.title)),
+        description: stripHtml(item.description || ''),
+        link: item.link,
         pubDate: item.pubDate,
         brand: brand.name,
         color: brand.color
       }));
       totalCount += items.length;
     } catch (e) {
-      if (e.message.includes('API 키')) {
-        toast(e.message, 'error');
-        openSettings();
-        btn.disabled = false;
-        btn.textContent = '전체 검색';
-        return;
-      }
       newsData[brand.name] = [];
     }
-    // 속도 제한 방지
-    await new Promise(r => setTimeout(r, 200));
+    await new Promise(r => setTimeout(r, 300));
   }
 
   document.getElementById('newsLastUpdate').textContent = '업데이트: ' + new Date().toLocaleTimeString('ko-KR');
@@ -2982,9 +2975,9 @@ function renderNews() {
             <a href="${esc(n.link)}" target="_blank" rel="noopener" style="font-size:14px; font-weight:600; color:var(--text); text-decoration:none; display:block; margin-bottom:4px; line-height:1.4;">
               ${esc(n.title)}
             </a>
-            <p style="font-size:12px; color:var(--text-secondary); margin:0; line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">
-              ${esc(n.description)}
-            </p>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">
+              ${n.source ? '<span style="color:var(--accent); font-weight:600;">' + esc(n.source) + '</span> · ' : ''}${formatNewsDate(n.pubDate)}
+            </div>
           </div>
           <div style="flex-shrink:0; text-align:right;">
             <span class="badge" style="background:${n.color}; color:#fff; font-size:10px;">${esc(n.brand)}</span>
