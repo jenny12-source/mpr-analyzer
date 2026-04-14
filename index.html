@@ -765,7 +765,7 @@ textarea.form-input { min-height: 120px; resize: vertical; }
         <div class="main-title" id="pageTitle">대시보드</div>
       </div>
       <div class="main-actions">
-        <button class="btn btn-secondary btn-sm" onclick="exportExcel()">엑셀 내보내기</button>
+        <button class="btn btn-secondary btn-sm" onclick="smartExport()">엑셀 내보내기</button>
         <button class="btn btn-primary btn-sm" onclick="openSyncModal()">↻ 시트 동기화</button>
       </div>
     </header>
@@ -2518,6 +2518,13 @@ function addManual() {
 }
 
 // ===== 엑셀 내보내기 =====
+// 현재 탭에 따라 다른 엑셀 내보내기
+function smartExport() {
+  const activeTab = document.querySelector('.nav-item.active')?.dataset?.tab;
+  if (activeTab === 'news') exportNewsExcel();
+  else exportExcel();
+}
+
 function exportExcel() {
   const data = getFiltered();
   if (!data.length) { toast('내보낼 데이터가 없습니다', 'error'); return; }
@@ -2531,6 +2538,26 @@ function exportExcel() {
   XLSX.utils.book_append_sheet(wb, ws, '커버리지');
   XLSX.writeFile(wb, `MPR_커버리지_${new Date().toISOString().slice(0,10)}.xlsx`);
   toast('엑셀 다운로드됨', 'success');
+}
+
+function exportNewsExcel() {
+  const filtered = getFilteredNews();
+  if (!filtered.length) { toast('내보낼 뉴스가 없습니다', 'error'); return; }
+  const ws = XLSX.utils.json_to_sheet(filtered.map(n => ({
+    브랜드: n.brand,
+    기사제목: n.title,
+    매체: n.source,
+    게재일: n.pubDate ? new Date(n.pubDate).toLocaleDateString('ko-KR') : '',
+    링크: n.link
+  })));
+  // 컬럼 너비 설정
+  ws['!cols'] = [{ wch: 12 }, { wch: 60 }, { wch: 20 }, { wch: 14 }, { wch: 50 }];
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, '뉴스 모니터링');
+  const periodLabel = newsPeriodDays === 0 ? '전체' : newsPeriodDays + '일';
+  const brandLabel = newsFilterBrand === '전체' ? '전체브랜드' : newsFilterBrand;
+  XLSX.writeFile(wb, `뉴스모니터링_${brandLabel}_${periodLabel}_${new Date().toISOString().slice(0,10)}.xlsx`);
+  toast(`뉴스 ${filtered.length}건 엑셀 다운로드됨`, 'success');
 }
 
 // ===== 테이블 정렬 =====
