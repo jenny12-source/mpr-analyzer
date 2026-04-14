@@ -1377,12 +1377,9 @@ function switchTab(el) {
   };
   document.getElementById('pageTitle').textContent = titles[tab] || '';
   refreshAll();
-  // 뉴스 탭 진입 시 자동으로 실시간 검색
+  // 뉴스 탭 진입 시 자동으로 데이터 로드
   if (tab === 'news' && Object.values(newsData).flat().length === 0) {
-    fetchAllNews().then(() => {
-      // 저장 데이터 로드 후, 자동으로 실시간도 보강
-      liveSearchNews();
-    }).catch(() => liveSearchNews());
+    fetchAllNews();
   }
   // 모바일에서 사이드바 닫기
   if (window.innerWidth <= 768) toggleSidebar();
@@ -3117,8 +3114,9 @@ async function liveSearchNews() {
   const btn = document.getElementById('liveSearchBtn');
   btn.disabled = true;
   btn.textContent = '검색 중...';
-  newsData = {};
-  let totalCount = 0;
+  // 기존 데이터 유지하면서 새 기사 병합
+  const existingTitles = new Set(Object.values(newsData).flat().map(n => n.title));
+  let newCount = 0;
 
   for (const brand of LIVE_SEARCH_QUERIES) {
     try {
@@ -3126,7 +3124,7 @@ async function liveSearchNews() {
       const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssUrl));
       const data = await res.json();
       if (data.status === 'ok' && data.items) {
-        newsData[brand.name] = data.items.map(item => {
+        const newItems = data.items.map(item => {
           const fullTitle = stripHtml(item.title || '');
           const sourceMatch = fullTitle.match(/\s-\s([^-]+)$/);
           return {
@@ -3138,12 +3136,14 @@ async function liveSearchNews() {
             brand: brand.name,
             color: brand.color
           };
-        });
-        totalCount += data.items.length;
-      } else {
-        newsData[brand.name] = [];
+        }).filter(n => !existingTitles.has(n.title));
+        // 기존 데이터에 새 기사 병합
+        if (!newsData[brand.name]) newsData[brand.name] = [];
+        newsData[brand.name] = [...newItems, ...newsData[brand.name]];
+        newItems.forEach(n => existingTitles.add(n.title));
+        newCount += newItems.length;
       }
-    } catch { newsData[brand.name] = []; }
+    } catch {}
     await new Promise(r => setTimeout(r, 300));
   }
 
@@ -3153,7 +3153,8 @@ async function liveSearchNews() {
   btn.textContent = '실시간 검색';
   renderNews();
   updateNewsAlertBanner();
-  toast(`실시간 ${totalCount}건 검색 완료`, 'success');
+  const totalAll = Object.values(newsData).flat().length;
+  toast(newCount > 0 ? `새 기사 ${newCount}건 추가 (총 ${totalAll}건)` : `최신 상태입니다 (총 ${totalAll}건)`, 'success');
 }
 
 // 기간 필터로 뉴스 필터링
