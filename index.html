@@ -1,0 +1,2834 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MPR 분석기 — F&F</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<style>
+/* ===== 변수 ===== */
+:root {
+  --bg: #f8f9fb;
+  --card: #ffffff;
+  --border: #e8eaed;
+  --border-light: #f1f3f5;
+  --text: #1a1d23;
+  --text-secondary: #5f6368;
+  --text-muted: #9aa0a6;
+  --accent: #4285f4;
+  --accent-hover: #3367d6;
+  --accent-bg: #e8f0fe;
+  --green: #34a853;
+  --green-bg: #e6f4ea;
+  --red: #ea4335;
+  --red-bg: #fce8e6;
+  --orange: #fbbc04;
+  --orange-bg: #fef7e0;
+  --purple: #a142f4;
+  --purple-bg: #f3e8fd;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-xs: 6px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-lg: 0 4px 16px rgba(0,0,0,0.1);
+  --transition: 0.15s ease;
+}
+
+/* ===== 기본 ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { height: 100%; }
+body {
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, select, textarea { font-family: inherit; font-size: 14px; }
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+
+/* ===== 레이아웃 ===== */
+.app { display: flex; min-height: 100vh; }
+
+/* 사이드바 */
+.sidebar {
+  width: 240px;
+  background: #1a1d23;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 200;
+  transition: transform 0.25s ease;
+}
+.sidebar-header {
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.sidebar-logo {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #fff;
+}
+.sidebar-logo span { color: var(--accent); }
+.sidebar-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+.sidebar-nav { flex: 1; padding: 12px 8px; overflow-y: auto; }
+.nav-section { margin-bottom: 16px; }
+.nav-section-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.3);
+  padding: 8px 12px 4px;
+  font-weight: 600;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  color: rgba(255,255,255,0.65);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+}
+.nav-item:hover { background: rgba(255,255,255,0.06); color: #fff; }
+.nav-item.active { background: rgba(66,133,244,0.15); color: #fff; }
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 20px;
+  background: var(--accent);
+  border-radius: 0 3px 3px 0;
+}
+.nav-icon { width: 18px; text-align: center; font-size: 15px; flex-shrink: 0; opacity: 0.75; }
+.nav-item.active .nav-icon { opacity: 1; }
+
+/* 사이드바 하단 */
+.sidebar-footer {
+  padding: 12px 8px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.sidebar-footer .nav-item { font-size: 12px; }
+
+/* 데이터 상태 */
+.data-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(255,255,255,0.06);
+  border-radius: var(--radius-xs);
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  margin: 8px 12px;
+}
+.data-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+.data-badge-dot.empty { background: var(--orange); }
+.data-badge strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+
+/* 메인 */
+.main { flex: 1; margin-left: 240px; }
+.main-header {
+  padding: 20px 32px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.main-title { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
+.main-actions { display: flex; gap: 8px; align-items: center; }
+.main-content { padding: 24px 32px; max-width: 1400px; }
+
+/* 모바일 햄버거 */
+.mobile-toggle {
+  display: none;
+  width: 36px; height: 36px;
+  align-items: center; justify-content: center;
+  font-size: 20px;
+  border-radius: var(--radius-xs);
+}
+.mobile-toggle:hover { background: var(--border-light); }
+.sidebar-overlay {
+  display: none;
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 199;
+}
+
+/* ===== 필터 바 ===== */
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding: 14px 18px;
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+.filter-bar label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.filter-select {
+  padding: 6px 28px 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' fill='none' stroke='%239aa0a6' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 8px center;
+  -webkit-appearance: none;
+  appearance: none;
+  font-size: 13px;
+  color: var(--text);
+  min-width: 100px;
+  transition: border-color var(--transition);
+}
+.filter-select:focus { outline: none; border-color: var(--accent); }
+.filter-date {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  font-size: 13px;
+  color: var(--text);
+  width: 130px;
+}
+.filter-date:focus { outline: none; border-color: var(--accent); }
+.filter-reset {
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  border-radius: var(--radius-xs);
+  transition: all var(--transition);
+}
+.filter-reset:hover { background: var(--border-light); color: var(--text); }
+
+/* ===== 버튼 ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-secondary { background: var(--card); color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover { background: var(--border-light); }
+.btn-ghost { color: var(--text-secondary); }
+.btn-ghost:hover { background: var(--border-light); color: var(--text); }
+.btn-sm { padding: 5px 10px; font-size: 12px; }
+.btn-danger { background: var(--red-bg); color: var(--red); }
+.btn-danger:hover { background: #f5c6c2; }
+
+/* ===== 카드 ===== */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.card-header {
+  padding: 18px 20px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.card-title { font-size: 15px; font-weight: 700; letter-spacing: -0.2px; }
+.card-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.card-body { padding: 0 20px 20px; }
+.card-body-full { padding: 0; }
+
+/* ===== KPI 그리드 ===== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.kpi-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  position: relative;
+  transition: box-shadow var(--transition);
+}
+.kpi-card:hover { box-shadow: var(--shadow-md); }
+.kpi-label { font-size: 12px; color: var(--text-muted); font-weight: 500; margin-bottom: 8px; }
+.kpi-value { font-size: 28px; font-weight: 700; letter-spacing: -1px; line-height: 1.1; }
+.kpi-sub { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+.kpi-change {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-top: 8px;
+}
+.kpi-change.up { background: var(--green-bg); color: var(--green); }
+.kpi-change.down { background: var(--red-bg); color: var(--red); }
+.kpi-change.flat { background: var(--border-light); color: var(--text-muted); }
+
+/* ===== 그리드 레이아웃 ===== */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 20px; }
+.grid-1-2 { display: grid; grid-template-columns: 1fr 2fr; gap: 16px; margin-bottom: 20px; }
+
+/* ===== 차트 ===== */
+.chart-wrap { position: relative; height: 280px; }
+.chart-wrap-sm { position: relative; height: 220px; }
+.chart-wrap-lg { position: relative; height: 360px; }
+
+/* ===== 테이블 ===== */
+.table-wrap { overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+table th {
+  text-align: left;
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+  cursor: default;
+}
+table th[data-sort] { cursor: pointer; }
+table th[data-sort]:hover { color: var(--text); }
+table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: middle;
+}
+table tr:last-child td { border-bottom: none; }
+table tr:hover td { background: #fafbfc; }
+
+/* ===== 뱃지 ===== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.badge-brand { background: #f1f3f5; color: #495057; }
+.badge-mlb { background: #0d1b6f; color: #fff; }
+.badge-mlb-kids { background: #7c4dff; color: #fff; }
+.badge-discovery { background: #e65100; color: #fff; }
+.badge-discovery-kids { background: #00bfa5; color: #fff; }
+.badge-duvetica { background: #006064; color: #fff; }
+.badge-supra { background: #4a148c; color: #fff; }
+.badge-sergio { background: #1b5e20; color: #fff; }
+.badge-taylormade { background: #b71c1c; color: #fff; }
+.badge-fnf { background: #212121; color: #fff; }
+.badge-form { background: var(--accent-bg); color: var(--accent); }
+.badge-mpr { background: var(--purple-bg); color: var(--purple); }
+.badge-cpr { background: var(--orange-bg); color: #e65100; }
+
+/* ===== 탭 패널 ===== */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ===== 브랜드 스코어카드 ===== */
+.brand-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.brand-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.brand-card:hover { box-shadow: var(--shadow-md); border-color: var(--accent); }
+.brand-card-stripe {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.brand-card-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.brand-card-mc { font-size: 11px; margin-bottom: 12px; }
+.brand-card-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+.brand-card-stat-label { font-size: 11px; color: var(--text-muted); }
+.brand-card-stat-value { font-size: 18px; font-weight: 700; margin-top: 2px; }
+.brand-card-footer {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-light);
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== 아이템 랭킹 ===== */
+.rank-list { list-style: none; }
+.rank-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.rank-item:last-child { border-bottom: none; }
+.rank-num {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  background: var(--border-light);
+  color: var(--text-secondary);
+}
+.rank-num.top { background: var(--accent); color: #fff; }
+.rank-info { flex: 1; min-width: 0; }
+.rank-title { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rank-meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.rank-value { font-size: 15px; font-weight: 700; flex-shrink: 0; }
+
+/* ===== 시즌 비교 ===== */
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+.compare-item {
+  padding: 14px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+.compare-item-label { font-size: 11px; color: var(--text-muted); font-weight: 500; margin-bottom: 6px; }
+.compare-item-value { font-size: 22px; font-weight: 700; }
+.compare-item-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+/* ===== 모달 ===== */
+.modal-bg {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 500;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px;
+  overflow-y: auto;
+}
+.modal-bg.active { display: flex; }
+.modal {
+  background: var(--card);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 600px;
+  box-shadow: var(--shadow-lg);
+}
+.modal-header {
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+.modal-title { font-size: 16px; font-weight: 700; }
+.modal-close {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  font-size: 18px;
+  color: var(--text-secondary);
+  transition: all var(--transition);
+}
+.modal-close:hover { background: var(--border-light); color: var(--text); }
+.modal-body { padding: 20px 24px; }
+
+/* 모달 탭 */
+.modal-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  background: var(--bg);
+  padding: 4px;
+  border-radius: var(--radius-sm);
+}
+.modal-tab {
+  flex: 1;
+  padding: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--radius-xs);
+  text-align: center;
+  color: var(--text-secondary);
+  transition: all var(--transition);
+}
+.modal-tab:hover { color: var(--text); }
+.modal-tab.active { background: var(--card); color: var(--text); box-shadow: var(--shadow); }
+.modal-panel { display: none; }
+.modal-panel.active { display: block; }
+
+/* 입력 필드 */
+.form-group { margin-bottom: 14px; }
+.form-label { display: block; font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 5px; }
+.form-input {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  font-size: 14px;
+  transition: border-color var(--transition);
+}
+.form-input:focus { outline: none; border-color: var(--accent); }
+textarea.form-input { min-height: 120px; resize: vertical; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* 드롭존 */
+.dropzone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.dropzone:hover, .dropzone.dragover { border-color: var(--accent); background: var(--accent-bg); }
+.dropzone-icon { font-size: 32px; margin-bottom: 8px; opacity: 0.4; }
+.dropzone-text { font-size: 13px; color: var(--text-secondary); }
+
+/* ===== 토스트 ===== */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  padding: 12px 24px;
+  background: var(--text);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 999;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+.toast.success { background: var(--green); }
+.toast.error { background: var(--red); }
+
+/* ===== 로딩 ===== */
+.loading {
+  display: inline-block;
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+.loading-dark { border-color: var(--border); border-top-color: var(--accent); }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* 구글 시트 자동 연동 진행률 */
+.sync-progress {
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin-top: 12px;
+}
+.sync-bar-track {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+.sync-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+.sync-status { font-size: 12px; color: var(--text-secondary); }
+.sync-log {
+  max-height: 120px;
+  overflow-y: auto;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  line-height: 1.8;
+}
+
+/* ===== 비어있는 상태 ===== */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+.empty-state-icon { font-size: 48px; opacity: 0.3; margin-bottom: 12px; }
+.empty-state-title { font-size: 16px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
+.empty-state-desc { font-size: 13px; max-width: 300px; margin: 0 auto; }
+
+/* ===== 페이지네이션 ===== */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 16px;
+}
+.page-btn {
+  min-width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xs);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--transition);
+}
+.page-btn:hover { background: var(--border-light); }
+.page-btn.active { background: var(--accent); color: #fff; }
+
+/* ===== AI 인사이트 ===== */
+.insight-content {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text);
+}
+.insight-content p { margin-bottom: 10px; }
+.insight-content p:last-child { margin-bottom: 0; }
+.insight-content strong { color: var(--accent); font-weight: 700; }
+
+/* ===== 반응형 ===== */
+@media (max-width: 1024px) {
+  .grid-2, .grid-3, .grid-2-1, .grid-1-2 { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-overlay.active { display: block; }
+  .mobile-toggle { display: flex; }
+  .main { margin-left: 0; }
+  .main-content { padding: 16px; }
+  .main-header { padding: 14px 16px; }
+  .kpi-grid { grid-template-columns: 1fr 1fr; }
+  .brand-cards { grid-template-columns: 1fr; }
+  .filter-bar { flex-direction: column; align-items: stretch; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- 사이드바 -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">MPR <span>분석기</span></div>
+      <div class="sidebar-sub">F&F MEDIA COVERAGE</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <div class="nav-section-title">분석</div>
+        <div class="nav-item active" data-tab="dashboard" onclick="switchTab(this)">
+          <span class="nav-icon">◎</span> 대시보드
+        </div>
+        <div class="nav-item" data-tab="brand" onclick="switchTab(this)">
+          <span class="nav-icon">◆</span> 브랜드별
+        </div>
+        <div class="nav-item" data-tab="season" onclick="switchTab(this)">
+          <span class="nav-icon">◇</span> 시즌 비교
+        </div>
+        <div class="nav-item" data-tab="item" onclick="switchTab(this)">
+          <span class="nav-icon">▤</span> 아이템 분석
+        </div>
+        <div class="nav-item" data-tab="media" onclick="switchTab(this)">
+          <span class="nav-icon">▥</span> 매체 분석
+        </div>
+        <div class="nav-item" data-tab="efficiency" onclick="switchTab(this)">
+          <span class="nav-icon">▦</span> 피칭 효율
+        </div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-title">데이터</div>
+        <div class="nav-item" data-tab="list" onclick="switchTab(this)">
+          <span class="nav-icon">≡</span> 전체 목록
+        </div>
+      </div>
+    </nav>
+    <div class="data-badge">
+      <span class="data-badge-dot" id="dataDot"></span>
+      보도자료 <strong id="dataCount">0</strong>건
+    </div>
+    <div class="sidebar-footer">
+      <div class="nav-item" onclick="openSyncModal()">
+        <span class="nav-icon">↻</span> 구글 시트 연동
+      </div>
+      <div class="nav-item" onclick="openInputModal()">
+        <span class="nav-icon">+</span> 데이터 추가
+      </div>
+      <div class="nav-item" onclick="openSettings()">
+        <span class="nav-icon">⚙</span> 설정
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <!-- 메인 -->
+  <div class="main">
+    <header class="main-header">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
+        <div class="main-title" id="pageTitle">대시보드</div>
+      </div>
+      <div class="main-actions">
+        <button class="btn btn-secondary btn-sm" onclick="exportExcel()">엑셀 내보내기</button>
+        <button class="btn btn-primary btn-sm" onclick="openSyncModal()">↻ 시트 동기화</button>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <!-- 필터 -->
+      <div class="filter-bar" id="filterBar">
+        <div class="filter-group">
+          <label>기간</label>
+          <input type="date" class="filter-date" id="filterStart">
+          <span style="color:var(--text-muted)">~</span>
+          <input type="date" class="filter-date" id="filterEnd">
+        </div>
+        <div class="filter-group">
+          <label>브랜드</label>
+          <select class="filter-select" id="filterBrand"><option value="">전체</option></select>
+        </div>
+        <div class="filter-group">
+          <label>시즌</label>
+          <select class="filter-select" id="filterSeason"><option value="">전체</option></select>
+        </div>
+        <div class="filter-group">
+          <label>형태</label>
+          <select class="filter-select" id="filterForm"><option value="">전체</option></select>
+        </div>
+        <button class="filter-reset" onclick="resetFilters()">초기화</button>
+      </div>
+
+      <!-- 탭: 대시보드 -->
+      <div class="tab-panel active" id="tab-dashboard">
+        <div class="kpi-grid" id="kpiGrid"></div>
+        <!-- AI 인사이트 -->
+        <div class="card" style="margin-bottom:20px; border-left:3px solid var(--accent);" id="dashInsightCard">
+          <div class="card-header">
+            <div><div class="card-title">AI 인사이트</div><div class="card-subtitle">데이터 기반 핵심 분석</div></div>
+            <button class="btn btn-ghost btn-sm" onclick="generateDashInsight()" id="dashInsightBtn">분석 요청</button>
+          </div>
+          <div class="card-body" id="dashInsightBody">
+            <div style="color:var(--text-muted); font-size:13px;">"분석 요청" 버튼을 누르면 AI가 현재 데이터를 분석합니다. (Claude API 키 필요)</div>
+          </div>
+        </div>
+        <div class="grid-2" id="dashCharts">
+          <div class="card">
+            <div class="card-header">
+              <div><div class="card-title">월별 추이</div><div class="card-subtitle">보도자료 수 & 게재 건수</div></div>
+            </div>
+            <div class="card-body"><div class="chart-wrap"><canvas id="chartMonthly"></canvas></div></div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div><div class="card-title">브랜드별 게재 건수</div></div>
+            </div>
+            <div class="card-body"><div class="chart-wrap"><canvas id="chartBrandBar"></canvas></div></div>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-header">
+              <div><div class="card-title">시즌별 게재 건수</div><div class="card-subtitle">SS vs FW 비교</div></div>
+            </div>
+            <div class="card-body"><div class="chart-wrap-sm"><canvas id="chartSeasonDash"></canvas></div></div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div><div class="card-title">매체 유형 비율</div><div class="card-subtitle">방송 / 지면 / 온라인</div></div>
+            </div>
+            <div class="card-body"><div class="chart-wrap-sm"><canvas id="chartMediaDoughnut"></canvas></div></div>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-header"><div class="card-title">최근 보도자료</div></div>
+          <div class="card-body-full table-wrap">
+            <table>
+              <thead><tr><th>배포일</th><th>브랜드</th><th>헤드라인</th><th style="text-align:right;">게재</th></tr></thead>
+              <tbody id="dashRecentList"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 탭: 브랜드별 -->
+      <div class="tab-panel" id="tab-brand">
+        <div class="brand-cards" id="brandCards"></div>
+        <div id="brandDetail" style="display:none;">
+          <div style="margin-bottom:16px;">
+            <button class="btn btn-ghost btn-sm" onclick="closeBrandDetail()">← 전체 브랜드</button>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+            <div>
+              <div style="font-size:22px; font-weight:700;" id="brandDetailName"></div>
+              <div style="font-size:13px; color:var(--text-secondary);" id="brandDetailSub"></div>
+            </div>
+          </div>
+          <div class="kpi-grid" id="brandKpis"></div>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-header"><div class="card-title">형태별 분포</div></div>
+              <div class="card-body"><div class="chart-wrap-sm"><canvas id="chartBrandForm"></canvas></div></div>
+            </div>
+            <div class="card">
+              <div class="card-header"><div class="card-title">월별 게재 추이</div></div>
+              <div class="card-body"><div class="chart-wrap-sm"><canvas id="chartBrandMonthly"></canvas></div></div>
+            </div>
+          </div>
+          <div class="card" style="margin-bottom:20px;">
+            <div class="card-header"><div class="card-title">보도자료 목록</div></div>
+            <div class="card-body-full table-wrap">
+              <table>
+                <thead><tr><th>배포일</th><th>형태</th><th>헤드라인</th><th style="text-align:right;">게재</th><th>주요 매체</th></tr></thead>
+                <tbody id="brandTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 탭: 시즌 비교 -->
+      <div class="tab-panel" id="tab-season">
+        <div style="display:flex; gap:12px; align-items:center; margin-bottom:20px;">
+          <select class="filter-select" id="seasonA" style="min-width:100px;"></select>
+          <span style="font-weight:600; color:var(--text-muted);">vs</span>
+          <select class="filter-select" id="seasonB" style="min-width:100px;"></select>
+        </div>
+        <div class="compare-grid" id="seasonCompareGrid" style="margin-bottom:20px;"></div>
+        <!-- AI 시즌 인사이트 -->
+        <div class="card" style="margin-bottom:20px; border-left:3px solid var(--accent);" id="seasonInsightCard">
+          <div class="card-header">
+            <div><div class="card-title">AI 시즌 분석</div><div class="card-subtitle">두 시즌 비교 인사이트</div></div>
+            <button class="btn btn-ghost btn-sm" onclick="generateSeasonInsight()" id="seasonInsightBtn">분석 요청</button>
+          </div>
+          <div class="card-body" id="seasonInsightBody">
+            <div style="color:var(--text-muted); font-size:13px;">"분석 요청" 버튼을 누르면 AI가 두 시즌을 비교 분석합니다.</div>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-header"><div class="card-title">브랜드별 시즌 비교</div></div>
+            <div class="card-body"><div class="chart-wrap"><canvas id="chartSeasonBrand"></canvas></div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">형태별 시즌 비교</div></div>
+            <div class="card-body"><div class="chart-wrap"><canvas id="chartSeasonForm"></canvas></div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">브랜드별 상세 비교</div></div>
+          <div class="card-body-full table-wrap" id="seasonBrandTable"></div>
+        </div>
+      </div>
+
+      <!-- 탭: 아이템 분석 -->
+      <div class="tab-panel" id="tab-item">
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-header"><div class="card-title">게재 건수 TOP 15</div><div class="card-subtitle">보도자료별 게재 건수 랭킹</div></div>
+            <div class="card-body">
+              <ol class="rank-list" id="itemRankList"></ol>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">게재 건수 분포</div><div class="card-subtitle">브랜드별 TOP 보도자료</div></div>
+            <div class="card-body"><div class="chart-wrap-lg"><canvas id="chartItemRank"></canvas></div></div>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-header"><div class="card-title">저조 보도자료 (하위 5건)</div><div class="card-subtitle">게재 건수가 가장 적은 보도자료</div></div>
+          <div class="card-body-full table-wrap">
+            <table>
+              <thead><tr><th>배포일</th><th>브랜드</th><th>형태</th><th>헤드라인</th><th style="text-align:right;">게재</th></tr></thead>
+              <tbody id="worstTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 탭: 매체 분석 -->
+      <div class="tab-panel" id="tab-media">
+        <!-- 매체 KPI -->
+        <div class="kpi-grid" id="mediaKpis"></div>
+        <!-- AI 매체 인사이트 -->
+        <div class="card" style="margin-bottom:20px; border-left:3px solid var(--accent);">
+          <div class="card-header">
+            <div><div class="card-title">AI 매체 분석</div><div class="card-subtitle">매체 커버리지 인사이트</div></div>
+            <button class="btn btn-ghost btn-sm" onclick="generateMediaInsight()" id="mediaInsightBtn">분석 요청</button>
+          </div>
+          <div class="card-body" id="mediaInsightBody">
+            <div style="color:var(--text-muted); font-size:13px;">"분석 요청" 버튼을 누르면 AI가 매체 데이터를 분석합니다.</div>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-header"><div class="card-title">브랜드별 매체 도달</div><div class="card-subtitle">브랜드당 평균 매체 수</div></div>
+            <div class="card-body"><div class="chart-wrap"><canvas id="chartMediaBrand"></canvas></div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">핵심 매체 TOP 15</div><div class="card-subtitle">보도자료에 가장 많이 등장한 매체</div></div>
+            <div class="card-body"><div class="chart-wrap"><canvas id="chartMediaTop"></canvas></div></div>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-header"><div class="card-title">브랜드 × 매체 매트릭스</div><div class="card-subtitle">어떤 브랜드가 어떤 매체에서 노출되는지</div></div>
+          <div class="card-body-full table-wrap" id="mediaBrandMatrix"></div>
+        </div>
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-header"><div class="card-title">매체별 상세</div><div class="card-subtitle">등장 3회 이상 매체</div></div>
+          <div class="card-body-full table-wrap">
+            <table>
+              <thead><tr><th>매체명</th><th>등장 횟수</th><th>브랜드 수</th><th>주요 브랜드</th><th>연도별</th></tr></thead>
+              <tbody id="mediaTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 탭: 피칭 효율 -->
+      <div class="tab-panel" id="tab-efficiency">
+        <div class="kpi-grid" id="effKpis"></div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-header"><div class="card-title">브랜드별 평균 게재율</div><div class="card-subtitle">보도자료 1건당 게재 건수</div></div>
+            <div class="card-body"><div class="chart-wrap"><canvas id="chartEffBrand"></canvas></div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">형태별 효율 비교</div><div class="card-subtitle">단순보도 vs 기획보도 vs 기획피칭</div></div>
+            <div class="card-body"><div class="chart-wrap"><canvas id="chartEffForm"></canvas></div></div>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-header"><div class="card-title">브랜드 × 형태 크로스 분석</div></div>
+          <div class="card-body-full table-wrap" id="effCrossTable"></div>
+        </div>
+      </div>
+
+      <!-- 탭: 전체 목록 -->
+      <div class="tab-panel" id="tab-list">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+          <div style="font-size:13px; color:var(--text-secondary);"><strong id="listCount">0</strong>건 표시</div>
+          <input type="text" class="form-input" id="articleSearch" placeholder="검색..." style="max-width:240px;">
+        </div>
+        <div class="card">
+          <div class="card-body-full table-wrap">
+            <table id="articlesTable">
+              <thead><tr>
+                <th data-sort="date" style="cursor:pointer;">배포일 ↕</th>
+                <th>브랜드</th>
+                <th>형태</th>
+                <th data-sort="title" style="cursor:pointer;">헤드라인 ↕</th>
+                <th data-sort="totalCount" style="cursor:pointer; text-align:right;">게재 ↕</th>
+                <th>주요 매체</th>
+              </tr></thead>
+              <tbody id="articlesBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="pagination" id="pagination"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 구글 시트 동기화 모달 -->
+<div class="modal-bg" id="syncModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">구글 시트 동기화</div>
+      <button class="modal-close" onclick="closeModal('syncModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">
+        F&F 보도자료 배포리스트 시트에서 데이터를 자동으로 가져옵니다.<br>
+        시트가 "링크가 있는 모든 사용자에게 공개"로 설정되어 있어야 합니다.
+      </p>
+      <div id="corsWarning" style="display:none; padding:14px; background:var(--orange-bg); border-radius:var(--radius-sm); margin-bottom:14px; font-size:13px; color:#92400e; line-height:1.7;">
+        <strong>파일을 직접 열면 시트 연동이 안 됩니다</strong><br>
+        같은 폴더의 <strong>start.command</strong> 파일을 더블클릭하세요.<br>
+        자동으로 서버가 켜지고 브라우저가 열립니다.
+      </div>
+      <div class="form-group">
+        <label class="form-label">구글 시트 URL</label>
+        <input type="url" class="form-input" id="syncSheetUrl"
+          value="https://docs.google.com/spreadsheets/d/1GwMyrPX7E558CAGp5qmPFY5uVvtOlt0SDdfqmVMDeZg/edit"
+          placeholder="https://docs.google.com/spreadsheets/d/...">
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
+        <button class="btn btn-primary" onclick="syncAllSheets()" id="syncStartBtn">전체 동기화 시작</button>
+        <button class="btn btn-secondary" onclick="syncCurrentYear()">2026년만</button>
+      </div>
+      <div id="syncProgressArea" style="display:none;">
+        <div class="sync-progress">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="sync-status" id="syncStatusText">준비 중...</span>
+            <span class="sync-status" id="syncPercent">0%</span>
+          </div>
+          <div class="sync-bar-track"><div class="sync-bar-fill" id="syncBarFill"></div></div>
+          <div class="sync-log" id="syncLog"></div>
+        </div>
+      </div>
+      <div style="margin-top:16px; padding:12px; background:var(--bg); border-radius:var(--radius-sm);">
+        <div style="font-size:12px; font-weight:600; color:var(--text-secondary); margin-bottom:6px;">또는 수동으로 GID 지정</div>
+        <div style="display:flex; gap:8px;">
+          <input type="text" class="form-input" id="manualGid" placeholder="GID (예: 1769242738)" style="flex:1;">
+          <button class="btn btn-secondary btn-sm" onclick="fetchSingleGid()">가져오기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 데이터 추가 모달 -->
+<div class="modal-bg" id="inputModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">데이터 추가</div>
+      <button class="modal-close" onclick="closeModal('inputModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="modal-tab active" data-panel="paste" onclick="switchModalTab(this)">붙여넣기</button>
+        <button class="modal-tab" data-panel="json" onclick="switchModalTab(this)">JSON 파일</button>
+        <button class="modal-tab" data-panel="manual" onclick="switchModalTab(this)">직접 입력</button>
+      </div>
+      <div class="modal-panel active" id="panel-paste">
+        <p style="font-size:12px; color:var(--text-secondary); margin-bottom:10px;">구글 시트에서 복사한 데이터를 붙여넣으세요 (탭 구분)</p>
+        <textarea class="form-input" id="pasteArea" placeholder="헤더 포함하여 붙여넣기..." style="min-height:160px; font-size:12px;"></textarea>
+        <button class="btn btn-primary" onclick="parsePaste()" style="margin-top:10px;">데이터 추가</button>
+      </div>
+      <div class="modal-panel" id="panel-json">
+        <div class="dropzone" id="dropJson">
+          <div class="dropzone-icon">{ }</div>
+          <div class="dropzone-text">JSON 파일을 끌어놓거나 클릭</div>
+          <input type="file" id="fileJson" accept=".json" style="display:none;">
+        </div>
+      </div>
+      <div class="modal-panel" id="panel-manual">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">배포일</label><input type="date" class="form-input" id="m-date"></div>
+          <div class="form-group"><label class="form-label">브랜드</label><select class="form-input" id="m-brand">
+            <option value="">선택</option>
+            <option>MLB</option><option>MLB키즈</option><option>디스커버리</option>
+            <option>디스커버리키즈</option><option>듀베티카</option><option>수프라</option>
+            <option>세르지오 타키니</option><option>테일러메이드</option>
+            <option>F&F</option><option>ESG</option>
+          </select></div>
+        </div>
+        <div class="form-group"><label class="form-label">헤드라인</label><input type="text" class="form-input" id="m-title" placeholder="보도자료 제목"></div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">형태</label><select class="form-input" id="m-form">
+            <option value="단순보도">단순보도</option><option value="기획보도">기획보도</option><option value="기획피칭">기획피칭</option>
+          </select></div>
+          <div class="form-group"><label class="form-label">시즌</label><input type="text" class="form-input" id="m-season" placeholder="예: 26SS"></div>
+        </div>
+        <div class="form-row" style="grid-template-columns:1fr 1fr 1fr 1fr;">
+          <div class="form-group"><label class="form-label">방송</label><input type="number" class="form-input" id="m-broadcast" value="0"></div>
+          <div class="form-group"><label class="form-label">지면</label><input type="number" class="form-input" id="m-print" value="0"></div>
+          <div class="form-group"><label class="form-label">온라인</label><input type="number" class="form-input" id="m-online" value="0"></div>
+          <div class="form-group"><label class="form-label">합계</label><input type="number" class="form-input" id="m-total" value="0"></div>
+        </div>
+        <div class="form-group"><label class="form-label">주요 매체</label><input type="text" class="form-input" id="m-media" placeholder="콤마로 구분"></div>
+        <button class="btn btn-primary" onclick="addManual()" style="margin-top:8px;">추가</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 설정 모달 -->
+<div class="modal-bg" id="settingsModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">설정</div>
+      <button class="modal-close" onclick="closeModal('settingsModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Claude API 키 (선택)</label>
+        <input type="password" class="form-input" id="apiKey" placeholder="sk-ant-...">
+        <p style="font-size:11px; color:var(--text-muted); margin-top:4px;">Word/PDF AI 분석 시 필요. 시트 연동에는 불필요.</p>
+      </div>
+      <div style="display:flex; gap:8px; margin-top:16px;">
+        <button class="btn btn-primary" onclick="saveSettings()">저장</button>
+        <button class="btn btn-danger btn-sm" onclick="clearAllData()">전체 데이터 삭제</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 토스트 -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== 상수 =====
+const STORAGE_KEY = 'mpr_coverage_data_v2';
+const API_KEY_STORAGE = 'mpr_claude_api_key';
+const CLAUDE_MODEL = 'claude-sonnet-4-20250514';
+
+const BRAND_CODE_MAP = {
+  'ML': 'MLB', 'MK': 'MLB키즈',
+  'DX': '디스커버리', 'DK': '디스커버리키즈',
+  'DV': '듀베티카', 'SP': '수프라',
+  'ST': '세르지오 타키니', 'TM': '테일러메이드'
+};
+const BRAND_GROUP = {
+  'F&F': 'CPR', '회장님(PI)': 'CPR', 'ESG': 'CPR',
+  'MLB': 'MPR', 'MLB키즈': 'MPR', '디스커버리': 'MPR',
+  '디스커버리키즈': 'MPR', '듀베티카': 'MPR', '수프라': 'MPR',
+  '세르지오 타키니': 'MPR', '테일러메이드': 'MPR'
+};
+const BRAND_CSS = {
+  'MLB': 'badge-mlb', 'MLB키즈': 'badge-mlb-kids',
+  '디스커버리': 'badge-discovery', '디스커버리키즈': 'badge-discovery-kids',
+  '듀베티카': 'badge-duvetica', '수프라': 'badge-supra',
+  '세르지오 타키니': 'badge-sergio', '테일러메이드': 'badge-taylormade',
+  'F&F': 'badge-fnf'
+};
+const BRAND_COLORS = {
+  'MLB': '#0d1b6f', 'MLB키즈': '#7c4dff',
+  '디스커버리': '#e65100', '디스커버리키즈': '#00bfa5',
+  '듀베티카': '#006064', '수프라': '#4a148c',
+  '세르지오 타키니': '#1b5e20', '테일러메이드': '#b71c1c',
+  'F&F': '#212121', 'ESG': '#558b2f'
+};
+const ARTICLE_FORM = ['단순보도', '기획보도', '기획피칭'];
+
+// 구글 시트 기본 ID
+const SHEET_ID_DEFAULT = '1GwMyrPX7E558CAGp5qmPFY5uVvtOlt0SDdfqmVMDeZg';
+
+const CHART_COLORS = ['#4285f4','#ea4335','#fbbc04','#34a853','#a142f4','#ff6d01','#46bdc6','#e8710a','#1a73e8','#d93025'];
+
+// ===== 상태 =====
+let articles = [];
+let charts = {};
+let sortState = { col: 'date', dir: 'desc' };
+let currentPage = 1;
+const PAGE_SIZE = 50;
+
+// ===== 유틸리티 =====
+function esc(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function rowCount(a) { return Number(a.totalCount) || 1; }
+function sumCount(arr) { return arr.reduce((s, a) => s + rowCount(a), 0); }
+
+function normalizeBrand(raw) {
+  if (!raw) return '';
+  const s = String(raw).trim();
+  // 코드 매핑 (MK→MLB키즈, DK→디스커버리키즈 등)
+  if (BRAND_CODE_MAP[s]) return BRAND_CODE_MAP[s];
+  if (BRAND_CODE_MAP[s.toUpperCase()]) return BRAND_CODE_MAP[s.toUpperCase()];
+  // 풀네임 매칭 — 긴 이름 우선 (MLB키즈 > MLB, 디스커버리키즈 > 디스커버리)
+  const fullNames = Object.values(BRAND_CODE_MAP).sort((a, b) => b.length - a.length);
+  for (const full of fullNames) { if (s.includes(full)) return full; }
+  // 추가 풀네임 매칭 (코드맵에 없는 이름들)
+  const extraNames = ['MLB키즈', '디스커버리키즈', 'MLB', '디스커버리', 'F&F', 'ESG', '회장님(PI)'];
+  for (const name of extraNames) { if (s.includes(name)) return name; }
+  return s;
+}
+
+function extractSeason(text, dateStr) {
+  if (text) {
+    let m = text.match(/(\d{2})(SS|FW|AW)/i);
+    if (m) return m[1] + (m[2].toUpperCase() === 'AW' ? 'FW' : m[2].toUpperCase());
+    m = text.match(/(\d{4})\s*([SFA])\/([SWW])/i);
+    if (m) return m[1].slice(2) + (m[2].toUpperCase() === 'S' ? 'SS' : 'FW');
+    m = text.match(/'(\d{2})\s*(SS|FW|AW)/i);
+    if (m) return m[1] + (m[2].toUpperCase() === 'AW' ? 'FW' : m[2].toUpperCase());
+    // 스프링/봄/여름 키워드 → SS, 가을/겨울/FW 키워드 → FW
+    if (dateStr) {
+      const year = dateStr.slice(2, 4);
+      if (/스프링|봄|여름|서머|spring|summer|S\/S|신학기|SS시즌/i.test(text)) return year + 'SS';
+      if (/가을|겨울|윈터|폴|fall|winter|F\/W|FW시즌/i.test(text)) return year + 'FW';
+    }
+  }
+  // 날짜 기반 폴백: 1~6월=SS, 7~12월=FW
+  if (dateStr) {
+    const m2 = dateStr.match(/(\d{4})-(\d{2})/);
+    if (m2) {
+      const year = m2[1].slice(2);
+      const month = parseInt(m2[2]);
+      return year + (month <= 6 ? 'SS' : 'FW');
+    }
+  }
+  return '';
+}
+
+function seasonSortKey(s) {
+  if (!s || s === '미분류') return 'zzzz';
+  const m = s.match(/(\d{2})(SS|FW)/i);
+  if (m) return String(parseInt(m[1]) + 2000) + '.' + (m[2].toUpperCase() === 'SS' ? 0 : 1);
+  return s;
+}
+
+function getSeasons(data) {
+  return [...new Set(data.map(a => a.season).filter(Boolean))].sort((a, b) => seasonSortKey(a).localeCompare(seasonSortKey(b)));
+}
+
+function getPrevSeason(season) {
+  if (!season) return '';
+  const m = season.match(/(\d{2})(SS|FW)/i);
+  if (!m) return '';
+  return String(parseInt(m[1]) - 1).padStart(2, '0') + m[2].toUpperCase();
+}
+
+function changeText(cur, prev) {
+  if (!prev || prev === 0) return cur > 0 ? { text: '신규', cls: 'up' } : { text: '-', cls: 'flat' };
+  const pct = ((cur - prev) / prev * 100).toFixed(1);
+  if (pct > 0) return { text: `↑ +${pct}%`, cls: 'up' };
+  if (pct < 0) return { text: `↓ ${pct}%`, cls: 'down' };
+  return { text: '0%', cls: 'flat' };
+}
+
+// ===== 토스트 =====
+let toastTimer = null;
+function toast(msg, type = '') {
+  const el = document.getElementById('toast');
+  if (toastTimer) clearTimeout(toastTimer);
+  el.className = 'toast show ' + type;
+  el.textContent = msg;
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
+}
+
+// ===== 데이터 저장/로드 =====
+function loadData() {
+  try {
+    // 새 키 먼저 시도, 없으면 v1에서 마이그레이션
+    let raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) {
+      raw = localStorage.getItem('mpr_coverage_data_v1');
+      if (raw) {
+        localStorage.setItem(STORAGE_KEY, raw);
+      }
+    }
+    if (raw) articles = JSON.parse(raw);
+  } catch (e) { articles = []; }
+}
+function saveData() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(articles));
+}
+
+// ===== 탭 전환 =====
+function switchTab(el) {
+  const tab = el.dataset.tab;
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  const titles = {
+    dashboard: '대시보드', brand: '브랜드별', season: '시즌 비교',
+    item: '아이템 분석', media: '매체 분석', efficiency: '피칭 효율', list: '전체 목록'
+  };
+  document.getElementById('pageTitle').textContent = titles[tab] || '';
+  refreshAll();
+  // 모바일에서 사이드바 닫기
+  if (window.innerWidth <= 768) toggleSidebar();
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('active');
+}
+
+// ===== 모달 =====
+function openSyncModal() {
+  document.getElementById('syncModal').classList.add('active');
+  // file:// 프로토콜 감지
+  const warn = document.getElementById('corsWarning');
+  if (location.protocol === 'file:') warn.style.display = 'block';
+  else warn.style.display = 'none';
+}
+function openInputModal() { document.getElementById('inputModal').classList.add('active'); }
+function openSettings() {
+  document.getElementById('apiKey').value = localStorage.getItem(API_KEY_STORAGE) || '';
+  document.getElementById('settingsModal').classList.add('active');
+}
+function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+document.querySelectorAll('.modal-bg').forEach(bg => bg.addEventListener('click', e => { if (e.target === bg) bg.classList.remove('active'); }));
+
+function switchModalTab(el) {
+  const panel = el.dataset.panel;
+  el.closest('.modal-body').querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  el.closest('.modal-body').querySelectorAll('.modal-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + panel).classList.add('active');
+}
+
+function saveSettings() {
+  const key = document.getElementById('apiKey').value.trim();
+  if (key) localStorage.setItem(API_KEY_STORAGE, key); else localStorage.removeItem(API_KEY_STORAGE);
+  closeModal('settingsModal');
+  toast('저장 완료', 'success');
+}
+
+function clearAllData() {
+  if (!confirm('모든 데이터를 삭제할까요?')) return;
+  if (!confirm('정말 삭제하시겠습니까?')) return;
+  articles = [];
+  saveData();
+  refreshAll();
+  toast('전체 데이터 삭제됨', 'success');
+}
+
+// ===== 필터 =====
+function getFiltered() {
+  const start = document.getElementById('filterStart').value;
+  const end = document.getElementById('filterEnd').value;
+  const brand = document.getElementById('filterBrand').value;
+  const season = document.getElementById('filterSeason').value;
+  const form = document.getElementById('filterForm').value;
+  return articles.filter(a => {
+    if (start && a.date < start) return false;
+    if (end && a.date > end) return false;
+    if (brand && a.brand !== brand) return false;
+    if (season && a.season !== season) return false;
+    if (form && a.form !== form) return false;
+    return true;
+  });
+}
+
+function resetFilters() {
+  ['filterStart', 'filterEnd'].forEach(id => document.getElementById(id).value = '');
+  ['filterBrand', 'filterSeason', 'filterForm'].forEach(id => document.getElementById(id).value = '');
+  currentPage = 1;
+  refreshAll();
+}
+
+function updateFilterOptions() {
+  const fill = (id, vals) => {
+    const sel = document.getElementById(id);
+    const cur = sel.value;
+    sel.innerHTML = '<option value="">전체</option>' + [...new Set(vals)].filter(Boolean).sort().map(v => `<option value="${esc(v)}">${esc(v)}</option>`).join('');
+    sel.value = cur;
+  };
+  fill('filterBrand', articles.map(a => a.brand));
+  fill('filterSeason', articles.map(a => a.season));
+  fill('filterForm', articles.map(a => a.form));
+}
+
+// ===== 차트 유틸 =====
+function destroyChart(id) { if (charts[id]) { charts[id].destroy(); delete charts[id]; } }
+function makeChart(id, type, data, options = {}) {
+  destroyChart(id);
+  const ctx = document.getElementById(id);
+  if (!ctx) return;
+  const defaults = {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { labels: { font: { family: "'Apple SD Gothic Neo','Noto Sans KR',sans-serif", size: 12, weight: '500' }, usePointStyle: true, pointStyle: 'circle', padding: 16 } }
+    },
+    elements: {
+      bar: { borderRadius: 6, borderSkipped: false },
+      line: { borderWidth: 2.5, tension: 0.35 },
+      point: { radius: 0, hoverRadius: 6, hoverBorderWidth: 2.5, hoverBackgroundColor: '#fff' }
+    }
+  };
+  charts[id] = new Chart(ctx, { type, data, options: deepMerge(defaults, options) });
+}
+function deepMerge(t, s) {
+  const r = { ...t };
+  for (const k of Object.keys(s)) {
+    if (s[k] && typeof s[k] === 'object' && !Array.isArray(s[k])) r[k] = deepMerge(r[k] || {}, s[k]);
+    else r[k] = s[k];
+  }
+  return r;
+}
+
+// ===== 전체 갱신 =====
+function refreshAll() {
+  updateFilterOptions();
+  const data = getFiltered();
+  fillSeasonDropdowns(data);
+  renderDashboard(data);
+  renderBrandTab(data);
+  renderSeasonTab(data);
+  renderItemTab(data);
+  renderMediaTab(data);
+  renderEfficiencyTab(data);
+  renderArticles();
+  // 데이터 상태
+  document.getElementById('dataCount').textContent = articles.length;
+  document.getElementById('dataDot').className = articles.length > 0 ? 'data-badge-dot' : 'data-badge-dot empty';
+}
+
+function fillSeasonDropdowns(data) {
+  // 시즌 비교는 항상 전체 데이터에서 시즌을 가져옴 (필터 무시)
+  const seasons = getSeasons(articles);
+  if (!seasons.length) return;
+  const latest = seasons[seasons.length - 1] || '';
+  const prev = getPrevSeason(latest);
+  ['seasonA', 'seasonB'].forEach(id => {
+    const sel = document.getElementById(id);
+    const cur = sel.value;
+    sel.innerHTML = seasons.map(s => `<option value="${esc(s)}">${esc(s)}</option>`).join('');
+    if (!cur) sel.value = id === 'seasonA' ? latest : (seasons.includes(prev) ? prev : seasons[seasons.length - 2] || latest);
+    else sel.value = cur;
+  });
+}
+
+// ============================================================
+//  대시보드
+// ============================================================
+function renderDashboard(data) {
+  const total = sumCount(data);
+  const avg = data.length ? (total / data.length).toFixed(1) : '0';
+
+  // 브랜드 TOP
+  const brandMap = {};
+  data.forEach(a => { if (a.brand) brandMap[a.brand] = (brandMap[a.brand] || 0) + rowCount(a); });
+  const topBrand = Object.entries(brandMap).sort((a, b) => b[1] - a[1])[0];
+
+  // 형태 최고 효율
+  const formMap = {};
+  data.forEach(a => { const f = a.form || '미분류'; if (!formMap[f]) formMap[f] = { c: 0, p: 0 }; formMap[f].c++; formMap[f].p += rowCount(a); });
+  let bestForm = { name: '-', avg: 0 };
+  Object.entries(formMap).forEach(([n, v]) => { const a = v.c ? v.p / v.c : 0; if (a > bestForm.avg) bestForm = { name: n, avg: a }; });
+
+  // 온라인 비율
+  let onlineTotal = 0;
+  data.forEach(a => onlineTotal += (Number(a.online) || 0));
+  const onlineRatio = total > 0 ? ((onlineTotal / total) * 100).toFixed(0) : 0;
+
+  const kpis = [
+    { label: '보도자료', value: data.length.toLocaleString(), sub: '필터 적용 결과' },
+    { label: '총 게재 건수', value: total.toLocaleString(), sub: '방송 + 지면 + 온라인' },
+    { label: '평균 게재율', value: avg, sub: '보도자료 1건당' },
+    { label: 'TOP 브랜드', value: topBrand ? topBrand[0] : '-', sub: topBrand ? `${topBrand[1].toLocaleString()}건` : '' },
+    { label: '최고효율 형태', value: bestForm.name, sub: `평균 ${bestForm.avg.toFixed(1)}건` },
+    { label: '온라인 비율', value: onlineRatio + '%', sub: `${onlineTotal.toLocaleString()}건` },
+  ];
+
+  document.getElementById('kpiGrid').innerHTML = kpis.map(k =>
+    `<div class="kpi-card"><div class="kpi-label">${k.label}</div><div class="kpi-value">${k.value}</div>${k.sub ? `<div class="kpi-sub">${k.sub}</div>` : ''}</div>`
+  ).join('');
+
+  // 월별 추이 차트
+  const monthMap = {};
+  data.forEach(a => { const m = (a.date || '').slice(0, 7); if (!m) return; if (!monthMap[m]) monthMap[m] = { r: 0, p: 0 }; monthMap[m].r++; monthMap[m].p += rowCount(a); });
+  const months = Object.keys(monthMap).sort();
+  makeChart('chartMonthly', 'line', {
+    labels: months.map(m => m.slice(2)),
+    datasets: [
+      { label: '보도자료', data: months.map(m => monthMap[m].r), borderColor: '#4285f4', backgroundColor: 'rgba(66,133,244,0.06)', fill: true, yAxisID: 'y' },
+      { label: '게재 건수', data: months.map(m => monthMap[m].p), borderColor: '#34a853', backgroundColor: 'rgba(52,168,83,0.06)', fill: true, yAxisID: 'y1' }
+    ]
+  }, { scales: { x: { grid: { display: false } }, y: { position: 'left', grid: { color: '#f1f3f5' } }, y1: { position: 'right', grid: { drawOnChartArea: false } } } });
+
+  // 브랜드별 게재 차트
+  const brands = Object.entries(brandMap).sort((a, b) => b[1] - a[1]);
+  makeChart('chartBrandBar', 'bar', {
+    labels: brands.map(b => b[0]),
+    datasets: [{ label: '게재 건수', data: brands.map(b => b[1]), backgroundColor: brands.map(b => BRAND_COLORS[b[0]] || '#9aa0a6'), maxBarThickness: 36 }]
+  }, { plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { color: '#f1f3f5' }, beginAtZero: true } } });
+
+  // 시즌별 게재 건수 차트
+  const seasonMap = {};
+  data.forEach(a => {
+    if (!a.season) return;
+    if (!seasonMap[a.season]) seasonMap[a.season] = 0;
+    seasonMap[a.season] += rowCount(a);
+  });
+  const seasonLabels = Object.keys(seasonMap).sort((a, b) => seasonSortKey(a).localeCompare(seasonSortKey(b)));
+  const seasonColors = seasonLabels.map(s => s.endsWith('SS') ? '#fbbc04' : '#4285f4');
+  makeChart('chartSeasonDash', 'bar', {
+    labels: seasonLabels,
+    datasets: [{ label: '게재 건수', data: seasonLabels.map(s => seasonMap[s]), backgroundColor: seasonColors, maxBarThickness: 36 }]
+  }, { plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { color: '#f1f3f5' }, beginAtZero: true } } });
+
+  // 최근 보도자료 목록 (최신 10건)
+  const recent = [...data].sort((a, b) => (b.date || '').localeCompare(a.date || '')).slice(0, 10);
+  document.getElementById('dashRecentList').innerHTML = recent.map(a => {
+    const bc = BRAND_CSS[a.brand] || 'badge-brand';
+    return `<tr>
+      <td style="font-size:12px; color:var(--text-secondary); white-space:nowrap;">${esc(a.date || '')}</td>
+      <td><span class="badge ${bc}">${esc(a.brand || '')}</span></td>
+      <td style="max-width:400px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${esc(a.title || '')}</td>
+      <td style="text-align:right; font-weight:700;">${rowCount(a).toLocaleString()}</td>
+    </tr>`;
+  }).join('') || '<tr><td colspan="4" style="text-align:center; color:var(--text-muted); padding:20px;">데이터 없음</td></tr>';
+
+  // 매체 유형 도넛
+  let bTotal = 0, pTotal = 0, oTotal = 0;
+  data.forEach(a => { bTotal += Number(a.broadcast) || 0; pTotal += Number(a.print) || 0; oTotal += Number(a.online) || 0; });
+  makeChart('chartMediaDoughnut', 'doughnut', {
+    labels: ['방송', '지면', '온라인'],
+    datasets: [{ data: [bTotal, pTotal, oTotal], backgroundColor: ['#a142f4', '#fbbc04', '#4285f4'], borderWidth: 0, hoverOffset: 6, spacing: 2 }]
+  }, { cutout: '72%', plugins: { legend: { position: 'bottom' } } });
+}
+
+// ============================================================
+//  브랜드별
+// ============================================================
+function renderBrandTab(data) {
+  // 항상 카드 뷰로 초기화
+  document.getElementById('brandCards').style.display = '';
+  document.getElementById('brandDetail').style.display = 'none';
+  const map = {};
+  data.forEach(a => {
+    if (!a.brand) return;
+    if (!map[a.brand]) map[a.brand] = { count: 0, placements: 0, forms: {}, latest: null };
+    const b = map[a.brand]; b.count++; b.placements += rowCount(a);
+    const f = a.form || '미분류'; b.forms[f] = (b.forms[f] || 0) + 1;
+    if (!b.latest || a.date > (b.latest.date || '')) b.latest = a;
+  });
+  const rows = Object.entries(map).sort((a, b) => b[1].placements - a[1].placements);
+
+  document.getElementById('brandCards').innerHTML = rows.map(([name, b]) => {
+    const avg = (b.placements / b.count).toFixed(1);
+    const mc = BRAND_GROUP[name] || '';
+    const color = BRAND_COLORS[name] || '#9aa0a6';
+    return `<div class="brand-card" onclick="openBrandDetail('${esc(name)}')">
+      <div class="brand-card-stripe" style="background:${color};"></div>
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-top:4px;">
+        <div>
+          <div class="brand-card-name">${esc(name)}</div>
+          <div class="brand-card-mc"><span class="badge ${mc === 'MPR' ? 'badge-mpr' : 'badge-cpr'}">${mc}</span></div>
+        </div>
+      </div>
+      <div class="brand-card-stats">
+        <div><div class="brand-card-stat-label">보도자료</div><div class="brand-card-stat-value">${b.count}</div></div>
+        <div><div class="brand-card-stat-label">게재 건수</div><div class="brand-card-stat-value">${b.placements.toLocaleString()}</div></div>
+        <div><div class="brand-card-stat-label">평균 게재율</div><div class="brand-card-stat-value">${avg}</div></div>
+      </div>
+      ${b.latest ? `<div class="brand-card-footer">${esc((b.latest.title || '').slice(0, 50))}${(b.latest.title||'').length > 50 ? '...' : ''}</div>` : ''}
+    </div>`;
+  }).join('') || '<div class="empty-state"><div class="empty-state-icon">◇</div><div class="empty-state-title">데이터가 없습니다</div></div>';
+}
+
+function openBrandDetail(brand) {
+  document.getElementById('brandCards').style.display = 'none';
+  document.getElementById('brandDetail').style.display = 'block';
+  document.getElementById('brandDetailName').textContent = brand;
+  const data = getFiltered().filter(a => a.brand === brand);
+  const mc = BRAND_GROUP[brand] || '';
+  document.getElementById('brandDetailSub').textContent = `${mc} | ${data.length}건 보도자료 | ${sumCount(data).toLocaleString()}건 게재`;
+
+  // KPI
+  const total = sumCount(data);
+  const avg = data.length ? (total / data.length).toFixed(1) : 0;
+  const topForm = {};
+  data.forEach(a => { const f = a.form || '미분류'; if (!topForm[f]) topForm[f] = { c: 0, p: 0 }; topForm[f].c++; topForm[f].p += rowCount(a); });
+  let bestF = { n: '-', a: 0 };
+  Object.entries(topForm).forEach(([n, v]) => { const a = v.c ? v.p / v.c : 0; if (a > bestF.a) bestF = { n, a }; });
+  document.getElementById('brandKpis').innerHTML = [
+    { l: '보도자료', v: data.length },
+    { l: '게재 건수', v: total.toLocaleString() },
+    { l: '평균 게재율', v: avg },
+    { l: '최고효율 형태', v: bestF.n },
+  ].map(k => `<div class="kpi-card"><div class="kpi-label">${k.l}</div><div class="kpi-value">${k.v}</div></div>`).join('');
+
+  // 형태별 차트
+  const formLabels = Object.keys(topForm);
+  makeChart('chartBrandForm', 'bar', {
+    labels: formLabels,
+    datasets: [
+      { label: '보도자료 수', data: formLabels.map(f => topForm[f].c), backgroundColor: 'rgba(66,133,244,0.7)', maxBarThickness: 40 },
+      { label: '평균 게재', data: formLabels.map(f => topForm[f].c ? (topForm[f].p / topForm[f].c).toFixed(1) : 0), backgroundColor: 'rgba(52,168,83,0.7)', maxBarThickness: 40 }
+    ]
+  }, { plugins: { legend: { position: 'bottom' } }, scales: { x: { grid: { display: false } }, y: { grid: { color: '#f1f3f5' } } } });
+
+  // 월별
+  const monthMap = {};
+  data.forEach(a => { const m = (a.date || '').slice(0, 7); if (!m) return; if (!monthMap[m]) monthMap[m] = 0; monthMap[m] += rowCount(a); });
+  const ms = Object.keys(monthMap).sort();
+  makeChart('chartBrandMonthly', 'line', {
+    labels: ms.map(m => m.slice(2)),
+    datasets: [{ label: '게재 건수', data: ms.map(m => monthMap[m]), borderColor: BRAND_COLORS[brand] || '#4285f4', backgroundColor: 'rgba(66,133,244,0.06)', fill: true }]
+  }, { plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { color: '#f1f3f5' }, beginAtZero: true } } });
+
+  // 테이블
+  const sorted = [...data].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  document.getElementById('brandTableBody').innerHTML = sorted.map(a => {
+    const fc = BRAND_CSS[a.brand] || '';
+    return `<tr>
+      <td style="font-size:12px; color:var(--text-secondary);">${esc(a.date || '')}</td>
+      <td><span class="badge badge-form">${esc(a.form || '')}</span></td>
+      <td style="max-width:300px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${esc(a.title || '')}</td>
+      <td style="text-align:right; font-weight:700;">${rowCount(a)}</td>
+      <td style="font-size:12px; color:var(--text-secondary); max-width:200px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${esc(a.media || '')}</td>
+    </tr>`;
+  }).join('');
+}
+
+function closeBrandDetail() {
+  document.getElementById('brandCards').style.display = '';
+  document.getElementById('brandDetail').style.display = 'none';
+}
+
+// ============================================================
+//  시즌 비교
+// ============================================================
+function renderSeasonTab(data) {
+  const sA = document.getElementById('seasonA').value;
+  const sB = document.getElementById('seasonB').value;
+  if (!sA || !sB) { document.getElementById('seasonCompareGrid').innerHTML = ''; return; }
+
+  const dataA = articles.filter(a => a.season === sA);
+  const dataB = articles.filter(a => a.season === sB);
+  const stA = { r: dataA.length, p: sumCount(dataA) };
+  const stB = { r: dataB.length, p: sumCount(dataB) };
+  const avgA = stA.r ? (stA.p / stA.r).toFixed(1) : 0;
+  const avgB = stB.r ? (stB.p / stB.r).toFixed(1) : 0;
+
+  const items = [
+    { l: '보도자료 수', a: stA.r, b: stB.r },
+    { l: '게재 건수', a: stA.p, b: stB.p },
+    { l: '평균 게재율', a: parseFloat(avgA), b: parseFloat(avgB) },
+  ];
+  document.getElementById('seasonCompareGrid').innerHTML = items.map(item => {
+    const ch = changeText(item.a, item.b);
+    return `<div class="compare-item">
+      <div class="compare-item-label">${item.l}</div>
+      <div class="compare-item-value">${typeof item.a === 'number' && item.a % 1 !== 0 ? item.a : item.a.toLocaleString()}</div>
+      <div class="compare-item-sub"><span class="kpi-change ${ch.cls}" style="font-size:11px;">${ch.text}</span> vs ${esc(sB)}: ${typeof item.b === 'number' && item.b % 1 !== 0 ? item.b : item.b.toLocaleString()}</div>
+    </div>`;
+  }).join('');
+
+  // 브랜드별 비교 차트
+  const allBrands = [...new Set([...dataA.map(a => a.brand), ...dataB.map(a => a.brand)].filter(Boolean))].sort();
+  makeChart('chartSeasonBrand', 'bar', {
+    labels: allBrands,
+    datasets: [
+      { label: sA, data: allBrands.map(b => sumCount(dataA.filter(a => a.brand === b))), backgroundColor: 'rgba(66,133,244,0.7)', maxBarThickness: 36 },
+      { label: sB, data: allBrands.map(b => sumCount(dataB.filter(a => a.brand === b))), backgroundColor: 'rgba(161,161,170,0.35)', maxBarThickness: 36 }
+    ]
+  }, { plugins: { legend: { position: 'bottom' } }, scales: { x: { grid: { display: false } }, y: { grid: { color: '#f1f3f5' } } } });
+
+  // 형태별
+  const fCompA = {}, fCompB = {};
+  ARTICLE_FORM.forEach(f => { fCompA[f] = 0; fCompB[f] = 0; });
+  dataA.forEach(a => { if (a.form && fCompA[a.form] !== undefined) fCompA[a.form]++; });
+  dataB.forEach(a => { if (a.form && fCompB[a.form] !== undefined) fCompB[a.form]++; });
+  makeChart('chartSeasonForm', 'bar', {
+    labels: ARTICLE_FORM,
+    datasets: [
+      { label: sA, data: ARTICLE_FORM.map(f => fCompA[f]), backgroundColor: 'rgba(66,133,244,0.7)', maxBarThickness: 50 },
+      { label: sB, data: ARTICLE_FORM.map(f => fCompB[f]), backgroundColor: 'rgba(161,161,170,0.35)', maxBarThickness: 50 }
+    ]
+  }, { plugins: { legend: { position: 'bottom' } }, scales: { x: { grid: { display: false } }, y: { grid: { color: '#f1f3f5' } } } });
+
+  // 브랜드 비교 테이블
+  const brandRows = allBrands.map(b => ({
+    brand: b,
+    a: sumCount(dataA.filter(a => a.brand === b)),
+    b: sumCount(dataB.filter(a => a.brand === b))
+  })).sort((a, b) => b.a - a.a);
+  document.getElementById('seasonBrandTable').innerHTML = `<table>
+    <thead><tr><th>브랜드</th><th>${esc(sA)}</th><th>${esc(sB)}</th><th>변화</th></tr></thead>
+    <tbody>${brandRows.map(r => {
+      const ch = changeText(r.a, r.b);
+      const bc = BRAND_CSS[r.brand] || 'badge-brand';
+      return `<tr><td><span class="badge ${bc}">${esc(r.brand)}</span></td><td><strong>${r.a.toLocaleString()}</strong></td><td>${r.b.toLocaleString()}</td><td><span class="kpi-change ${ch.cls}">${ch.text}</span></td></tr>`;
+    }).join('')}</tbody>
+  </table>`;
+}
+
+// ============================================================
+//  아이템 분석
+// ============================================================
+function renderItemTab(data) {
+  const sorted = [...data].sort((a, b) => rowCount(b) - rowCount(a));
+  const top15 = sorted.slice(0, 15);
+  const worst5 = [...data].sort((a, b) => rowCount(a) - rowCount(b)).slice(0, 5);
+
+  document.getElementById('itemRankList').innerHTML = top15.map((a, i) => {
+    const bc = BRAND_CSS[a.brand] || 'badge-brand';
+    return `<li class="rank-item">
+      <div class="rank-num ${i < 3 ? 'top' : ''}">${i + 1}</div>
+      <div class="rank-info">
+        <div class="rank-title">${esc(a.title || '제목 없음')}</div>
+        <div class="rank-meta"><span class="badge ${bc}" style="font-size:10px; padding:1px 6px;">${esc(a.brand || '')}</span> ${esc(a.date || '')} ${a.form ? '· ' + esc(a.form) : ''}</div>
+      </div>
+      <div class="rank-value">${rowCount(a).toLocaleString()}</div>
+    </li>`;
+  }).join('') || '<li class="rank-item"><div class="rank-info"><div class="rank-title" style="color:var(--text-muted);">데이터 없음</div></div></li>';
+
+  // 차트
+  makeChart('chartItemRank', 'bar', {
+    labels: top15.map(a => (a.title || '').slice(0, 20) + ((a.title || '').length > 20 ? '...' : '')),
+    datasets: [{
+      label: '게재 건수',
+      data: top15.map(a => rowCount(a)),
+      backgroundColor: top15.map(a => BRAND_COLORS[a.brand] || '#9aa0a6'),
+      maxBarThickness: 20,
+    }]
+  }, { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { grid: { color: '#f1f3f5' } }, y: { ticks: { font: { size: 11 } } } } });
+
+  // 저조
+  document.getElementById('worstTableBody').innerHTML = worst5.map(a => {
+    const bc = BRAND_CSS[a.brand] || 'badge-brand';
+    return `<tr>
+      <td style="font-size:12px; color:var(--text-secondary);">${esc(a.date || '')}</td>
+      <td><span class="badge ${bc}">${esc(a.brand || '')}</span></td>
+      <td><span class="badge badge-form">${esc(a.form || '')}</span></td>
+      <td style="max-width:300px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${esc(a.title || '')}</td>
+      <td style="text-align:right; font-weight:700;">${rowCount(a)}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ============================================================
+//  매체 분석
+// ============================================================
+function renderMediaTab(data) {
+  // 매체 분석은 전체 데이터 기반 (필터된 데이터가 적으면 의미 없으므로)
+  const allData = articles;
+  const mediaMap = {};
+  allData.forEach(a => {
+    if (!a.media) return;
+    a.media.split(/[,，]/).map(s => s.trim()).filter(s => s && !s.includes('등')).forEach(m => {
+      if (!mediaMap[m]) mediaMap[m] = { count: 0, brands: {}, years: {} };
+      mediaMap[m].count++;
+      if (a.brand) mediaMap[m].brands[a.brand] = (mediaMap[m].brands[a.brand] || 0) + 1;
+      const yr = (a.date || '').slice(0, 4);
+      if (yr) mediaMap[m].years[yr] = (mediaMap[m].years[yr] || 0) + 1;
+    });
+  });
+
+  // 브랜드별 매체 도달
+  const brandMedia = {};
+  allData.forEach(a => {
+    if (!a.brand || !a.media) return;
+    if (!brandMedia[a.brand]) brandMedia[a.brand] = { mediaSet: new Set(), prCount: 0 };
+    brandMedia[a.brand].prCount++;
+    a.media.split(/[,，]/).map(s => s.trim()).filter(s => s && !s.includes('등')).forEach(m => brandMedia[a.brand].mediaSet.add(m));
+  });
+
+  const mediaRows = Object.entries(mediaMap).sort((a, b) => b[1].count - a[1].count);
+  const top15 = mediaRows.slice(0, 15);
+  const dataWithMedia = allData.filter(a => a.media && a.media.trim());
+
+  // KPI
+  document.getElementById('mediaKpis').innerHTML = [
+    { l: '총 매체 수', v: mediaRows.length.toLocaleString(), s: '전체 기간 기준' },
+    { l: '매체 데이터 보유', v: dataWithMedia.length + '건', s: `전체 ${allData.length}건 중` },
+    { l: 'TOP 매체', v: top15[0] ? top15[0][0] : '-', s: top15[0] ? `${top15[0][1].count}회 등장` : '' },
+    { l: '가장 넓은 매체풀', v: Object.entries(brandMedia).sort((a,b) => b[1].mediaSet.size - a[1].mediaSet.size)[0]?.[0] || '-', s: Object.entries(brandMedia).sort((a,b) => b[1].mediaSet.size - a[1].mediaSet.size)[0] ? `${Object.entries(brandMedia).sort((a,b) => b[1].mediaSet.size - a[1].mediaSet.size)[0][1].mediaSet.size}개 매체` : '' },
+  ].map(k => `<div class="kpi-card"><div class="kpi-label">${k.l}</div><div class="kpi-value">${k.v}</div>${k.s ? `<div class="kpi-sub">${k.s}</div>` : ''}</div>`).join('');
+
+  // 브랜드별 매체 도달 차트
+  const brandEntries = Object.entries(brandMedia).sort((a, b) => b[1].mediaSet.size - a[1].mediaSet.size);
+  makeChart('chartMediaBrand', 'bar', {
+    labels: brandEntries.map(b => b[0]),
+    datasets: [
+      { label: '고유 매체 수', data: brandEntries.map(b => b[1].mediaSet.size), backgroundColor: brandEntries.map(b => BRAND_COLORS[b[0]] || '#9aa0a6'), maxBarThickness: 36 },
+    ]
+  }, { plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { color: '#f1f3f5' }, beginAtZero: true } } });
+
+  // 핵심 매체 TOP 15 — 브랜드별 색상으로 스택
+  const allBrands = [...new Set(allData.map(a => a.brand).filter(Boolean))].sort();
+  makeChart('chartMediaTop', 'bar', {
+    labels: top15.map(r => r[0]),
+    datasets: allBrands.map(b => ({
+      label: b,
+      data: top15.map(r => r[1].brands[b] || 0),
+      backgroundColor: BRAND_COLORS[b] || '#9aa0a6',
+      maxBarThickness: 20
+    }))
+  }, { indexAxis: 'y', plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } }, scales: { x: { stacked: true, grid: { color: '#f1f3f5' } }, y: { stacked: true } } });
+
+  // 브랜드 × 매체 매트릭스 — 히트맵 스타일
+  const topMedia = mediaRows.slice(0, 12).map(r => r[0]);
+  const maxCount = Math.max(...topMedia.map(m => Math.max(...allBrands.map(b => mediaMap[m].brands[b] || 0))));
+  document.getElementById('mediaBrandMatrix').innerHTML = `<table>
+    <thead><tr><th>매체 \\ 브랜드</th>${allBrands.map(b => `<th style="font-size:11px; text-align:center;">${esc(b.length > 5 ? b.slice(0,4)+'..' : b)}</th>`).join('')}</tr></thead>
+    <tbody>${topMedia.map(m => {
+      const mData = mediaMap[m];
+      return `<tr><td><strong style="font-size:12px;">${esc(m)}</strong></td>${allBrands.map(b => {
+        const cnt = mData.brands[b] || 0;
+        if (!cnt) return '<td style="text-align:center; color:#e0e0e0;">·</td>';
+        const intensity = Math.min(cnt / maxCount, 1);
+        const bg = `rgba(66,133,244,${0.1 + intensity * 0.5})`;
+        return `<td style="text-align:center; font-weight:700; font-size:12px; background:${bg}; color:${intensity > 0.5 ? '#fff' : 'var(--text)'};">${cnt}</td>`;
+      }).join('')}</tr>`;
+    }).join('')}</tbody>
+  </table>`;
+
+  // 매체별 상세 — 3회 이상 등장 매체만, 설명 포함
+  const freqRows = mediaRows.filter(r => r[1].count >= 3);
+  document.getElementById('mediaTableBody').innerHTML = freqRows.map(([name, m]) => {
+    const bCount = Object.keys(m.brands).length;
+    const topB = Object.entries(m.brands).sort((a, b) => b[1] - a[1]).slice(0, 3).map(x => x[0]).join(', ');
+    const yearStr = Object.entries(m.years).sort().map(([y,c]) => `${y.slice(2)}년 ${c}회`).join(', ');
+    return `<tr>
+      <td><strong>${esc(name)}</strong></td>
+      <td>${m.count}</td>
+      <td>${bCount}개</td>
+      <td style="font-size:12px; color:var(--text-secondary);">${esc(topB)}</td>
+      <td style="font-size:11px; color:var(--text-muted);">${yearStr}</td>
+    </tr>`;
+  }).join('') || '<tr><td colspan="5" style="text-align:center; color:var(--text-muted); padding:20px;">3회 이상 등장 매체 없음</td></tr>';
+}
+
+// ============================================================
+//  피칭 효율
+// ============================================================
+function renderEfficiencyTab(data) {
+  const totalP = sumCount(data);
+  const avgAll = data.length ? (totalP / data.length).toFixed(1) : 0;
+
+  // 브랜드별 효율
+  const bMap = {};
+  data.forEach(a => {
+    if (!a.brand) return;
+    if (!bMap[a.brand]) bMap[a.brand] = { c: 0, p: 0 };
+    bMap[a.brand].c++;
+    bMap[a.brand].p += rowCount(a);
+  });
+
+  // 형태별 효율
+  const fMap = {};
+  data.forEach(a => {
+    const f = a.form || '미분류';
+    if (!fMap[f]) fMap[f] = { c: 0, p: 0 };
+    fMap[f].c++;
+    fMap[f].p += rowCount(a);
+  });
+
+  // 가장 효율 좋은/나쁜 브랜드
+  const bEntries = Object.entries(bMap).filter(e => e[1].c >= 2);
+  bEntries.sort((a, b) => (b[1].p / b[1].c) - (a[1].p / a[1].c));
+  const bestBrand = bEntries[0];
+  const worstBrand = bEntries[bEntries.length - 1];
+
+  document.getElementById('effKpis').innerHTML = [
+    { l: '전체 평균 게재율', v: avgAll },
+    { l: '최고 효율 브랜드', v: bestBrand ? bestBrand[0] : '-', s: bestBrand ? `평균 ${(bestBrand[1].p / bestBrand[1].c).toFixed(1)}건` : '' },
+    { l: '개선 필요 브랜드', v: worstBrand ? worstBrand[0] : '-', s: worstBrand ? `평균 ${(worstBrand[1].p / worstBrand[1].c).toFixed(1)}건` : '' },
+  ].map(k => `<div class="kpi-card"><div class="kpi-label">${k.l}</div><div class="kpi-value">${k.v}</div>${k.s ? `<div class="kpi-sub">${k.s}</div>` : ''}</div>`).join('');
+
+  // 브랜드 평균 게재율 차트
+  const bSorted = Object.entries(bMap).sort((a, b) => (b[1].p / b[1].c) - (a[1].p / a[1].c));
+  makeChart('chartEffBrand', 'bar', {
+    labels: bSorted.map(b => b[0]),
+    datasets: [{ label: '평균 게재율', data: bSorted.map(b => (b[1].p / b[1].c).toFixed(1)), backgroundColor: bSorted.map(b => BRAND_COLORS[b[0]] || '#9aa0a6'), maxBarThickness: 40 }]
+  }, { plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { color: '#f1f3f5' }, beginAtZero: true } } });
+
+  // 형태별 효율 차트
+  const fEntries = Object.entries(fMap).sort((a, b) => (b[1].p / b[1].c) - (a[1].p / a[1].c));
+  makeChart('chartEffForm', 'bar', {
+    labels: fEntries.map(f => f[0]),
+    datasets: [
+      { label: '보도자료 수', data: fEntries.map(f => f[1].c), backgroundColor: 'rgba(66,133,244,0.7)', maxBarThickness: 50 },
+      { label: '평균 게재', data: fEntries.map(f => (f[1].p / f[1].c).toFixed(1)), backgroundColor: 'rgba(52,168,83,0.7)', maxBarThickness: 50 },
+    ]
+  }, { plugins: { legend: { position: 'bottom' } }, scales: { x: { grid: { display: false } }, y: { grid: { color: '#f1f3f5' } } } });
+
+  // 크로스 분석 테이블
+  const allBrands = Object.keys(bMap).sort();
+  const allForms = [...new Set(data.map(a => a.form).filter(Boolean))].sort();
+  const cross = {};
+  data.forEach(a => {
+    if (!a.brand || !a.form) return;
+    const key = a.brand + '|' + a.form;
+    if (!cross[key]) cross[key] = { c: 0, p: 0 };
+    cross[key].c++;
+    cross[key].p += rowCount(a);
+  });
+
+  document.getElementById('effCrossTable').innerHTML = `<table>
+    <thead><tr><th>브랜드</th>${allForms.map(f => `<th colspan="2">${esc(f)}</th>`).join('')}<th>합계</th></tr>
+    <tr><th></th>${allForms.map(() => '<th style="font-size:11px;">건수</th><th style="font-size:11px;">평균</th>').join('')}<th></th></tr></thead>
+    <tbody>${allBrands.map(b => {
+      let totalC = 0;
+      return `<tr><td><span class="badge ${BRAND_CSS[b] || 'badge-brand'}">${esc(b)}</span></td>${allForms.map(f => {
+        const d = cross[b + '|' + f];
+        if (d) { totalC += d.c; return `<td>${d.c}</td><td><strong>${(d.p / d.c).toFixed(1)}</strong></td>`; }
+        return '<td>-</td><td>-</td>';
+      }).join('')}<td><strong>${bMap[b].p.toLocaleString()}</strong></td></tr>`;
+    }).join('')}</tbody>
+  </table>`;
+}
+
+// ============================================================
+//  전체 목록
+// ============================================================
+function renderArticles() {
+  const search = (document.getElementById('articleSearch').value || '').toLowerCase();
+  let data = getFiltered();
+  if (search) data = data.filter(a => ((a.title || '') + (a.brand || '') + (a.media || '')).toLowerCase().includes(search));
+
+  // 정렬
+  data.sort((a, b) => {
+    let va = a[sortState.col] || '', vb = b[sortState.col] || '';
+    if (sortState.col === 'totalCount') { va = rowCount(a); vb = rowCount(b); }
+    if (typeof va === 'number') return sortState.dir === 'asc' ? va - vb : vb - va;
+    return sortState.dir === 'asc' ? String(va).localeCompare(String(vb)) : String(vb).localeCompare(String(va));
+  });
+
+  document.getElementById('listCount').textContent = data.length;
+
+  // 페이지네이션
+  const totalPages = Math.ceil(data.length / PAGE_SIZE) || 1;
+  if (currentPage > totalPages) currentPage = totalPages;
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const pageData = data.slice(start, start + PAGE_SIZE);
+
+  document.getElementById('articlesBody').innerHTML = pageData.map(a => {
+    const bc = BRAND_CSS[a.brand] || 'badge-brand';
+    return `<tr>
+      <td style="font-size:12px; color:var(--text-secondary); white-space:nowrap;">${esc(a.date || '')}</td>
+      <td><span class="badge ${bc}">${esc(a.brand || '')}</span></td>
+      <td><span class="badge badge-form">${esc(a.form || '')}</span></td>
+      <td style="max-width:320px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${esc(a.title || '')}</td>
+      <td style="text-align:right; font-weight:700;">${rowCount(a).toLocaleString()}</td>
+      <td style="font-size:12px; color:var(--text-secondary); max-width:180px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${esc(a.media || '')}</td>
+    </tr>`;
+  }).join('') || '<tr><td colspan="6" style="text-align:center; padding:40px; color:var(--text-muted);">데이터 없음</td></tr>';
+
+  // 페이지 버튼
+  let pagHtml = '';
+  if (totalPages > 1) {
+    pagHtml += `<button class="page-btn" onclick="goPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>←</button>`;
+    for (let i = 1; i <= totalPages; i++) {
+      if (totalPages > 7 && Math.abs(i - currentPage) > 2 && i !== 1 && i !== totalPages) {
+        if (i === currentPage - 3 || i === currentPage + 3) pagHtml += '<span style="color:var(--text-muted);">…</span>';
+        continue;
+      }
+      pagHtml += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`;
+    }
+    pagHtml += `<button class="page-btn" onclick="goPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>→</button>`;
+  }
+  document.getElementById('pagination').innerHTML = pagHtml;
+}
+
+function goPage(p) {
+  const totalPages = Math.ceil(getFiltered().length / PAGE_SIZE) || 1;
+  if (p < 1 || p > totalPages) return;
+  currentPage = p;
+  renderArticles();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================================
+//  구글 시트 연동
+// ============================================================
+function extractSheetId(url) {
+  const m = url.match(/\/spreadsheets\/d\/([a-zA-Z0-9_-]+)/);
+  return m ? m[1] : null;
+}
+
+function parseCSV(text) {
+  const rows = []; let current = []; let field = ''; let inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQ) {
+      if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+      else if (c === '"') inQ = false;
+      else field += c;
+    } else {
+      if (c === '"') inQ = true;
+      else if (c === ',') { current.push(field); field = ''; }
+      else if (c === '\n' || (c === '\r' && text[i + 1] === '\n')) { current.push(field); field = ''; rows.push(current); current = []; if (c === '\r') i++; }
+      else field += c;
+    }
+  }
+  if (field || current.length) { current.push(field); rows.push(current); }
+  return rows;
+}
+
+function parseCsvToArticles(rows) {
+  if (rows.length < 2) return [];
+
+  // 1) 시트 형식 자동 감지: TOTAL 형식 vs 월별 형식
+  // TOTAL 형식: 어딘가에 "배포일자" + "헤드라인" + "합계" 컬럼이 있음
+  // 월별 형식: 어딘가에 "보도자료(N/M)" 섹션 헤더가 있음
+  const isMonthly = rows.some(r => r[0] && /^보도자료\(\d+\/\d+\)/.test(r[0].trim()));
+  if (isMonthly) return parseMonthlyTab(rows);
+  return parseTotalTab(rows);
+}
+
+// TOTAL 탭 파싱 (1행 = 보도자료 1건)
+function parseTotalTab(rows) {
+  // 헤더 행 찾기: "배포일자" 또는 "헤드라인"이 포함된 행
+  let headerRowIdx = -1;
+  for (let i = 0; i < Math.min(rows.length, 10); i++) {
+    const joined = rows[i].map(c => c.trim().toLowerCase()).join('|');
+    if (joined.includes('배포일자') || joined.includes('헤드라인') || (joined.includes('date') && joined.includes('headline'))) {
+      headerRowIdx = i;
+      break;
+    }
+  }
+  if (headerRowIdx === -1) {
+    // 폴백: 첫 행을 헤더로 시도
+    headerRowIdx = 0;
+  }
+
+  // 헤더 매핑 (2행에 걸쳐있을 수 있으므로 headerRow + 다음 행 합치기)
+  let headers = rows[headerRowIdx].map(h => h.trim().toLowerCase());
+  // "기사게재건수" 아래에 "방송|지면|온라인|합계"가 있는 경우 다음 행 합침
+  if (headerRowIdx + 1 < rows.length) {
+    const subRow = rows[headerRowIdx + 1].map(h => h.trim().toLowerCase());
+    // 방송/지면/온라인이 서브행에 있으면 헤더 보강
+    if (subRow.some(h => h === '방송' || h === '지면' || h === '온라인')) {
+      headers = headers.map((h, i) => {
+        if (!h && subRow[i]) return subRow[i];
+        return h;
+      });
+    }
+  }
+
+  const colMap = {
+    date: ['배포일자', '날짜', 'date', '일자'],
+    media: ['주요 매체', '주요매체', '매체'],
+    title: ['헤드라인', '제목', 'title', 'headline'],
+    item: ['아이템', 'item'],
+    brand: ['브랜드', 'brand'],
+    mc: ['m/c', 'mc'],
+    form: ['형태', 'form', '유형'],
+    season: ['시즌', 'season'],
+    broadcast: ['방송'], print: ['지면'], online: ['온라인'],
+    totalCount: ['합계', '건수', 'total'],
+  };
+  const idx = {};
+  Object.keys(colMap).forEach(key => {
+    idx[key] = headers.findIndex(h => colMap[key].some(alias => h.includes(alias)));
+  });
+
+  // 데이터 시작 행: 헤더 바로 다음, 또는 서브헤더가 있으면 그 다음
+  let dataStart = headerRowIdx + 1;
+  if (dataStart < rows.length) {
+    const nextRow = rows[dataStart].map(h => h.trim().toLowerCase());
+    if (nextRow.some(h => h === '방송' || h === '지면' || h === '온라인' || h === '합계')) {
+      dataStart++;
+    }
+  }
+
+  const result = [];
+  for (let i = dataStart; i < rows.length; i++) {
+    const cells = rows[i];
+    if (cells.every(c => !c.trim())) continue;
+    const get = (key) => idx[key] >= 0 ? (cells[idx[key]] || '').trim() : '';
+    const dateVal = get('date');
+    const titleVal = get('title');
+    // 날짜와 제목 둘 다 없으면 데이터 행이 아님
+    if (!dateVal && !titleVal) continue;
+    const obj = {
+      date: dateVal, media: get('media'), title: titleVal, item: get('item'),
+      brand: normalizeBrand(get('brand')), mc: get('mc'), form: get('form'), season: get('season'),
+      broadcast: Number(String(get('broadcast')).replace(/[^\d.-]/g, '')) || 0,
+      print: Number(String(get('print')).replace(/[^\d.-]/g, '')) || 0,
+      online: Number(String(get('online')).replace(/[^\d.-]/g, '')) || 0,
+      totalCount: 0, tone: '중립', ave: 0, link: '', reporter: '', category: ''
+    };
+    obj.totalCount = Number(String(get('totalCount')).replace(/[^\d.-]/g, '')) || (obj.broadcast + obj.print + obj.online) || 1;
+    if (obj.brand && BRAND_GROUP[obj.brand]) obj.mc = obj.mc || BRAND_GROUP[obj.brand];
+    if (!obj.title && obj.item) obj.title = obj.item;
+    if (obj.date) {
+      const m = obj.date.match(/(\d{4})[.\-/](\d{1,2})[.\-/](\d{1,2})/);
+      if (m) obj.date = `${m[1]}-${m[2].padStart(2, '0')}-${m[3].padStart(2, '0')}`;
+    }
+    if (!obj.season) obj.season = extractSeason((obj.title || '') + ' ' + (obj.item || ''), obj.date);
+    result.push(obj);
+  }
+  return result;
+}
+
+// 월별 탭 파싱 (섹션별로 기사 그룹핑 → 보도자료 단위로 집계)
+function parseMonthlyTab(rows) {
+  const result = [];
+  let currentPR = null; // 현재 보도자료 정보
+  let currentArticles = []; // 현재 보도자료에 속한 기사들
+  let colIdx = null; // 컬럼 인덱스
+
+  function flushPR() {
+    if (!currentPR || currentArticles.length === 0) return;
+    // 기사들을 보도자료 1건으로 집계
+    let broadcast = 0, print = 0, online = 0;
+    const mediaSet = new Set();
+    const reporters = [];
+    let firstDate = '';
+    let tones = [];
+
+    currentArticles.forEach(a => {
+      if (!firstDate && a.date) firstDate = a.date;
+      const po = (a.po || '').trim();
+      if (po === '방송' || po.toLowerCase() === 'tv') broadcast++;
+      else if (po === '지면' || po === '인쇄' || po.toLowerCase() === 'print') print++;
+      else online++; // 온라인이 기본
+      if (a.media) mediaSet.add(a.media);
+      if (a.reporter) reporters.push(a.reporter);
+      if (a.tone) tones.push(a.tone);
+    });
+
+    // 브랜드 추출: 보도자료 제목에서
+    let brand = '';
+    const prTitle = currentPR.title || '';
+    // 알려진 브랜드명 매칭
+    const brandNames = ['디스커버리 익스페디션', '디스커버리키즈', '디스커버리', 'MLB키즈', 'MLB', '듀베티카', '수프라', '세르지오 타키니', 'F&F', 'ESG', '테일러메이드'];
+    for (const bn of brandNames) {
+      if (prTitle.includes(bn)) { brand = bn === '디스커버리 익스페디션' ? '디스커버리' : bn; break; }
+    }
+    // 코드 매칭 폴백
+    if (!brand) brand = normalizeBrand(prTitle.split(',')[0].trim().split(' ')[0]);
+
+    const totalCount = broadcast + print + online;
+    const mainMedia = [...mediaSet].slice(0, 7).join(', ');
+    // 톤: 다수결
+    const toneCount = {};
+    tones.forEach(t => toneCount[t] = (toneCount[t] || 0) + 1);
+    const mainTone = Object.entries(toneCount).sort((a, b) => b[1] - a[1])[0];
+
+    const obj = {
+      date: firstDate, title: prTitle, item: '', brand,
+      mc: brand && BRAND_GROUP[brand] ? BRAND_GROUP[brand] : '',
+      form: '단순보도', season: extractSeason(prTitle, firstDate),
+      broadcast, print, online, totalCount,
+      media: mainMedia,
+      reporter: reporters.slice(0, 5).join(', '),
+      tone: mainTone ? mainTone[0] : '중립',
+      category: '', ave: 0, link: ''
+    };
+    if (obj.date) {
+      const m = obj.date.match(/(\d{4})[.\-/](\d{1,2})[.\-/](\d{1,2})/);
+      if (m) obj.date = `${m[1]}-${m[2].padStart(2, '0')}-${m[3].padStart(2, '0')}`;
+    }
+    result.push(obj);
+  }
+
+  for (let i = 0; i < rows.length; i++) {
+    const firstCell = (rows[i][0] || '').trim();
+
+    // 보도자료 섹션 헤더: "보도자료(N/M) : 제목"
+    const prMatch = firstCell.match(/^보도자료\(\d+\/\d+\)\s*[:\uff1a]\s*(.+)/);
+    if (prMatch) {
+      flushPR(); // 이전 보도자료 저장
+      currentPR = { title: prMatch[1].trim() };
+      currentArticles = [];
+      colIdx = null;
+      continue;
+    }
+
+    // 컬럼 헤더 행: "No." + "Date" 등이 있는 행
+    if (firstCell.toLowerCase() === 'no.' && rows[i].some(c => c.trim().toLowerCase() === 'date' || c.trim() === 'Date')) {
+      const hdrs = rows[i].map(c => c.trim().toLowerCase());
+      colIdx = {
+        date: hdrs.findIndex(h => h === 'date'),
+        po: hdrs.findIndex(h => h === 'p/o' || h === 'po' || h === '매체유형'),
+        category: hdrs.findIndex(h => h === 'category' || h === '카테고리'),
+        media: hdrs.findIndex(h => h === 'media' || h === '매체' || h === '매체명'),
+        title: hdrs.findIndex(h => h === 'headline' || h === '헤드라인' || h === '기사제목'),
+        reporter: hdrs.findIndex(h => h === 'journalist' || h === '기자' || h === '기자명'),
+        tone: hdrs.findIndex(h => h === '구분' || h === '톤' || h === 'tone'),
+      };
+      continue;
+    }
+
+    // 데이터 행 (현재 보도자료에 속한 기사)
+    if (currentPR && colIdx) {
+      const cells = rows[i];
+      // No. 컬럼이 숫자인 행만 데이터로 인식
+      const noVal = (cells[0] || '').trim();
+      if (/^\d+$/.test(noVal)) {
+        const get = (key) => colIdx[key] >= 0 ? (cells[colIdx[key]] || '').trim() : '';
+        currentArticles.push({
+          date: get('date'), po: get('po'), category: get('category'),
+          media: get('media'), title: get('title'), reporter: get('reporter'),
+          tone: get('tone')
+        });
+      }
+    }
+  }
+  flushPR(); // 마지막 보도자료 저장
+  return result;
+}
+
+// 알려진 TOTAL 탭 GID (폴백용)
+const KNOWN_TOTAL_GIDS = [
+  { name: '2026TOTAL', gid: '1769242738' },
+  { name: '2025TOTAL', gid: '1077100147' },
+  { name: '2024TOTAL', gid: '769640144' },
+  { name: '2023TOTAL', gid: '36353581' },
+  { name: '2022TOTAL', gid: '1142998235' },
+];
+
+// 시트에서 탭 목록 자동 추출 (htmlview 엔드포인트 활용)
+async function discoverTabs(sheetId) {
+  const url = `https://docs.google.com/spreadsheets/d/${sheetId}/htmlview`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('시트 접근 실패 (HTTP ' + res.status + ')');
+  const html = await res.text();
+  const re = /name:\s*"([^"]+)",\s*pageUrl:[^,]+gid=(\d+)/g;
+  const tabs = [];
+  let m;
+  while ((m = re.exec(html)) !== null) tabs.push({ name: m[1], gid: m[2] });
+  return tabs;
+}
+
+// TOTAL 탭 가져오기 (자동 탐색 시도 → 실패 시 알려진 GID 폴백)
+async function getTotalTabs(sheetId) {
+  try {
+    const allTabs = await discoverTabs(sheetId);
+    const totalTabs = allTabs.filter(t => /^\d{4}TOTAL$/.test(t.name))
+      .sort((a, b) => b.name.localeCompare(a.name));
+    if (totalTabs.length) return { tabs: totalTabs, method: '자동 탐색' };
+  } catch (e) {
+    // htmlview 차단 (Safari 등) — 폴백
+  }
+  // 폴백: 알려진 GID 사용
+  return { tabs: [...KNOWN_TOTAL_GIDS], method: '저장된 GID' };
+}
+
+// 자동 동기화: 전체 연도
+async function syncAllSheets() {
+  const url = document.getElementById('syncSheetUrl').value.trim();
+  const sheetId = extractSheetId(url);
+  if (!sheetId) { toast('유효한 시트 URL이 아닙니다', 'error'); return; }
+
+  const area = document.getElementById('syncProgressArea');
+  const status = document.getElementById('syncStatusText');
+  area.style.display = 'block';
+  status.textContent = '탭 목록을 가져오는 중...';
+
+  const { tabs, method } = await getTotalTabs(sheetId);
+  status.textContent = `${tabs.length}개 연도 발견 (${method}): ${tabs.map(t => t.name.replace('TOTAL', '')).join(', ')}`;
+  await doSync(sheetId, tabs);
+}
+
+async function syncCurrentYear() {
+  const url = document.getElementById('syncSheetUrl').value.trim();
+  const sheetId = extractSheetId(url);
+  if (!sheetId) { toast('유효한 시트 URL이 아닙니다', 'error'); return; }
+
+  const area = document.getElementById('syncProgressArea');
+  const status = document.getElementById('syncStatusText');
+  area.style.display = 'block';
+  status.textContent = '탭 목록을 가져오는 중...';
+
+  const { tabs } = await getTotalTabs(sheetId);
+  const year = new Date().getFullYear();
+  const yearTab = tabs.find(t => t.name === year + 'TOTAL');
+  if (yearTab) {
+    await doSync(sheetId, [yearTab]);
+  } else {
+    // 알려진 GID에서 직접 시도
+    await doSync(sheetId, [{ name: year + 'TOTAL', gid: KNOWN_TOTAL_GIDS[0]?.gid || '1769242738' }]);
+  }
+}
+
+async function doSync(sheetId, tabs) {
+  const area = document.getElementById('syncProgressArea');
+  const bar = document.getElementById('syncBarFill');
+  const status = document.getElementById('syncStatusText');
+  const percent = document.getElementById('syncPercent');
+  const log = document.getElementById('syncLog');
+  const btn = document.getElementById('syncStartBtn');
+
+  area.style.display = 'block';
+  btn.disabled = true;
+  log.innerHTML = '';
+
+  // 기존 데이터 초기화 후 새로 가져오기 (항상 최신 상태 유지)
+  articles = [];
+  let totalNew = 0;
+  const existingKeys = new Set();
+
+  for (let i = 0; i < tabs.length; i++) {
+    const tab = tabs[i];
+    const pct = Math.round(((i) / tabs.length) * 100);
+    bar.style.width = pct + '%';
+    percent.textContent = pct + '%';
+    status.textContent = `${tab.name} 가져오는 중...`;
+    log.innerHTML += `<div>→ ${tab.name} (gid=${tab.gid}) 요청 중...</div>`;
+    log.scrollTop = log.scrollHeight;
+
+    try {
+      const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${tab.gid}`;
+      const res = await fetch(csvUrl);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const csvText = await res.text();
+      const rows = parseCSV(csvText);
+      const parsed = parseCsvToArticles(rows);
+
+      // 중복 제거
+      let added = 0;
+      parsed.forEach(obj => {
+        const key = (obj.date || '') + '|' + (obj.title || '').slice(0, 30);
+        if (!existingKeys.has(key)) {
+          existingKeys.add(key);
+          articles.push(obj);
+          added++;
+        }
+      });
+      totalNew += added;
+      log.innerHTML += `<div style="color:var(--green);">  ✓ ${tab.name}: ${parsed.length}행 파싱, ${added}건 신규 추가</div>`;
+    } catch (e) {
+      const errMsg = e.message === 'Failed to fetch' && location.protocol === 'file:'
+        ? 'CORS 차단 — localhost 서버로 접속해야 합니다'
+        : e.message;
+      log.innerHTML += `<div style="color:var(--red);">  ✗ ${tab.name}: ${errMsg}</div>`;
+    }
+    log.scrollTop = log.scrollHeight;
+    // 짧은 딜레이 (속도 제한 방지)
+    await new Promise(r => setTimeout(r, 500));
+  }
+
+  bar.style.width = '100%';
+  percent.textContent = '100%';
+  status.textContent = `완료! ${totalNew}건 새로 추가됨 (총 ${articles.length}건)`;
+  btn.disabled = false;
+
+  if (totalNew > 0) {
+    saveData();
+    refreshAll();
+  }
+  toast(`동기화 완료: ${totalNew}건 추가`, 'success');
+}
+
+async function fetchSingleGid() {
+  const url = document.getElementById('syncSheetUrl').value.trim();
+  const sheetId = extractSheetId(url);
+  const gid = document.getElementById('manualGid').value.trim();
+  if (!sheetId || !gid) { toast('시트 URL과 GID를 입력하세요', 'error'); return; }
+
+  await doSync(sheetId, [{ name: 'GID ' + gid, gid }]);
+}
+
+// ===== 데이터 붙여넣기 =====
+function parsePaste() {
+  const text = document.getElementById('pasteArea').value.trim();
+  if (!text) { toast('내용이 없습니다', 'error'); return; }
+  const lines = text.split(/\r?\n/);
+  const rows = lines.map(l => l.split('\t'));
+  const parsed = parseCsvToArticles(rows);
+  if (!parsed.length) { toast('파싱된 데이터가 없습니다', 'error'); return; }
+  articles.push(...parsed);
+  saveData();
+  closeModal('inputModal');
+  refreshAll();
+  document.getElementById('pasteArea').value = '';
+  toast(`${parsed.length}건 추가됨`, 'success');
+}
+
+// ===== JSON 임포트 =====
+function importJsonFile(file) {
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!Array.isArray(data)) throw new Error('배열이 아닙니다');
+      data.forEach(p => {
+        const obj = {
+          date: p.date || '', media: p.media || '', reporter: p.reporter || '',
+          title: p.title || '', brand: normalizeBrand(p.brand), season: p.season || '',
+          category: p.category || '', form: p.form || '', tone: p.tone || '중립',
+          ave: Number(p.ave) || 0, link: p.link || '',
+          mc: p.mc || '', item: p.item || '',
+          broadcast: Number(p.broadcast) || 0, print: Number(p.print) || 0,
+          online: Number(p.online) || 0, totalCount: Number(p.totalCount) || 0,
+        };
+        if (obj.brand && BRAND_GROUP[obj.brand]) obj.mc = obj.mc || BRAND_GROUP[obj.brand];
+        if (!obj.season) obj.season = extractSeason((obj.title || '') + ' ' + (obj.item || ''), obj.date);
+        articles.push(obj);
+      });
+      saveData();
+      closeModal('inputModal');
+      refreshAll();
+      toast(`${data.length}건 추가됨`, 'success');
+    } catch (err) { toast('JSON 파싱 실패: ' + err.message, 'error'); }
+  };
+  reader.readAsText(file);
+}
+
+// ===== 직접 입력 =====
+function addManual() {
+  const obj = {
+    date: document.getElementById('m-date').value,
+    brand: document.getElementById('m-brand').value,
+    title: document.getElementById('m-title').value,
+    form: document.getElementById('m-form').value,
+    season: document.getElementById('m-season').value,
+    broadcast: Number(document.getElementById('m-broadcast').value) || 0,
+    print: Number(document.getElementById('m-print').value) || 0,
+    online: Number(document.getElementById('m-online').value) || 0,
+    totalCount: Number(document.getElementById('m-total').value) || 0,
+    media: document.getElementById('m-media').value,
+    mc: '', reporter: '', category: '', tone: '중립', ave: 0, link: '', item: ''
+  };
+  if (!obj.totalCount) obj.totalCount = obj.broadcast + obj.print + obj.online || 1;
+  if (obj.brand && BRAND_GROUP[obj.brand]) obj.mc = BRAND_GROUP[obj.brand];
+  if (!obj.season) obj.season = extractSeason(obj.title, obj.date);
+  articles.push(obj);
+  saveData();
+  closeModal('inputModal');
+  refreshAll();
+  toast('1건 추가됨', 'success');
+}
+
+// ===== 엑셀 내보내기 =====
+function exportExcel() {
+  const data = getFiltered();
+  if (!data.length) { toast('내보낼 데이터가 없습니다', 'error'); return; }
+  const ws = XLSX.utils.json_to_sheet(data.map(a => ({
+    배포일자: a.date, 'M/C': a.mc || '', 브랜드: a.brand, 형태: a.form || '',
+    헤드라인: a.title, 아이템: a.item || '',
+    방송: a.broadcast || 0, 지면: a.print || 0, 온라인: a.online || 0, 합계: rowCount(a),
+    '주요 매체': a.media, 시즌: a.season
+  })));
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, '커버리지');
+  XLSX.writeFile(wb, `MPR_커버리지_${new Date().toISOString().slice(0,10)}.xlsx`);
+  toast('엑셀 다운로드됨', 'success');
+}
+
+// ===== 테이블 정렬 =====
+document.querySelectorAll('#articlesTable th[data-sort]').forEach(th => {
+  th.addEventListener('click', () => {
+    const col = th.dataset.sort;
+    if (sortState.col === col) sortState.dir = sortState.dir === 'asc' ? 'desc' : 'asc';
+    else { sortState.col = col; sortState.dir = 'desc'; }
+    currentPage = 1;
+    renderArticles();
+  });
+});
+
+// 필터 이벤트
+['filterStart', 'filterEnd', 'filterBrand', 'filterSeason', 'filterForm'].forEach(id => {
+  document.getElementById(id).addEventListener('change', () => { currentPage = 1; refreshAll(); });
+});
+
+// 시즌 비교 드롭다운
+['seasonA', 'seasonB'].forEach(id => {
+  document.getElementById(id).addEventListener('change', () => renderSeasonTab(getFiltered()));
+});
+
+// 검색
+document.getElementById('articleSearch').addEventListener('input', () => { currentPage = 1; renderArticles(); });
+
+// 드롭존
+const dropJson = document.getElementById('dropJson');
+const fileJson = document.getElementById('fileJson');
+dropJson.addEventListener('click', () => fileJson.click());
+dropJson.addEventListener('dragover', e => { e.preventDefault(); dropJson.classList.add('dragover'); });
+dropJson.addEventListener('dragleave', () => dropJson.classList.remove('dragover'));
+dropJson.addEventListener('drop', e => { e.preventDefault(); dropJson.classList.remove('dragover'); if (e.dataTransfer.files[0]) importJsonFile(e.dataTransfer.files[0]); });
+fileJson.addEventListener('change', e => { if (e.target.files[0]) importJsonFile(e.target.files[0]); });
+
+// ===== Chart.js 전역 설정 =====
+Chart.defaults.font.family = "'Apple SD Gothic Neo','Noto Sans KR',sans-serif";
+Chart.defaults.font.size = 12;
+Chart.defaults.color = '#9aa0a6';
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+Chart.defaults.plugins.legend.labels.pointStyle = 'circle';
+Chart.defaults.plugins.legend.labels.padding = 16;
+Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(26,29,35,0.92)';
+Chart.defaults.plugins.tooltip.titleFont = { size: 13, weight: '600' };
+Chart.defaults.plugins.tooltip.bodyFont = { size: 12 };
+Chart.defaults.plugins.tooltip.padding = { top: 10, bottom: 10, left: 14, right: 14 };
+Chart.defaults.plugins.tooltip.cornerRadius = 8;
+Chart.defaults.plugins.tooltip.displayColors = true;
+Chart.defaults.plugins.tooltip.boxPadding = 4;
+Chart.defaults.scale.grid.color = '#f1f3f5';
+Chart.defaults.elements.bar.borderRadius = 6;
+Chart.defaults.elements.bar.borderSkipped = false;
+Chart.defaults.elements.line.tension = 0.35;
+Chart.defaults.elements.point.radius = 0;
+Chart.defaults.elements.point.hoverRadius = 6;
+
+// ============================================================
+//  AI 인사이트
+// ============================================================
+async function callClaude(prompt, maxTokens = 2000) {
+  const apiKey = localStorage.getItem(API_KEY_STORAGE);
+  if (!apiKey) {
+    toast('Claude API 키가 필요합니다. 설정에서 입력하세요.', 'error');
+    openSettings();
+    throw new Error('API 키 없음');
+  }
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true'
+    },
+    body: JSON.stringify({
+      model: CLAUDE_MODEL,
+      max_tokens: maxTokens,
+      messages: [{ role: 'user', content: prompt }]
+    })
+  });
+  if (!res.ok) throw new Error('API 오류 ' + res.status);
+  const json = await res.json();
+  return json.content[0].text;
+}
+
+function renderInsight(containerId, text) {
+  // 마크다운 간단 변환
+  let html = text
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n- /g, '\n• ')
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/\n/g, '<br>');
+  html = '<p>' + html + '</p>';
+  document.getElementById(containerId).innerHTML = `<div class="insight-content">${html}</div>`;
+}
+
+async function generateDashInsight() {
+  const btn = document.getElementById('dashInsightBtn');
+  const body = document.getElementById('dashInsightBody');
+  btn.disabled = true;
+  btn.textContent = '분석 중...';
+  body.innerHTML = '<div style="display:flex; align-items:center; gap:8px; color:var(--text-secondary);"><span class="loading loading-dark"></span> AI가 데이터를 분석하고 있습니다...</div>';
+
+  try {
+    const data = getFiltered();
+    const total = sumCount(data);
+    const avg = data.length ? (total / data.length).toFixed(1) : 0;
+
+    // 브랜드별 집계
+    const brandStats = {};
+    data.forEach(a => {
+      if (!a.brand) return;
+      if (!brandStats[a.brand]) brandStats[a.brand] = { count: 0, placements: 0 };
+      brandStats[a.brand].count++;
+      brandStats[a.brand].placements += rowCount(a);
+    });
+
+    // 형태별
+    const formStats = {};
+    data.forEach(a => {
+      const f = a.form || '미분류';
+      if (!formStats[f]) formStats[f] = { count: 0, placements: 0 };
+      formStats[f].count++;
+      formStats[f].placements += rowCount(a);
+    });
+
+    // 시즌별
+    const seasonStats = {};
+    data.forEach(a => {
+      if (!a.season) return;
+      if (!seasonStats[a.season]) seasonStats[a.season] = { count: 0, placements: 0 };
+      seasonStats[a.season].count++;
+      seasonStats[a.season].placements += rowCount(a);
+    });
+
+    // TOP/WORST
+    const sorted = [...data].sort((a, b) => rowCount(b) - rowCount(a));
+    const top3 = sorted.slice(0, 3).map(a => `"${a.title}" (${a.brand}, ${rowCount(a)}건)`).join(', ');
+    const worst3 = sorted.slice(-3).map(a => `"${a.title}" (${a.brand}, ${rowCount(a)}건)`).join(', ');
+
+    const filterDesc = document.getElementById('filterStart').value && document.getElementById('filterEnd').value
+      ? `${document.getElementById('filterStart').value} ~ ${document.getElementById('filterEnd').value}`
+      : '전체 기간';
+
+    const prompt = `당신은 F&F 그룹(MLB, MLB키즈, 디스커버리, 듀베티카, 수프라, 세르지오 타키니 등) PR팀의 미디어 커버리지 분석 전문가입니다.
+
+아래 데이터를 보고 PR 담당자에게 바로 실무에 도움이 되는 인사이트를 3~5개 제시하세요.
+
+**분석 기간**: ${filterDesc}
+**보도자료 수**: ${data.length}건
+**총 게재 건수**: ${total}건 (평균 ${avg}건/보도자료)
+
+**브랜드별 현황**:
+${Object.entries(brandStats).sort((a,b) => b[1].placements - a[1].placements).map(([b, s]) => `- ${b}: ${s.count}건 배포, ${s.placements}건 게재 (평균 ${(s.placements/s.count).toFixed(1)})`).join('\n')}
+
+**형태별 현황**:
+${Object.entries(formStats).map(([f, s]) => `- ${f}: ${s.count}건, 평균 게재 ${(s.placements/s.count).toFixed(1)}`).join('\n')}
+
+**시즌별 현황**:
+${Object.entries(seasonStats).sort((a,b) => seasonSortKey(a[0]).localeCompare(seasonSortKey(b[0]))).map(([s, v]) => `- ${s}: ${v.count}건 배포, ${v.placements}건 게재`).join('\n')}
+
+**게재 TOP 3**: ${top3}
+**게재 하위 3**: ${worst3}
+
+요청사항:
+1. 각 인사이트는 "왜 그런지" + "그래서 어떻게 하면 좋을지" 를 포함
+2. 단순 수치 나열이 아니라, 비교/추세/이상치 중심으로
+3. PR 담당자가 상사에게 보고할 때 쓸 수 있는 수준의 언어
+4. 한국어로 작성, 각 인사이트는 줄바꿈으로 구분
+5. 마크다운 **볼드**로 핵심 키워드 강조`;
+
+    const result = await callClaude(prompt);
+    renderInsight('dashInsightBody', result);
+  } catch (e) {
+    if (e.message !== 'API 키 없음') {
+      body.innerHTML = `<div style="color:var(--red); font-size:13px;">분석 실패: ${esc(e.message)}</div>`;
+    }
+  }
+  btn.disabled = false;
+  btn.textContent = '다시 분석';
+}
+
+async function generateSeasonInsight() {
+  const btn = document.getElementById('seasonInsightBtn');
+  const body = document.getElementById('seasonInsightBody');
+  btn.disabled = true;
+  btn.textContent = '분석 중...';
+  body.innerHTML = '<div style="display:flex; align-items:center; gap:8px; color:var(--text-secondary);"><span class="loading loading-dark"></span> AI가 시즌을 비교 분석하고 있습니다...</div>';
+
+  try {
+    const sA = document.getElementById('seasonA').value;
+    const sB = document.getElementById('seasonB').value;
+    if (!sA || !sB) throw new Error('시즌을 선택해주세요');
+
+    const dataA = articles.filter(a => a.season === sA);
+    const dataB = articles.filter(a => a.season === sB);
+
+    const buildStats = (data) => {
+      const brands = {};
+      data.forEach(a => {
+        if (!a.brand) return;
+        if (!brands[a.brand]) brands[a.brand] = { count: 0, placements: 0 };
+        brands[a.brand].count++;
+        brands[a.brand].placements += rowCount(a);
+      });
+      const forms = {};
+      data.forEach(a => {
+        const f = a.form || '미분류';
+        if (!forms[f]) forms[f] = { count: 0, placements: 0 };
+        forms[f].count++;
+        forms[f].placements += rowCount(a);
+      });
+      return {
+        count: data.length,
+        placements: sumCount(data),
+        avg: data.length ? (sumCount(data) / data.length).toFixed(1) : 0,
+        brands,
+        forms
+      };
+    };
+
+    const stA = buildStats(dataA);
+    const stB = buildStats(dataB);
+
+    const prompt = `당신은 F&F 그룹 PR팀의 미디어 커버리지 분석 전문가입니다.
+
+두 시즌의 PR 성과를 비교 분석해주세요.
+
+**${sA} 시즌**:
+- 보도자료 ${stA.count}건, 게재 ${stA.placements}건 (평균 ${stA.avg})
+- 브랜드별: ${Object.entries(stA.brands).sort((a,b)=>b[1].placements-a[1].placements).map(([b,s])=>`${b} ${s.placements}건`).join(', ')}
+- 형태별: ${Object.entries(stA.forms).map(([f,s])=>`${f} ${s.count}건(평균${(s.placements/s.count).toFixed(1)})`).join(', ')}
+
+**${sB} 시즌**:
+- 보도자료 ${stB.count}건, 게재 ${stB.placements}건 (평균 ${stB.avg})
+- 브랜드별: ${Object.entries(stB.brands).sort((a,b)=>b[1].placements-a[1].placements).map(([b,s])=>`${b} ${s.placements}건`).join(', ')}
+- 형태별: ${Object.entries(stB.forms).map(([f,s])=>`${f} ${s.count}건(평균${(s.placements/s.count).toFixed(1)})`).join(', ')}
+
+요청사항:
+1. ${sA} vs ${sB} 전체적인 성과 변화 요약 (1~2줄)
+2. 가장 눈에 띄는 브랜드 성과 변화 (성장/하락) 3개
+3. 형태별 전략 변화가 있었는지 분석
+4. PR 전략 관점에서 다음 시즌에 개선할 점 제안 2~3개
+5. 한국어로, PR 보고서 어투로 작성
+6. 마크다운 **볼드**로 핵심 강조`;
+
+    const result = await callClaude(prompt);
+    renderInsight('seasonInsightBody', result);
+  } catch (e) {
+    if (e.message !== 'API 키 없음') {
+      body.innerHTML = `<div style="color:var(--red); font-size:13px;">분석 실패: ${esc(e.message)}</div>`;
+    }
+  }
+  btn.disabled = false;
+  btn.textContent = '다시 분석';
+}
+
+async function generateMediaInsight() {
+  const btn = document.getElementById('mediaInsightBtn');
+  const body = document.getElementById('mediaInsightBody');
+  btn.disabled = true;
+  btn.textContent = '분석 중...';
+  body.innerHTML = '<div style="display:flex; align-items:center; gap:8px; color:var(--text-secondary);"><span class="loading loading-dark"></span> AI가 매체 데이터를 분석하고 있습니다...</div>';
+
+  try {
+    const data = getFiltered();
+    // 매체 집계
+    const mediaMap = {};
+    data.forEach(a => {
+      if (!a.media) return;
+      a.media.split(/[,，]/).map(s => s.trim()).filter(s => s && !s.includes('등')).forEach(m => {
+        if (!mediaMap[m]) mediaMap[m] = { count: 0, brands: {} };
+        mediaMap[m].count++;
+        if (a.brand) mediaMap[m].brands[a.brand] = (mediaMap[m].brands[a.brand] || 0) + 1;
+      });
+    });
+
+    const mediaRows = Object.entries(mediaMap).sort((a, b) => b[1].count - a[1].count);
+    const top20 = mediaRows.slice(0, 20);
+
+    // 브랜드별 매체 도달
+    const brandMedia = {};
+    data.forEach(a => {
+      if (!a.brand || !a.media) return;
+      if (!brandMedia[a.brand]) brandMedia[a.brand] = new Set();
+      a.media.split(/[,，]/).map(s => s.trim()).filter(s => s && !s.includes('등')).forEach(m => brandMedia[a.brand].add(m));
+    });
+
+    // 브랜드 전용 매체 (한 브랜드에서만 등장하는 매체)
+    const exclusiveMedia = {};
+    mediaRows.forEach(([name, m]) => {
+      const brandKeys = Object.keys(m.brands);
+      if (brandKeys.length === 1 && m.count >= 2) {
+        const brand = brandKeys[0];
+        if (!exclusiveMedia[brand]) exclusiveMedia[brand] = [];
+        exclusiveMedia[brand].push(name);
+      }
+    });
+
+    const prompt = `당신은 F&F 그룹(MLB, MLB키즈, 디스커버리, 디스커버리키즈, 듀베티카, 수프라, 세르지오 타키니) PR팀의 미디어 릴레이션 분석 전문가입니다.
+
+아래 매체 커버리지 데이터를 분석해서 PR 담당자가 실무에 바로 활용할 수 있는 인사이트를 제공해주세요.
+
+**분석 대상**: ${data.length}건 보도자료, ${mediaRows.length}개 고유 매체
+
+**핵심 매체 TOP 20** (등장 횟수순):
+${top20.map(([name, m]) => `- ${name}: ${m.count}회 (${Object.entries(m.brands).sort((a,b)=>b[1]-a[1]).map(([b,c])=>`${b}:${c}`).join(', ')})`).join('\n')}
+
+**브랜드별 매체 도달 범위**:
+${Object.entries(brandMedia).sort((a,b)=>b[1].size-a[1].size).map(([b,s])=>`- ${b}: ${s.size}개 매체`).join('\n')}
+
+**브랜드 전용 매체** (특정 브랜드에서만 등장):
+${Object.entries(exclusiveMedia).map(([b,ms])=>`- ${b}: ${ms.slice(0,5).join(', ')}`).join('\n') || '없음'}
+
+요청사항:
+1. **매체 풀 분석**: 현재 매체 구성의 강점과 약점 (종합지/경제지/패션전문지/온라인 등 비율)
+2. **브랜드별 매체 전략 차이**: 어떤 브랜드가 매체 다변화가 잘 되어있고, 어떤 브랜드가 부족한지
+3. **핵심 매체 관계**: 꾸준히 보도해주는 "단골 매체"와 관계 강화 제안
+4. **매체 확대 기회**: 현재 커버되지 않는 매체 유형이나 채널 제안
+5. PR 담당자가 상사 보고서에 바로 쓸 수 있는 수준으로 한국어 작성
+6. 마크다운 **볼드**로 핵심 강조`;
+
+    const result = await callClaude(prompt);
+    renderInsight('mediaInsightBody', result);
+  } catch (e) {
+    if (e.message !== 'API 키 없음') {
+      body.innerHTML = `<div style="color:var(--red); font-size:13px;">분석 실패: ${esc(e.message)}</div>`;
+    }
+  }
+  btn.disabled = false;
+  btn.textContent = '다시 분석';
+}
+
+// ===== 초기화 =====
+loadData();
+
+// 기존 데이터 보정: 브랜드 재분류 + 시즌 폴백
+articles.forEach(a => {
+  // 브랜드 재분류 (이전 버전 데이터 호환)
+  if (a.brand) a.brand = normalizeBrand(a.brand);
+  if (a.brand && BRAND_GROUP[a.brand]) a.mc = BRAND_GROUP[a.brand];
+  // 시즌 폴백
+  if (!a.season && a.date) a.season = extractSeason((a.title || '') + ' ' + (a.item || ''), a.date);
+});
+saveData();
+
+// 기본 필터: 올해(2026년)로 설정
+const currentYear = new Date().getFullYear();
+document.getElementById('filterStart').value = currentYear + '-01-01';
+document.getElementById('filterEnd').value = currentYear + '-12-31';
+
+refreshAll();
+
+// 데이터가 비어있으면 같은 폴더의 all_coverage_data.json 자동 로드 시도
+if (articles.length === 0) {
+  fetch('all_coverage_data.json')
+    .then(r => { if (!r.ok) throw new Error('파일 없음'); return r.json(); })
+    .then(data => {
+      if (!Array.isArray(data) || !data.length) return;
+      data.forEach(p => {
+        const obj = {
+          date: p.date || '', media: p.media || '', reporter: p.reporter || '',
+          title: p.title || '', brand: normalizeBrand(p.brand), season: p.season || '',
+          category: p.category || '', form: p.form || '', tone: p.tone || '중립',
+          ave: Number(p.ave) || 0, link: p.link || '',
+          mc: p.mc || '', item: p.item || '',
+          broadcast: Number(p.broadcast) || 0, print: Number(p.print) || 0,
+          online: Number(p.online) || 0, totalCount: Number(p.totalCount) || 0,
+        };
+        if (obj.brand && BRAND_GROUP[obj.brand]) obj.mc = obj.mc || BRAND_GROUP[obj.brand];
+        if (!obj.season) obj.season = extractSeason((obj.title || '') + ' ' + (obj.item || ''), obj.date);
+        articles.push(obj);
+      });
+      saveData();
+      refreshAll();
+      toast(`기본 데이터 ${data.length}건 자동 로드됨`, 'success');
+    })
+    .catch(() => {}); // 파일이 없으면 무시
+}
+</script>
+</body>
+</html>
