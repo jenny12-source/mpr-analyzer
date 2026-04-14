@@ -3204,16 +3204,26 @@ function renderNews() {
   // 매체 다양성 (고유 매체 수)
   const sources = new Set(filtered.map(n => n.source).filter(Boolean));
 
-  // 최신 기사 시간
-  const latestTime = filtered[0] ? formatNewsDate(filtered[0].pubDate) : '-';
+  // 전일 대비
+  const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayCount = filtered.filter(n => {
+    try { return new Date(n.pubDate).toDateString() === yesterday.toDateString(); } catch { return false; }
+  }).length;
+  const dayDiff = todayCount - yesterdayCount;
+  const dayDiffText = dayDiff > 0 ? '+' + dayDiff + '건' : dayDiff < 0 ? dayDiff + '건' : '동일';
+
+  // TOP 매체 (가장 많이 등장)
+  const sourceCount = {};
+  filtered.forEach(n => { if (n.source) sourceCount[n.source] = (sourceCount[n.source] || 0) + 1; });
+  const topSource = Object.entries(sourceCount).sort((a, b) => b[1] - a[1])[0];
 
   const periodLabel = newsPeriodDays === 0 ? '전체' : newsPeriodDays + '일간';
 
   document.getElementById('newsKpis').innerHTML = [
     { l: periodLabel + ' 기사', v: filtered.length + '건', s: newsFilterBrand === '전체' ? '전체 브랜드' : newsFilterBrand },
-    { l: '오늘 기사', v: todayCount + '건', s: new Date().toLocaleDateString('ko-KR') },
+    { l: '오늘 기사', v: todayCount + '건', s: `전일 대비 ${dayDiffText}` },
     { l: '매체 다양성', v: sources.size + '개', s: '고유 매체 수' },
-    { l: '최신 기사', v: latestTime, s: filtered[0] ? esc(filtered[0].title.slice(0, 25)) + '...' : '' },
+    { l: 'TOP 매체', v: topSource ? topSource[0] : '-', s: topSource ? topSource[1] + '회 등장' : '' },
   ].map(k => `<div class="kpi-card"><div class="kpi-label">${k.l}</div><div class="kpi-value">${k.v}</div>${k.s ? `<div class="kpi-sub">${k.s}</div>` : ''}</div>`).join('');
 
   // 뉴스 피드
