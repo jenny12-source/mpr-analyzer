@@ -1023,8 +1023,8 @@ textarea.form-input { min-height: 120px; resize: vertical; }
             <span id="newsLastUpdate" style="font-size:12px; color:var(--text-muted);"></span>
           </div>
           <div style="display:flex; gap:8px; align-items:center;">
-            <span style="font-size:11px; color:var(--text-muted);">네이버 뉴스 기반</span>
-            <button class="btn btn-primary btn-sm" onclick="fetchAllNews()" id="newsRefreshBtn">새로고침</button>
+            <button class="btn btn-secondary btn-sm" onclick="fetchAllNews()" id="newsRefreshBtn">저장 데이터</button>
+            <button class="btn btn-primary btn-sm" onclick="liveSearchNews()" id="liveSearchBtn">실시간 검색</button>
           </div>
         </div>
         <div style="padding:8px 14px; background:var(--bg); border-radius:var(--radius-sm); margin-bottom:14px; font-size:11px; color:var(--text-muted); display:flex; align-items:center; gap:6px;">
@@ -3050,19 +3050,19 @@ function formatNewsDate(dateStr) {
   } catch { return dateStr; }
 }
 
+// 네이버 수집 데이터 (JSON) 로드
 async function fetchAllNews() {
   const btn = document.getElementById('newsRefreshBtn');
   btn.disabled = true;
   btn.textContent = '불러오는 중...';
 
   try {
-    // GitHub Pages에 저장된 news.json 가져오기 (캐시 방지)
     const jsonUrl = (location.hostname.includes('github.io'))
       ? 'data/news.json?t=' + Date.now()
       : 'https://jenny12-source.github.io/mpr-analyzer/data/news.json?t=' + Date.now();
 
     const res = await fetch(jsonUrl);
-    if (!res.ok) throw new Error('뉴스 데이터를 찾을 수 없습니다. GitHub Actions가 아직 실행되지 않았을 수 있어요.');
+    if (!res.ok) throw new Error('뉴스 데이터 없음');
     const data = await res.json();
 
     newsUpdatedAt = data.updatedAt || '';
@@ -3071,10 +3071,10 @@ async function fetchAllNews() {
 
     Object.entries(data.brands || {}).forEach(([brand, items]) => {
       const displayName = NEWS_BRAND_DISPLAY[brand] || brand;
-      const color = NEWS_BRAND_COLORS[brand] || '#9aa0a6';
+      const color = NEWS_BRAND_COLORS[displayName] || NEWS_BRAND_COLORS[brand] || '#9aa0a6';
       newsData[displayName] = (items || []).map(item => ({
         title: stripHtml(item.title || ''),
-        source: item.originallink ? new URL(item.originallink).hostname.replace('www.', '') : '',
+        source: item.originallink ? (() => { try { return new URL(item.originallink).hostname.replace('www.', ''); } catch { return ''; } })() : '',
         description: stripHtml(item.description || ''),
         link: item.originallink || item.link || '',
         pubDate: item.pubDate,
@@ -3087,12 +3087,66 @@ async function fetchAllNews() {
     document.getElementById('newsLastUpdate').textContent = newsUpdatedAt ? `마지막 수집: ${newsUpdatedAt}` : '';
     renderNews();
     updateNewsAlertBanner();
-    toast(`${totalCount}건의 뉴스를 불러왔습니다`, 'success');
+    toast(`네이버 수집 데이터 ${totalCount}건 로드`, 'success');
   } catch (e) {
-    toast(e.message, 'error');
+    toast('저장된 데이터 없음 — 실시간 검색을 이용하세요', 'error');
   }
   btn.disabled = false;
   btn.textContent = '새로고침';
+}
+
+// 실시간 검색 (구글 뉴스 RSS — 버튼 누를 때마다 최신 기사 가져옴)
+const LIVE_SEARCH_QUERIES = [
+  { name: 'MLB', query: '"MLB" F&F 패션', color: '#0d1b6f' },
+  { name: 'MLB키즈', query: '"MLB키즈"', color: '#7c4dff' },
+  { name: '디스커버리', query: '"디스커버리 익스페디션"', color: '#e65100' },
+  { name: '디스커버리키즈', query: '"디스커버리키즈"', color: '#00bfa5' },
+  { name: '듀베티카', query: '"듀베티카"', color: '#006064' },
+  { name: '세르지오 타키니', query: '세르지오타키니 OR "세르지오 타키니"', color: '#1b5e20' },
+  { name: '수프라', query: '"수프라" F&F 패션', color: '#4a148c' },
+];
+
+async function liveSearchNews() {
+  const btn = document.getElementById('liveSearchBtn');
+  btn.disabled = true;
+  btn.textContent = '검색 중...';
+  newsData = {};
+  let totalCount = 0;
+
+  for (const brand of LIVE_SEARCH_QUERIES) {
+    try {
+      const rssUrl = 'https://news.google.com/rss/search?q=' + encodeURIComponent(brand.query) + '&hl=ko&gl=KR&ceid=KR:ko';
+      const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssUrl));
+      const data = await res.json();
+      if (data.status === 'ok' && data.items) {
+        newsData[brand.name] = data.items.map(item => {
+          const fullTitle = stripHtml(item.title || '');
+          const sourceMatch = fullTitle.match(/\s-\s([^-]+)$/);
+          return {
+            title: sourceMatch ? fullTitle.replace(/\s-\s[^-]+$/, '').trim() : fullTitle,
+            source: sourceMatch ? sourceMatch[1].trim() : '',
+            description: stripHtml(item.description || ''),
+            link: item.link || '',
+            pubDate: item.pubDate,
+            brand: brand.name,
+            color: brand.color
+          };
+        });
+        totalCount += data.items.length;
+      } else {
+        newsData[brand.name] = [];
+      }
+    } catch { newsData[brand.name] = []; }
+    await new Promise(r => setTimeout(r, 300));
+  }
+
+  newsUpdatedAt = new Date().toLocaleString('ko-KR', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+  document.getElementById('newsLastUpdate').textContent = `실시간 검색: ${newsUpdatedAt}`;
+  btn.disabled = false;
+  btn.textContent = '실시간 검색';
+  renderNews();
+  updateNewsAlertBanner();
+  toast(`실시간 ${totalCount}건 검색 완료`, 'success');
 }
 
 // 기간 필터로 뉴스 필터링
