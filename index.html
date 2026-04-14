@@ -791,6 +791,18 @@ textarea.form-input { min-height: 120px; resize: vertical; }
       <!-- 탭: 대시보드 -->
       <div class="tab-panel active" id="tab-dashboard">
         <div class="kpi-grid" id="kpiGrid"></div>
+        <!-- 실시간 뉴스 배너 -->
+        <div id="newsAlertBanner" style="display:none; margin-bottom:16px; padding:14px 18px; background:linear-gradient(135deg, #1a1d23 0%, #2d3748 100%); border-radius:var(--radius); cursor:pointer; display:flex; align-items:center; justify-content:space-between;" onclick="document.querySelector('[data-tab=news]').click()">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size:18px;">⚡</span>
+            <div>
+              <div style="color:#fff; font-size:14px; font-weight:600;" id="newsAlertTitle">실시간 뉴스</div>
+              <div style="color:rgba(255,255,255,0.5); font-size:11px;" id="newsAlertSub">뉴스 모니터링 탭에서 검색하세요</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center;" id="newsAlertBrands"></div>
+          <div style="color:rgba(255,255,255,0.4); font-size:12px;">클릭하여 상세 보기 →</div>
+        </div>
         <!-- AI 인사이트 -->
         <div class="card" style="margin-bottom:20px; border-left:3px solid var(--accent);" id="dashInsightCard">
           <div class="card-header">
@@ -995,6 +1007,10 @@ textarea.form-input { min-height: 120px; resize: vertical; }
 
       <!-- 탭: 뉴스 모니터링 -->
       <div class="tab-panel" id="tab-news">
+        <div style="padding:10px 14px; background:var(--accent-bg); border-radius:var(--radius-sm); margin-bottom:14px; font-size:12px; color:var(--accent); display:flex; align-items:center; gap:8px;">
+          <span>ℹ</span>
+          <span>실시간 네이버 뉴스 검색 결과입니다. 공식 PR 실적은 <a href="#" onclick="document.querySelector('[data-tab=dashboard]').click(); return false;" style="font-weight:700;">대시보드</a>의 구글 시트 데이터를 참고하세요.</span>
+        </div>
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
           <div>
             <div style="font-size:13px; color:var(--text-secondary);">네이버 뉴스 API로 브랜드별 최신 기사를 검색합니다</div>
@@ -2919,6 +2935,7 @@ async function fetchAllNews() {
   btn.disabled = false;
   btn.textContent = '전체 검색';
   renderNews();
+  updateNewsAlertBanner();
   toast(`${totalCount}건의 뉴스를 검색했습니다`, 'success');
 }
 
@@ -2982,6 +2999,27 @@ function renderNews() {
 function filterNews(brand) {
   newsFilterBrand = brand;
   renderNews();
+}
+
+function updateNewsAlertBanner() {
+  const banner = document.getElementById('newsAlertBanner');
+  const allNews = Object.values(newsData).flat();
+  if (!allNews.length) { banner.style.display = 'none'; return; }
+
+  banner.style.display = 'flex';
+  const todayCount = allNews.filter(n => {
+    try { return new Date(n.pubDate).toDateString() === new Date().toDateString(); } catch { return false; }
+  }).length;
+
+  document.getElementById('newsAlertTitle').textContent = `실시간 뉴스 ${allNews.length}건`;
+  document.getElementById('newsAlertSub').textContent = `오늘 ${todayCount}건 · ${new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })} 기준`;
+
+  // 브랜드별 건수 미니 뱃지
+  const brandCounts = NEWS_BRANDS.map(b => ({ name: b.name, count: (newsData[b.name] || []).length, color: b.color }))
+    .filter(b => b.count > 0).sort((a, b) => b.count - a.count).slice(0, 4);
+  document.getElementById('newsAlertBrands').innerHTML = brandCounts.map(b =>
+    `<span style="background:${b.color}; color:#fff; font-size:10px; padding:2px 8px; border-radius:10px; font-weight:600;">${b.name} ${b.count}</span>`
+  ).join('');
 }
 
 // ===== 초기화 =====
