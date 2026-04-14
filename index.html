@@ -2847,30 +2847,22 @@ ${Object.entries(exclusiveMedia).map(([b,ms])=>`- ${b}: ${ms.slice(0,5).join(', 
 }
 
 // ============================================================
-//  뉴스 모니터링 (구글 뉴스 RSS — API 키 불필요)
+//  뉴스 모니터링 (네이버 뉴스 API — GitHub Actions 서버 경유)
 // ============================================================
-const NEWS_BRANDS = [
-  { name: 'MLB', query: '"MLB" F&F 패션', color: '#0d1b6f' },
-  { name: 'MLB키즈', query: '"MLB키즈"', color: '#7c4dff' },
-  { name: '디스커버리', query: '"디스커버리 익스페디션"', color: '#e65100' },
-  { name: '디스커버리키즈', query: '"디스커버리키즈"', color: '#00bfa5' },
-  { name: '듀베티카', query: '"듀베티카"', color: '#006064' },
-  { name: '세르지오 타키니', query: '세르지오타키니 OR "세르지오 타키니"', color: '#1b5e20' },
-  { name: '수프라', query: '"수프라" F&F 패션', color: '#4a148c' },
-];
+const NEWS_BRAND_COLORS = {
+  'MLB': '#0d1b6f', 'MLB키즈': '#7c4dff',
+  '디스커버리': '#e65100', '디스커버리키즈': '#00bfa5',
+  '듀베티카': '#006064', '세르지오타키니': '#1b5e20',
+  '수프라': '#4a148c'
+};
+// 브랜드명 정규화 (세르지오타키니 → 세르지오 타키니)
+const NEWS_BRAND_DISPLAY = {
+  '세르지오타키니': '세르지오 타키니'
+};
 
 let newsData = {};
 let newsFilterBrand = '전체';
-
-async function searchGoogleNews(query) {
-  const rssUrl = 'https://news.google.com/rss/search?q=' + encodeURIComponent(query) + '&hl=ko&gl=KR&ceid=KR:ko';
-  const apiUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssUrl);
-  const res = await fetch(apiUrl);
-  if (!res.ok) throw new Error('RSS 변환 실패');
-  const data = await res.json();
-  if (data.status !== 'ok') throw new Error(data.message || 'RSS 오류');
-  return data.items || [];
-}
+let newsUpdatedAt = '';
 
 function stripHtml(html) {
   return html.replace(/<[^>]*>/g, '').replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&apos;/g, "'");
@@ -2888,57 +2880,62 @@ function formatNewsDate(dateStr) {
   } catch { return dateStr; }
 }
 
-// 기사 제목에서 매체명 추출 (구글 뉴스는 "제목 - 매체명" 형식)
-function extractSource(title) {
-  const m = title.match(/\s-\s([^-]+)$/);
-  return m ? m[1].trim() : '';
-}
-
-function cleanTitle(title) {
-  return title.replace(/\s-\s[^-]+$/, '').trim();
-}
-
 async function fetchAllNews() {
   const btn = document.getElementById('newsRefreshBtn');
   btn.disabled = true;
-  btn.textContent = '검색 중...';
-  newsData = {};
-  let totalCount = 0;
+  btn.textContent = '불러오는 중...';
 
-  for (const brand of NEWS_BRANDS) {
-    try {
-      const items = await searchGoogleNews(brand.query);
-      newsData[brand.name] = items.map(item => ({
-        title: cleanTitle(stripHtml(item.title)),
-        source: extractSource(stripHtml(item.title)),
+  try {
+    // GitHub Pages에 저장된 news.json 가져오기 (캐시 방지)
+    const jsonUrl = (location.hostname.includes('github.io'))
+      ? 'data/news.json?t=' + Date.now()
+      : 'https://jenny12-source.github.io/mpr-analyzer/data/news.json?t=' + Date.now();
+
+    const res = await fetch(jsonUrl);
+    if (!res.ok) throw new Error('뉴스 데이터를 찾을 수 없습니다. GitHub Actions가 아직 실행되지 않았을 수 있어요.');
+    const data = await res.json();
+
+    newsUpdatedAt = data.updatedAt || '';
+    newsData = {};
+    let totalCount = 0;
+
+    Object.entries(data.brands || {}).forEach(([brand, items]) => {
+      const displayName = NEWS_BRAND_DISPLAY[brand] || brand;
+      const color = NEWS_BRAND_COLORS[brand] || '#9aa0a6';
+      newsData[displayName] = (items || []).map(item => ({
+        title: stripHtml(item.title || ''),
+        source: item.originallink ? new URL(item.originallink).hostname.replace('www.', '') : '',
         description: stripHtml(item.description || ''),
-        link: item.link,
+        link: item.originallink || item.link || '',
         pubDate: item.pubDate,
-        brand: brand.name,
-        color: brand.color
+        brand: displayName,
+        color
       }));
       totalCount += items.length;
-    } catch (e) {
-      newsData[brand.name] = [];
-    }
-    await new Promise(r => setTimeout(r, 300));
-  }
+    });
 
-  document.getElementById('newsLastUpdate').textContent = '업데이트: ' + new Date().toLocaleTimeString('ko-KR');
+    document.getElementById('newsLastUpdate').textContent = newsUpdatedAt ? `마지막 수집: ${newsUpdatedAt}` : '';
+    renderNews();
+    updateNewsAlertBanner();
+    toast(`${totalCount}건의 뉴스를 불러왔습니다`, 'success');
+  } catch (e) {
+    toast(e.message, 'error');
+  }
   btn.disabled = false;
-  btn.textContent = '전체 검색';
-  renderNews();
-  updateNewsAlertBanner();
-  toast(`${totalCount}건의 뉴스를 검색했습니다`, 'success');
+  btn.textContent = '새로고침';
 }
 
 function renderNews() {
+  // 브랜드 목록 (데이터에서 동적 생성)
+  const brandList = Object.keys(newsData).filter(b => newsData[b].length > 0);
+
   // 브랜드 칩
   const chipHtml = `<button class="btn btn-sm ${newsFilterBrand === '전체' ? 'btn-primary' : 'btn-secondary'}" onclick="filterNews('전체')">전체</button>` +
-    NEWS_BRANDS.map(b => {
-      const count = (newsData[b.name] || []).length;
-      const active = newsFilterBrand === b.name;
-      return `<button class="btn btn-sm ${active ? 'btn-primary' : 'btn-secondary'}" onclick="filterNews('${esc(b.name)}')" style="${active ? 'background:'+b.color+';border-color:'+b.color+';' : ''}">${esc(b.name)} <span style="opacity:0.7;">${count}</span></button>`;
+    brandList.map(b => {
+      const count = newsData[b].length;
+      const color = newsData[b][0]?.color || '#9aa0a6';
+      const active = newsFilterBrand === b;
+      return `<button class="btn btn-sm ${active ? 'btn-primary' : 'btn-secondary'}" onclick="filterNews('${esc(b)}')" style="${active ? 'background:'+color+';border-color:'+color+';' : ''}">${esc(b)} <span style="opacity:0.7;">${count}</span></button>`;
     }).join('');
   document.getElementById('newsBrandChips').innerHTML = chipHtml;
 
@@ -2947,11 +2944,11 @@ function renderNews() {
   const todayCount = allNews.filter(n => {
     try { return new Date(n.pubDate).toDateString() === new Date().toDateString(); } catch { return false; }
   }).length;
-  const topBrand = NEWS_BRANDS.map(b => ({ name: b.name, count: (newsData[b.name] || []).length }))
+  const topBrand = brandList.map(b => ({ name: b, count: newsData[b].length }))
     .sort((a, b) => b.count - a.count)[0];
 
   document.getElementById('newsKpis').innerHTML = [
-    { l: '검색된 기사', v: allNews.length + '건', s: '브랜드 ' + NEWS_BRANDS.length + '개 검색' },
+    { l: '검색된 기사', v: allNews.length + '건', s: '브랜드 ' + brandList.length + '개' },
     { l: '오늘 기사', v: todayCount + '건', s: new Date().toLocaleDateString('ko-KR') },
     { l: '가장 활발한 브랜드', v: topBrand?.name || '-', s: topBrand ? topBrand.count + '건' : '' },
   ].map(k => `<div class="kpi-card"><div class="kpi-label">${k.l}</div><div class="kpi-value">${k.v}</div>${k.s ? `<div class="kpi-sub">${k.s}</div>` : ''}</div>`).join('');
@@ -3008,8 +3005,9 @@ function updateNewsAlertBanner() {
   document.getElementById('newsAlertSub').textContent = `오늘 ${todayCount}건 · ${new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })} 기준`;
 
   // 브랜드별 건수 미니 뱃지
-  const brandCounts = NEWS_BRANDS.map(b => ({ name: b.name, count: (newsData[b.name] || []).length, color: b.color }))
-    .filter(b => b.count > 0).sort((a, b) => b.count - a.count).slice(0, 4);
+  const brandCounts = Object.entries(newsData).map(([name, items]) => ({
+    name, count: items.length, color: items[0]?.color || '#9aa0a6'
+  })).filter(b => b.count > 0).sort((a, b) => b.count - a.count).slice(0, 4);
   document.getElementById('newsAlertBrands').innerHTML = brandCounts.map(b =>
     `<span style="background:${b.color}; color:#fff; font-size:10px; padding:2px 8px; border-radius:10px; font-weight:600;">${b.name} ${b.count}</span>`
   ).join('');
