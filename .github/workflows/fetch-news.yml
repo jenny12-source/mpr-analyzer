@@ -2,9 +2,8 @@ name: Fetch News
 
 on:
   schedule:
-    # 매일 오전 9시, 오후 1시, 오후 6시 (KST) 실행
-    # UTC 기준: 0시, 4시, 9시
-    - cron: '0 0,4,9 * * *'
+    # 업무시간 1시간마다 (KST 8시~21시 = UTC 23시~12시)
+    - cron: '0 23,0,1,2,3,4,5,6,7,8,9,10,11,12 * * *'
   workflow_dispatch: # 수동 실행 가능
 
 permissions:
