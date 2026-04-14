@@ -662,6 +662,12 @@ textarea.form-input { min-height: 120px; resize: vertical; }
 .page-btn:hover { background: var(--border-light); }
 .page-btn.active { background: var(--accent); color: #fff; }
 
+/* ===== LIVE 펄스 ===== */
+@keyframes livePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
 /* ===== AI 인사이트 ===== */
 .insight-content {
   font-size: 13px;
@@ -1007,18 +1013,30 @@ textarea.form-input { min-height: 120px; resize: vertical; }
 
       <!-- 탭: 뉴스 모니터링 -->
       <div class="tab-panel" id="tab-news">
-        <div style="padding:10px 14px; background:var(--accent-bg); border-radius:var(--radius-sm); margin-bottom:14px; font-size:12px; color:var(--accent); display:flex; align-items:center; gap:8px;">
-          <span>ℹ</span>
-          <span>실시간 네이버 뉴스 검색 결과입니다. 공식 PR 실적은 <a href="#" onclick="document.querySelector('[data-tab=dashboard]').click(); return false;" style="font-weight:700;">대시보드</a>의 구글 시트 데이터를 참고하세요.</span>
-        </div>
+        <!-- 상단 헤더 -->
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-          <div>
-            <div style="font-size:13px; color:var(--text-secondary);">네이버 뉴스 API로 브랜드별 최신 기사를 검색합니다</div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="display:inline-flex; align-items:center; gap:6px; padding:4px 12px; background:#ef4444; color:#fff; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:0.5px;">
+              <span style="width:6px; height:6px; background:#fff; border-radius:50%; animation:livePulse 1.5s infinite;"></span>
+              LIVE
+            </span>
+            <span id="newsLastUpdate" style="font-size:12px; color:var(--text-muted);"></span>
           </div>
           <div style="display:flex; gap:8px; align-items:center;">
-            <span id="newsLastUpdate" style="font-size:11px; color:var(--text-muted);"></span>
-            <button class="btn btn-primary btn-sm" onclick="fetchAllNews()" id="newsRefreshBtn">전체 검색</button>
+            <span style="font-size:11px; color:var(--text-muted);">네이버 뉴스 기반</span>
+            <button class="btn btn-primary btn-sm" onclick="fetchAllNews()" id="newsRefreshBtn">새로고침</button>
           </div>
+        </div>
+        <div style="padding:8px 14px; background:var(--bg); border-radius:var(--radius-sm); margin-bottom:14px; font-size:11px; color:var(--text-muted); display:flex; align-items:center; gap:6px;">
+          <span>ℹ</span> 실시간 뉴스 검색 결과입니다. 공식 PR 실적은 <a href="#" onclick="document.querySelector('[data-tab=dashboard]').click(); return false;" style="font-weight:600; color:var(--accent);">대시보드</a> 참고
+        </div>
+        <!-- 기간 필터 -->
+        <div style="display:flex; gap:4px; margin-bottom:12px;" id="newsPeriodChips">
+          <button class="btn btn-sm btn-secondary" onclick="setNewsPeriod(1)" data-period="1">1일</button>
+          <button class="btn btn-sm btn-secondary" onclick="setNewsPeriod(3)" data-period="3">3일</button>
+          <button class="btn btn-sm btn-primary" onclick="setNewsPeriod(7)" data-period="7">7일</button>
+          <button class="btn btn-sm btn-secondary" onclick="setNewsPeriod(30)" data-period="30">30일</button>
+          <button class="btn btn-sm btn-secondary" onclick="setNewsPeriod(0)" data-period="0">전체</button>
         </div>
         <!-- 브랜드 필터 칩 -->
         <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px;" id="newsBrandChips"></div>
@@ -1028,8 +1046,8 @@ textarea.form-input { min-height: 120px; resize: vertical; }
         <div id="newsFeed">
           <div class="empty-state">
             <div class="empty-state-icon">⚡</div>
-            <div class="empty-state-title">뉴스 검색 대기 중</div>
-            <div class="empty-state-desc">"전체 검색" 버튼을 누르면 7개 브랜드의 최신 기사를 가져옵니다.<br>API 키 없이 바로 사용 가능합니다.</div>
+            <div class="empty-state-title">뉴스 데이터 로드 중</div>
+            <div class="empty-state-desc">"새로고침" 버튼을 누르면 최신 뉴스를 불러옵니다.</div>
           </div>
         </div>
       </div>
@@ -2849,19 +2867,19 @@ ${Object.entries(exclusiveMedia).map(([b,ms])=>`- ${b}: ${ms.slice(0,5).join(', 
 // ============================================================
 //  뉴스 모니터링 (네이버 뉴스 API — GitHub Actions 서버 경유)
 // ============================================================
+// 브랜드 순서 고정 + 색상
+const NEWS_BRAND_ORDER = ['MLB', 'MLB키즈', '디스커버리', '디스커버리키즈', '듀베티카', '세르지오 타키니', '수프라'];
 const NEWS_BRAND_COLORS = {
   'MLB': '#0d1b6f', 'MLB키즈': '#7c4dff',
   '디스커버리': '#e65100', '디스커버리키즈': '#00bfa5',
-  '듀베티카': '#006064', '세르지오타키니': '#1b5e20',
+  '듀베티카': '#006064', '세르지오 타키니': '#1b5e20',
   '수프라': '#4a148c'
 };
-// 브랜드명 정규화 (세르지오타키니 → 세르지오 타키니)
-const NEWS_BRAND_DISPLAY = {
-  '세르지오타키니': '세르지오 타키니'
-};
+const NEWS_BRAND_DISPLAY = { '세르지오타키니': '세르지오 타키니' };
 
 let newsData = {};
 let newsFilterBrand = '전체';
+let newsPeriodDays = 7; // 기본 7일
 let newsUpdatedAt = '';
 
 function stripHtml(html) {
@@ -2925,61 +2943,93 @@ async function fetchAllNews() {
   btn.textContent = '새로고침';
 }
 
-function renderNews() {
-  // 브랜드 목록 (데이터에서 동적 생성)
-  const brandList = Object.keys(newsData).filter(b => newsData[b].length > 0);
+// 기간 필터로 뉴스 필터링
+function getFilteredNews() {
+  // 브랜드 필터
+  let items;
+  if (newsFilterBrand === '전체') {
+    items = Object.values(newsData).flat();
+  } else {
+    items = newsData[newsFilterBrand] || [];
+  }
+  // 기간 필터
+  if (newsPeriodDays > 0) {
+    const cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - newsPeriodDays);
+    items = items.filter(n => { try { return new Date(n.pubDate) >= cutoff; } catch { return true; } });
+  }
+  // 최신순 정렬
+  items.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+  return items;
+}
 
-  // 브랜드 칩
-  const chipHtml = `<button class="btn btn-sm ${newsFilterBrand === '전체' ? 'btn-primary' : 'btn-secondary'}" onclick="filterNews('전체')">전체</button>` +
-    brandList.map(b => {
-      const count = newsData[b].length;
-      const color = newsData[b][0]?.color || '#9aa0a6';
+function setNewsPeriod(days) {
+  newsPeriodDays = days;
+  document.querySelectorAll('#newsPeriodChips .btn').forEach(b => {
+    b.className = 'btn btn-sm ' + (parseInt(b.dataset.period) === days ? 'btn-primary' : 'btn-secondary');
+  });
+  renderNews();
+}
+
+function renderNews() {
+  const filtered = getFilteredNews();
+  const allNews = Object.values(newsData).flat();
+
+  // 브랜드 칩 — 고정 순서, 기간 필터 적용된 건수
+  const chipHtml = `<button class="btn btn-sm ${newsFilterBrand === '전체' ? 'btn-primary' : 'btn-secondary'}" onclick="filterNews('전체')" style="${newsFilterBrand === '전체' ? 'background:#1a1d23;' : ''}">전체 <span style="opacity:0.7;">${filtered.length}</span></button>` +
+    NEWS_BRAND_ORDER.map(b => {
+      const brandItems = newsFilterBrand === b ? filtered : (() => {
+        let items = newsData[b] || [];
+        if (newsPeriodDays > 0) { const c = new Date(); c.setDate(c.getDate() - newsPeriodDays); items = items.filter(n => { try { return new Date(n.pubDate) >= c; } catch { return true; } }); }
+        return items;
+      })();
+      const count = brandItems.length;
+      const color = NEWS_BRAND_COLORS[b] || '#9aa0a6';
       const active = newsFilterBrand === b;
       return `<button class="btn btn-sm ${active ? 'btn-primary' : 'btn-secondary'}" onclick="filterNews('${esc(b)}')" style="${active ? 'background:'+color+';border-color:'+color+';' : ''}">${esc(b)} <span style="opacity:0.7;">${count}</span></button>`;
     }).join('');
   document.getElementById('newsBrandChips').innerHTML = chipHtml;
 
-  // KPI
-  const allNews = Object.values(newsData).flat();
-  const todayCount = allNews.filter(n => {
+  // KPI — 선택된 브랜드/기간 기준
+  const todayCount = filtered.filter(n => {
     try { return new Date(n.pubDate).toDateString() === new Date().toDateString(); } catch { return false; }
   }).length;
-  const topBrand = brandList.map(b => ({ name: b, count: newsData[b].length }))
-    .sort((a, b) => b.count - a.count)[0];
+
+  // 매체 다양성 (고유 매체 수)
+  const sources = new Set(filtered.map(n => n.source).filter(Boolean));
+
+  // 최신 기사 시간
+  const latestTime = filtered[0] ? formatNewsDate(filtered[0].pubDate) : '-';
+
+  const periodLabel = newsPeriodDays === 0 ? '전체' : newsPeriodDays + '일간';
 
   document.getElementById('newsKpis').innerHTML = [
-    { l: '검색된 기사', v: allNews.length + '건', s: '브랜드 ' + brandList.length + '개' },
+    { l: periodLabel + ' 기사', v: filtered.length + '건', s: newsFilterBrand === '전체' ? '전체 브랜드' : newsFilterBrand },
     { l: '오늘 기사', v: todayCount + '건', s: new Date().toLocaleDateString('ko-KR') },
-    { l: '가장 활발한 브랜드', v: topBrand?.name || '-', s: topBrand ? topBrand.count + '건' : '' },
+    { l: '매체 다양성', v: sources.size + '개', s: '고유 매체 수' },
+    { l: '최신 기사', v: latestTime, s: filtered[0] ? esc(filtered[0].title.slice(0, 25)) + '...' : '' },
   ].map(k => `<div class="kpi-card"><div class="kpi-label">${k.l}</div><div class="kpi-value">${k.v}</div>${k.s ? `<div class="kpi-sub">${k.s}</div>` : ''}</div>`).join('');
 
   // 뉴스 피드
-  let filtered = allNews;
-  if (newsFilterBrand !== '전체') filtered = newsData[newsFilterBrand] || [];
-  // 최신순 정렬
-  filtered.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-
   if (!filtered.length) {
-    document.getElementById('newsFeed').innerHTML = '<div class="empty-state"><div class="empty-state-icon">📰</div><div class="empty-state-title">검색 결과 없음</div></div>';
+    document.getElementById('newsFeed').innerHTML = '<div class="empty-state"><div class="empty-state-icon">📰</div><div class="empty-state-title">해당 기간에 기사가 없습니다</div><div class="empty-state-desc">기간을 늘려보세요</div></div>';
     return;
   }
 
   document.getElementById('newsFeed').innerHTML = filtered.map(n => `
-    <div class="card" style="margin-bottom:10px; border-left:3px solid ${n.color};">
-      <div style="padding:14px 18px;">
+    <div class="card" style="margin-bottom:8px; border-left:3px solid ${n.color};">
+      <div style="padding:12px 16px;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
           <div style="flex:1; min-width:0;">
-            <a href="${esc(n.link)}" target="_blank" rel="noopener" style="font-size:14px; font-weight:600; color:var(--text); text-decoration:none; display:block; margin-bottom:4px; line-height:1.4;">
+            <a href="${esc(n.link)}" target="_blank" rel="noopener" style="font-size:13px; font-weight:600; color:var(--text); text-decoration:none; display:block; line-height:1.4;">
               ${esc(n.title)}
             </a>
-            <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">
-              ${n.source ? '<span style="color:var(--accent); font-weight:600;">' + esc(n.source) + '</span> · ' : ''}${formatNewsDate(n.pubDate)}
+            <div style="font-size:11px; color:var(--text-muted); margin-top:4px; display:flex; align-items:center; gap:6px;">
+              ${n.source ? '<span style="color:var(--accent); font-weight:600;">' + esc(n.source) + '</span>' : ''}
+              <span>${formatNewsDate(n.pubDate)}</span>
             </div>
           </div>
-          <div style="flex-shrink:0; text-align:right;">
-            <span class="badge" style="background:${n.color}; color:#fff; font-size:10px;">${esc(n.brand)}</span>
-            <div style="font-size:11px; color:var(--text-muted); margin-top:4px;">${formatNewsDate(n.pubDate)}</div>
-          </div>
+          <span class="badge" style="background:${n.color}; color:#fff; font-size:10px; flex-shrink:0;">${esc(n.brand)}</span>
         </div>
       </div>
     </div>
