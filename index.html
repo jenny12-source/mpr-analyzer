@@ -6,7 +6,7 @@
 <title>MPR 분석기 — F&F</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
 <style>
 /* ===== 변수 ===== */
 :root {
@@ -2525,15 +2525,106 @@ function smartExport() {
   else exportExcel();
 }
 
+// 엑셀 스타일 공통
+const XL_HEADER = {
+  font: { bold: true, color: { rgb: 'FFFFFF' }, sz: 11, name: 'Apple SD Gothic Neo' },
+  fill: { fgColor: { rgb: '1A1D23' } },
+  alignment: { horizontal: 'center', vertical: 'center', wrapText: true },
+  border: { bottom: { style: 'thin', color: { rgb: 'E8EAED' } } }
+};
+const XL_CELL = {
+  font: { sz: 10, name: 'Apple SD Gothic Neo' },
+  alignment: { vertical: 'center', wrapText: true },
+  border: { bottom: { style: 'thin', color: { rgb: 'F1F3F5' } } }
+};
+const XL_BRAND = {
+  font: { bold: true, sz: 10, name: 'Apple SD Gothic Neo' },
+  fill: { fgColor: { rgb: 'E8F0FE' } },
+  alignment: { horizontal: 'center', vertical: 'center' },
+  border: { bottom: { style: 'thin', color: { rgb: 'F1F3F5' } } }
+};
+const XL_NUM = {
+  font: { bold: true, sz: 10, name: 'Apple SD Gothic Neo' },
+  alignment: { horizontal: 'center', vertical: 'center' },
+  border: { bottom: { style: 'thin', color: { rgb: 'F1F3F5' } } }
+};
+const XL_TITLE_ROW = {
+  font: { bold: true, sz: 14, name: 'Apple SD Gothic Neo' },
+  alignment: { vertical: 'center' }
+};
+const XL_SUB = {
+  font: { sz: 9, color: { rgb: '9AA0A6' }, name: 'Apple SD Gothic Neo' },
+  alignment: { vertical: 'center' }
+};
+
+function applyStyles(ws, headerRow, dataRows, colCount) {
+  // 헤더 스타일
+  for (let c = 0; c < colCount; c++) {
+    const addr = XLSX.utils.encode_cell({ r: headerRow, c });
+    if (ws[addr]) ws[addr].s = XL_HEADER;
+  }
+  // 데이터 스타일
+  for (let r = headerRow + 1; r <= headerRow + dataRows; r++) {
+    for (let c = 0; c < colCount; c++) {
+      const addr = XLSX.utils.encode_cell({ r, c });
+      if (ws[addr]) ws[addr].s = XL_CELL;
+    }
+  }
+}
+
 function exportExcel() {
   const data = getFiltered();
   if (!data.length) { toast('내보낼 데이터가 없습니다', 'error'); return; }
-  const ws = XLSX.utils.json_to_sheet(data.map(a => ({
-    배포일자: a.date, 'M/C': a.mc || '', 브랜드: a.brand, 형태: a.form || '',
-    헤드라인: a.title, 아이템: a.item || '',
-    방송: a.broadcast || 0, 지면: a.print || 0, 온라인: a.online || 0, 합계: rowCount(a),
-    '주요 매체': a.media, 시즌: a.season
-  })));
+
+  const rows = data.map(a => [
+    a.date, a.mc || '', a.brand, a.form || '',
+    a.title, a.item || '',
+    a.broadcast || 0, a.print || 0, a.online || 0, rowCount(a),
+    a.media, a.season
+  ]);
+  const headers = ['배포일자', 'M/C', '브랜드', '형태', '헤드라인', '아이템', '방송', '지면', '온라인', '합계', '주요 매체', '시즌'];
+
+  // 타이틀 행 + 빈 행 + 헤더 + 데이터
+  const wsData = [
+    ['F&F MPR 미디어 커버리지'],
+    [`${document.getElementById('filterStart').value || '전체'} ~ ${document.getElementById('filterEnd').value || '전체'} | ${data.length}건 보도자료 | ${sumCount(data).toLocaleString()}건 게재`],
+    [],
+    headers,
+    ...rows
+  ];
+
+  const ws = XLSX.utils.aoa_to_sheet(wsData);
+
+  // 타이틀 스타일
+  ws['A1'].s = XL_TITLE_ROW;
+  ws['A2'].s = XL_SUB;
+
+  // 헤더 스타일 (4행)
+  applyStyles(ws, 3, rows.length, headers.length);
+
+  // 브랜드 컬럼(C) 강조
+  for (let r = 4; r < 4 + rows.length; r++) {
+    const addr = XLSX.utils.encode_cell({ r, c: 2 });
+    if (ws[addr]) ws[addr].s = XL_BRAND;
+  }
+  // 합계 컬럼(J) 강조
+  for (let r = 4; r < 4 + rows.length; r++) {
+    const addr = XLSX.utils.encode_cell({ r, c: 9 });
+    if (ws[addr]) ws[addr].s = XL_NUM;
+  }
+
+  // 컬럼 너비
+  ws['!cols'] = [
+    { wch: 12 }, { wch: 6 }, { wch: 14 }, { wch: 10 },
+    { wch: 50 }, { wch: 30 },
+    { wch: 6 }, { wch: 6 }, { wch: 8 }, { wch: 6 },
+    { wch: 40 }, { wch: 8 }
+  ];
+  // 행 높이
+  ws['!rows'] = [{ hpt: 28 }, { hpt: 18 }, { hpt: 12 }, { hpt: 24 }];
+  // 머지: 타이틀
+  ws['!merges'] = [{ s: { r: 0, c: 0 }, e: { r: 0, c: 5 } }, { s: { r: 1, c: 0 }, e: { r: 1, c: 5 } }];
+
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, '커버리지');
   XLSX.writeFile(wb, `MPR_커버리지_${new Date().toISOString().slice(0,10)}.xlsx`);
@@ -2543,19 +2634,53 @@ function exportExcel() {
 function exportNewsExcel() {
   const filtered = getFilteredNews();
   if (!filtered.length) { toast('내보낼 뉴스가 없습니다', 'error'); return; }
-  const ws = XLSX.utils.json_to_sheet(filtered.map(n => ({
-    브랜드: n.brand,
-    기사제목: n.title,
-    매체: n.source,
-    게재일: n.pubDate ? new Date(n.pubDate).toLocaleDateString('ko-KR') : '',
-    링크: n.link
-  })));
-  // 컬럼 너비 설정
-  ws['!cols'] = [{ wch: 12 }, { wch: 60 }, { wch: 20 }, { wch: 14 }, { wch: 50 }];
+
+  const periodLabel = newsPeriodDays === 0 ? '전체' : newsPeriodDays + '일';
+  const brandLabel = newsFilterBrand === '전체' ? '전체 브랜드' : newsFilterBrand;
+
+  const headers = ['브랜드', '기사 제목', '매체', '게재일', '링크'];
+  const rows = filtered.map(n => [
+    n.brand,
+    n.title,
+    n.source,
+    n.pubDate ? new Date(n.pubDate).toLocaleDateString('ko-KR') : '',
+    n.link
+  ]);
+
+  const wsData = [
+    ['F&F 뉴스 모니터링'],
+    [`${brandLabel} | ${periodLabel} | ${filtered.length}건 | ${newsUpdatedAt || new Date().toLocaleDateString('ko-KR')} 기준`],
+    [],
+    headers,
+    ...rows
+  ];
+
+  const ws = XLSX.utils.aoa_to_sheet(wsData);
+
+  // 타이틀 스타일
+  ws['A1'].s = XL_TITLE_ROW;
+  ws['A2'].s = XL_SUB;
+
+  // 헤더 + 데이터 스타일
+  applyStyles(ws, 3, rows.length, headers.length);
+
+  // 브랜드 컬럼(A) 강조
+  for (let r = 4; r < 4 + rows.length; r++) {
+    const addr = XLSX.utils.encode_cell({ r, c: 0 });
+    if (ws[addr]) ws[addr].s = XL_BRAND;
+  }
+  // 매체 컬럼(C) 볼드
+  for (let r = 4; r < 4 + rows.length; r++) {
+    const addr = XLSX.utils.encode_cell({ r, c: 2 });
+    if (ws[addr]) ws[addr].s = { ...XL_CELL, font: { ...XL_CELL.font, bold: true, color: { rgb: '4285F4' } } };
+  }
+
+  ws['!cols'] = [{ wch: 14 }, { wch: 60 }, { wch: 22 }, { wch: 14 }, { wch: 50 }];
+  ws['!rows'] = [{ hpt: 28 }, { hpt: 18 }, { hpt: 12 }, { hpt: 24 }];
+  ws['!merges'] = [{ s: { r: 0, c: 0 }, e: { r: 0, c: 3 } }, { s: { r: 1, c: 0 }, e: { r: 1, c: 3 } }];
+
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, '뉴스 모니터링');
-  const periodLabel = newsPeriodDays === 0 ? '전체' : newsPeriodDays + '일';
-  const brandLabel = newsFilterBrand === '전체' ? '전체브랜드' : newsFilterBrand;
   XLSX.writeFile(wb, `뉴스모니터링_${brandLabel}_${periodLabel}_${new Date().toISOString().slice(0,10)}.xlsx`);
   toast(`뉴스 ${filtered.length}건 엑셀 다운로드됨`, 'success');
 }
