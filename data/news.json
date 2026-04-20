@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-20 13:47",
+  "updatedAt": "2026-04-20 16:08",
   "brands": {
     "디스커버리키즈": [
       {
@@ -419,18 +419,18 @@
         "brand": "디스커버리키즈"
       },
       {
-        "title": "무신사 <b>키즈</b>, 신학기 앞두고 '2026 책가방 페스티벌'… 최대 80% 할인",
-        "originallink": "http://www.kdfnews.com/news/articleView.html?idxno=175536",
-        "link": "http://www.kdfnews.com/news/articleView.html?idxno=175536",
-        "description": "내셔널지오그래픽 키즈, 노스페이스 키즈, <b>디스커버리 키즈</b>, 마리떼 키즈, 베네통 키즈, 빈폴 키즈, 아이스비스킷, 엠엘비 키즈, 캉골 키즈, 타미힐피거 키즈, 플레이키즈프로, 휠라 키즈 등이 참여했다. 고객 혜택도... ",
-        "pubDate": "Wed, 14 Jan 2026 09:32:00 +0900",
-        "brand": "디스커버리키즈"
-      },
-      {
         "title": "&quot;최대 80% 할인&quot; 무신사 <b>키즈</b>, 새 학기 책가방 페스티벌 개최",
         "originallink": "https://www.newsis.com/view/NISX20260114_0003476164",
         "link": "https://n.news.naver.com/mnews/article/003/0013709235?sid=103",
         "description": "화보에는 ▲내셔널지오그래픽 키즈 ▲노스페이스 키즈 ▲<b>디스커버리 키즈</b> ▲마리떼 키즈 ▲베네통 키즈 ▲빈폴 키즈 ▲아이스비스킷 ▲엠엘비 키즈 ▲캉골 키즈 ▲타미힐피거 키즈 ▲플레이키즈프로 ▲휠라 키즈... ",
+        "pubDate": "Wed, 14 Jan 2026 09:32:00 +0900",
+        "brand": "디스커버리키즈"
+      },
+      {
+        "title": "무신사 <b>키즈</b>, 신학기 앞두고 '2026 책가방 페스티벌'… 최대 80% 할인",
+        "originallink": "http://www.kdfnews.com/news/articleView.html?idxno=175536",
+        "link": "http://www.kdfnews.com/news/articleView.html?idxno=175536",
+        "description": "내셔널지오그래픽 키즈, 노스페이스 키즈, <b>디스커버리 키즈</b>, 마리떼 키즈, 베네통 키즈, 빈폴 키즈, 아이스비스킷, 엠엘비 키즈, 캉골 키즈, 타미힐피거 키즈, 플레이키즈프로, 휠라 키즈 등이 참여했다. 고객 혜택도... ",
         "pubDate": "Wed, 14 Jan 2026 09:32:00 +0900",
         "brand": "디스커버리키즈"
       },
@@ -1189,18 +1189,18 @@
         "brand": "MLB키즈"
       },
       {
-        "title": "스트릿 감성 키즈 패션…<b>MLB키즈</b>, 26SS 바람막이 화보 공개",
-        "originallink": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=435346",
-        "link": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=435346",
-        "description": "<b>MLB키즈</b> 26SS 바람막이 화보 (사진=F&amp;F) 봄 시즌을 앞두고 키즈 패션 시장에서도 활동성과 스타일을 동시에 강조한 아우터 제품이 잇따라 등장하고 있다. 일상과 야외 활동을 넘나드는 '애슬레저 스타일'이 키즈 패션... ",
-        "pubDate": "Tue, 10 Mar 2026 08:06:00 +0900",
-        "brand": "MLB키즈"
-      },
-      {
         "title": "<b>MLB키즈</b>, 26SS 바람막이 화보 공개",
         "originallink": "http://www.econonews.co.kr/news/articleView.html?idxno=430404",
         "link": "http://www.econonews.co.kr/news/articleView.html?idxno=430404",
         "description": "<b>MLB키즈</b>가 다가올 봄을 더욱 활기차게 만들어줄 26SS 바람막이 화보를 10일 공개했다. <b>MLB키즈</b> 관계자는 &quot;학교 생활은 물론 일상과 여가 등 활동량이 증가하는 봄 시즌 다방면으로 착용하기 좋은 바람막이 아이템들이... ",
+        "pubDate": "Tue, 10 Mar 2026 08:06:00 +0900",
+        "brand": "MLB키즈"
+      },
+      {
+        "title": "스트릿 감성 키즈 패션…<b>MLB키즈</b>, 26SS 바람막이 화보 공개",
+        "originallink": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=435346",
+        "link": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=435346",
+        "description": "<b>MLB키즈</b> 26SS 바람막이 화보 (사진=F&amp;F) 봄 시즌을 앞두고 키즈 패션 시장에서도 활동성과 스타일을 동시에 강조한 아우터 제품이 잇따라 등장하고 있다. 일상과 야외 활동을 넘나드는 '애슬레저 스타일'이 키즈 패션... ",
         "pubDate": "Tue, 10 Mar 2026 08:06:00 +0900",
         "brand": "MLB키즈"
       },
@@ -1485,14 +1485,6 @@
         "brand": "MLB키즈"
       },
       {
-        "title": "&quot;'VIB' 앞엔 고물가도 안 통해&quot;…유통업계, 신학기 수요 선점 나선다",
-        "originallink": "http://www.newsian.co.kr/news/articleView.html?idxno=86354",
-        "link": "http://www.newsian.co.kr/news/articleView.html?idxno=86354",
-        "description": "먼저 신세계백화점은 오는 22일까지 전국 13개 점포에서 진행되는 '뉴 챕터, 뉴 룩 페어'를 통해 <b>MLB키즈</b>, 캉골키즈, 내셔널지오그래픽 키즈 등 50여 개 브랜드 상품을 최대 40% 할인한다. 특히 강남점의 '마르디메크르디... ",
-        "pubDate": "Fri, 20 Feb 2026 15:36:00 +0900",
-        "brand": "MLB키즈"
-      },
-      {
         "title": "현대百·현대아울렛, 신학기 맞이 할인전…판교·코엑스·신촌·동대문·...",
         "originallink": "https://www.slist.kr/news/articleView.html?idxno=718229",
         "link": "https://www.slist.kr/news/articleView.html?idxno=718229",
@@ -1602,6 +1594,14 @@
         "link": "http://www.breaknews.com/1186177",
         "description": "참가 브랜드는 캉골키즈, 플레이키즈프로, <b>MLB키즈</b> 등이다. 무역센터점은 내달 1일까지 지하 1층 대행사장에서 졸업·입학 맞이 ‘디즈니 스토어’ 할인 행사를 열고... ",
         "pubDate": "Fri, 20 Feb 2026 13:50:00 +0900",
+        "brand": "MLB키즈"
+      },
+      {
+        "title": "'VIB' 소비에 불붙은 신학기 대전…유통가 전방위 총력전",
+        "originallink": "https://www.newscj.com/news/articleView.html?idxno=3376739",
+        "link": "https://www.newscj.com/news/articleView.html?idxno=3376739",
+        "description": "동시에 오는 22일까지 전국 13개 점포에서 '뉴 챕터 뉴 룩 페어'를 병행해 <b>MLB키즈</b> 캉골키즈 내셔널지오그래픽 키즈 블랙야크 키즈 등 50여개 브랜드가 의류 책가방 운동화를 최대 40% 할인 판매한다. 강남점 센텀시티점... ",
+        "pubDate": "Fri, 20 Feb 2026 13:38:00 +0900",
         "brand": "MLB키즈"
       }
     ],
@@ -2007,17 +2007,17 @@
         "brand": "수프라"
       },
       {
-        "title": "<b>F&amp;F</b>, S&amp;P 글로벌 ESG 평가 상위 3% 등극...미래가치 인정받다",
-        "originallink": "https://www.thefairnews.co.kr/news/articleView.html?idxno=35903",
-        "link": "https://www.thefairnews.co.kr/news/articleView.html?idxno=35903",
+        "title": "K-패션의 힘... <b>F&amp;F</b>, S&amp;P 글로벌 ESG 평가 상위 3% 등극",
+        "originallink": "https://www.energy-news.co.kr/news/articleView.html?idxno=207669",
+        "link": "https://www.energy-news.co.kr/news/articleView.html?idxno=207669",
         "description": "글로벌 시장에서 더욱 신뢰받는 기업이 되겠다&quot;고 말했다. <b>F&amp;F</b>는 MLB, 디스커버리 익스페디션, 듀베티카, 세르지오 타키니, <b>수프라</b> 등 다양한 글로벌 패션 브랜드를 전개하며 성장하고 있는 글로벌 패션기업이다.",
         "pubDate": "Thu, 14 Nov 2024 15:30:00 +0900",
         "brand": "수프라"
       },
       {
-        "title": "K-패션의 힘... <b>F&amp;F</b>, S&amp;P 글로벌 ESG 평가 상위 3% 등극",
-        "originallink": "https://www.energy-news.co.kr/news/articleView.html?idxno=207669",
-        "link": "https://www.energy-news.co.kr/news/articleView.html?idxno=207669",
+        "title": "<b>F&amp;F</b>, S&amp;P 글로벌 ESG 평가 상위 3% 등극...미래가치 인정받다",
+        "originallink": "https://www.thefairnews.co.kr/news/articleView.html?idxno=35903",
+        "link": "https://www.thefairnews.co.kr/news/articleView.html?idxno=35903",
         "description": "글로벌 시장에서 더욱 신뢰받는 기업이 되겠다&quot;고 말했다. <b>F&amp;F</b>는 MLB, 디스커버리 익스페디션, 듀베티카, 세르지오 타키니, <b>수프라</b> 등 다양한 글로벌 패션 브랜드를 전개하며 성장하고 있는 글로벌 패션기업이다.",
         "pubDate": "Thu, 14 Nov 2024 15:30:00 +0900",
         "brand": "수프라"
@@ -2375,18 +2375,18 @@
         "brand": "수프라"
       },
       {
-        "title": "<b>수프라</b>, '우먼스 컬렉션' 출시…프로미스나인 '이채영'과의 스트릿 화보...",
-        "originallink": "https://www.dailysmart.co.kr/news/articleView.html?idxno=93893",
-        "link": "https://www.dailysmart.co.kr/news/articleView.html?idxno=93893",
-        "description": "사진=<b>수프라  F&amp;F</b>(에프앤에프)가 전개하는 LA 스트릿 브랜드 수프라(SUPRA)가 신규 '우먼스 컬렉션' 출시와 함께 브랜드 앰버서더인 걸그룹 프로미스나인(fromis_9)의 멤버 이채영과 함께한 스트릿 패션 화보를 공개했다고 17일... ",
-        "pubDate": "Thu, 17 Oct 2024 09:48:00 +0900",
-        "brand": "수프라"
-      },
-      {
         "title": "[#뷰티·패션 신상이오] 엠퀴리 '코어 파워 리프팅 프로그래밍 듀오' 출...",
         "originallink": "https://www.newscj.com/news/articleView.html?idxno=3189639",
         "link": "https://www.newscj.com/news/articleView.html?idxno=3189639",
         "description": "◆<b>수프라</b> '우먼스 컬렉션' 출시… '이채영'과 스트릿 화보 공개 <b>F&amp;F</b>가 전개하는 <b>수프라</b>(SUPRA)가 신규 '우먼스 컬렉션' 출시와 함께 브랜드 앰버서더인 걸그룹 프로미스나인(fromis_9)의 멤버 이채영과 함께한 스트릿 패션... ",
+        "pubDate": "Thu, 17 Oct 2024 09:48:00 +0900",
+        "brand": "수프라"
+      },
+      {
+        "title": "<b>수프라</b>, '우먼스 컬렉션' 출시…프로미스나인 '이채영'과의 스트릿 화보...",
+        "originallink": "https://www.dailysmart.co.kr/news/articleView.html?idxno=93893",
+        "link": "https://www.dailysmart.co.kr/news/articleView.html?idxno=93893",
+        "description": "사진=<b>수프라  F&amp;F</b>(에프앤에프)가 전개하는 LA 스트릿 브랜드 수프라(SUPRA)가 신규 '우먼스 컬렉션' 출시와 함께 브랜드 앰버서더인 걸그룹 프로미스나인(fromis_9)의 멤버 이채영과 함께한 스트릿 패션 화보를 공개했다고 17일... ",
         "pubDate": "Thu, 17 Oct 2024 09:48:00 +0900",
         "brand": "수프라"
       },
@@ -2553,18 +2553,18 @@
         "brand": "듀베티카"
       },
       {
-        "title": "<b>듀베티카</b>, 김지원 협업 2026 S·S 화보 공개",
-        "originallink": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2393466",
-        "link": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2393466",
-        "description": "이탈리아 프리미엄 라이프스타일 브랜드 <b>듀베티카</b>(DUVETICA)가 다가오는 새로운 시즌을 맞아 봄철 아우터를 선보인다. <b>듀베티카</b>는 앰버서더 김지원과 함께 새로운 봄의 시작을 알리는 2026 S·S 화보를 공개했다고 11일... ",
-        "pubDate": "Wed, 11 Feb 2026 10:00:00 +0900",
-        "brand": "듀베티카"
-      },
-      {
         "title": "<b>듀베티카</b>, 김지원과 함께 26SS 화보 공개",
         "originallink": "https://www.bizwork.co.kr/news/articleView.html?idxno=412436",
         "link": "https://www.bizwork.co.kr/news/articleView.html?idxno=412436",
         "description": "이탈리아 프리미엄 라이프스타일 브랜드 <b>듀베티카</b>(DUVETICA)가 앰버서더 배우 김지원과 함께 새로운 봄의 시작을 알리는 26SS 화보를 공개했다고 11일 밝혔다. 이번 26SS 시즌 <b>듀베티카</b>는 우아하고 세련된 감도에 가볍고... ",
+        "pubDate": "Wed, 11 Feb 2026 10:00:00 +0900",
+        "brand": "듀베티카"
+      },
+      {
+        "title": "<b>듀베티카</b>, 김지원 협업 2026 S·S 화보 공개",
+        "originallink": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2393466",
+        "link": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2393466",
+        "description": "이탈리아 프리미엄 라이프스타일 브랜드 <b>듀베티카</b>(DUVETICA)가 다가오는 새로운 시즌을 맞아 봄철 아우터를 선보인다. <b>듀베티카</b>는 앰버서더 김지원과 함께 새로운 봄의 시작을 알리는 2026 S·S 화보를 공개했다고 11일... ",
         "pubDate": "Wed, 11 Feb 2026 10:00:00 +0900",
         "brand": "듀베티카"
       },
@@ -2657,18 +2657,18 @@
         "brand": "듀베티카"
       },
       {
-        "title": "F&amp;F 지난해 영업익 4685억 전년대비 4%↑…&quot;중국 매출 호조&quot;",
-        "originallink": "https://www.mt.co.kr/living/2026/02/10/2026021016351035761",
-        "link": "https://n.news.naver.com/mnews/article/008/0005316730?sid=101",
-        "description": "익스페디션의 경우 완만한 매출 성장 흐름이 이어질 것&quot;이라면서 &quot;국내 시장에 대해서는 &quot;내수 회복 기조가 지속되며 <b>듀베티카</b> 등 신규 브랜드의 성과 가시화를 바탕으로 외형 성장 가능성이 기대된다&quot;고 밝혔다.",
-        "pubDate": "Tue, 10 Feb 2026 17:00:00 +0900",
-        "brand": "듀베티카"
-      },
-      {
         "title": "&quot;중국서 승부수 통했다&quot; F&amp;F, ‘연매출 2조’ 목표 가시권",
         "originallink": "https://www.asiatoday.co.kr/view.php?key=20260210010003807",
         "link": "https://www.asiatoday.co.kr/view.php?key=20260210010003807",
         "description": "<b>듀베티카</b>를 비롯한 브랜드가 매출에 힘을 보태면서 전사 실적 구조가 한층 다변화되고 있다는 분석이다.한편 F&amp;F는 실적 성장과 함께 경영의 불확실성을 키웠던 법적 분쟁들을 마무리 짓고 있다. 지난달 14일 이탈리아... ",
+        "pubDate": "Tue, 10 Feb 2026 17:00:00 +0900",
+        "brand": "듀베티카"
+      },
+      {
+        "title": "F&amp;F 지난해 영업익 4685억 전년대비 4%↑…&quot;중국 매출 호조&quot;",
+        "originallink": "https://www.mt.co.kr/living/2026/02/10/2026021016351035761",
+        "link": "https://n.news.naver.com/mnews/article/008/0005316730?sid=101",
+        "description": "익스페디션의 경우 완만한 매출 성장 흐름이 이어질 것&quot;이라면서 &quot;국내 시장에 대해서는 &quot;내수 회복 기조가 지속되며 <b>듀베티카</b> 등 신규 브랜드의 성과 가시화를 바탕으로 외형 성장 가능성이 기대된다&quot;고 밝혔다.",
         "pubDate": "Tue, 10 Feb 2026 17:00:00 +0900",
         "brand": "듀베티카"
       },
@@ -2961,18 +2961,18 @@
         "brand": "듀베티카"
       },
       {
-        "title": "현대홈쇼핑, 온라인판 초저가 아울렛 'D숍' 선보인다",
-        "originallink": "https://www.ezyeconomy.com/news/articleView.html?idxno=230623",
-        "link": "https://www.ezyeconomy.com/news/articleView.html?idxno=230623",
-        "description": "머티리얼랩, 어반어라운드 등 PB와 프리마클라쎄, 누캐시미어 등 LB, 그리고 현대홈쇼핑이 직매입해 운영하는 지미추, <b>듀베티카</b>, 지포어 등이 대표적이다. TV홈쇼핑 판매방송 종료 후 1년 이상 경과한 상품 중에서 시즌과... ",
-        "pubDate": "Mon, 19 Jan 2026 13:42:00 +0900",
-        "brand": "듀베티카"
-      },
-      {
         "title": "현대홈쇼핑, 플랫폼 다각화… 업계 최초 온라인 아울렛 'D숍' 론칭",
         "originallink": "https://www.moneys.co.kr/article/2026011913210919416",
         "link": "https://n.news.naver.com/mnews/article/417/0001125251?sid=101",
         "description": "주요 판매 브랜드는 ▲머티리얼랩·어반어라운드(PB) ▲프리마클라쎄·누캐시미어(LB) ▲지미추·<b>듀베티카</b>·지포어(직매입) 등이다. TV홈쇼핑 방송 종료 후 1년 이상 지난 이월 상품 중 유행을 타지 않는 제품을 선별했다.... ",
+        "pubDate": "Mon, 19 Jan 2026 13:42:00 +0900",
+        "brand": "듀베티카"
+      },
+      {
+        "title": "현대홈쇼핑, 온라인판 초저가 아울렛 'D숍' 선보인다",
+        "originallink": "https://www.ezyeconomy.com/news/articleView.html?idxno=230623",
+        "link": "https://www.ezyeconomy.com/news/articleView.html?idxno=230623",
+        "description": "머티리얼랩, 어반어라운드 등 PB와 프리마클라쎄, 누캐시미어 등 LB, 그리고 현대홈쇼핑이 직매입해 운영하는 지미추, <b>듀베티카</b>, 지포어 등이 대표적이다. TV홈쇼핑 판매방송 종료 후 1년 이상 경과한 상품 중에서 시즌과... ",
         "pubDate": "Mon, 19 Jan 2026 13:42:00 +0900",
         "brand": "듀베티카"
       },
@@ -3065,18 +3065,18 @@
         "brand": "듀베티카"
       },
       {
-        "title": "[N2 쇼핑] 현대홈쇼핑, 초저가 아울렛 플랫폼 ‘D숍’ 론칭…홈앤쇼핑,...",
-        "originallink": "https://www.news2day.co.kr/article/20260119500144",
-        "link": "https://www.news2day.co.kr/article/20260119500144",
-        "description": "머티리얼랩, 어반어라운드 등 PB와 프리마클라쎄, 누캐시미어 등 LB, 그리고 현대홈쇼핑이 직매입해 운영하는 지미추, <b>듀베티카</b>, 지포어 등을 만나볼 수 있다. TV홈쇼핑 판매방송 종료 후 1년 이상 경과한 상품 중에서... ",
-        "pubDate": "Mon, 19 Jan 2026 10:58:00 +0900",
-        "brand": "듀베티카"
-      },
-      {
         "title": "현대홈쇼핑, 온라인 초저가 아울렛 'D숍' 선봬…패션 이월상품 판매",
         "originallink": "https://www.100ssd.co.kr/news/articleView.html?idxno=205143",
         "link": "https://www.100ssd.co.kr/news/articleView.html?idxno=205143",
         "description": "머티리얼랩, 어반어라운드 등 PB와 프리마클라쎄, 누캐시미어 등 LB, 그리고 현대홈쇼핑이 직매입해 운영하는 지미추, <b>듀베티카</b>, 지포어 등이 대표적이다. TV홈쇼핑 판매방송 종료 후 1년 이상 경과한 상품 중에서... ",
+        "pubDate": "Mon, 19 Jan 2026 10:58:00 +0900",
+        "brand": "듀베티카"
+      },
+      {
+        "title": "[N2 쇼핑] 현대홈쇼핑, 초저가 아울렛 플랫폼 ‘D숍’ 론칭…홈앤쇼핑,...",
+        "originallink": "https://www.news2day.co.kr/article/20260119500144",
+        "link": "https://www.news2day.co.kr/article/20260119500144",
+        "description": "머티리얼랩, 어반어라운드 등 PB와 프리마클라쎄, 누캐시미어 등 LB, 그리고 현대홈쇼핑이 직매입해 운영하는 지미추, <b>듀베티카</b>, 지포어 등을 만나볼 수 있다. TV홈쇼핑 판매방송 종료 후 1년 이상 경과한 상품 중에서... ",
         "pubDate": "Mon, 19 Jan 2026 10:58:00 +0900",
         "brand": "듀베티카"
       },
@@ -3129,18 +3129,18 @@
         "brand": "듀베티카"
       },
       {
-        "title": "현대홈쇼핑, 온라인판 초저가 아울렛 ‘D숍’ 선보인다",
-        "originallink": "https://www.cnbnews.com/news/article.html?no=773709",
-        "link": "https://www.cnbnews.com/news/article.html?no=773709",
-        "description": "머티리얼랩, 어반어라운드 등 PB와 프리마클라쎄, 누캐시미어 등 LB, 그리고 현대홈쇼핑이 직매입해 운영하는 지미추, <b>듀베티카</b>, 지포어 등이 대표적이다. TV홈쇼핑 판매방송 종료 후 1년 이상 경과한 상품 중에서... ",
-        "pubDate": "Mon, 19 Jan 2026 10:32:00 +0900",
-        "brand": "듀베티카"
-      },
-      {
         "title": "현대홈쇼핑, 온라인판 초저가 아울렛 'D숍' 선봬",
         "originallink": "http://www.newsdream.kr/news/articleView.html?idxno=105482",
         "link": "http://www.newsdream.kr/news/articleView.html?idxno=105482",
         "description": "머티리얼랩과 어반어라운드 등 현대홈쇼핑 자체 브랜드와 프리마클라쎄, 누캐시미어 등 라이선스 브랜드, 지미추와 <b>듀베티카</b>, 지포어 등 직매입 브랜드 상품이 포함된다. TV홈쇼핑 판매 종료 후 1년 이상 경과한 상품... ",
+        "pubDate": "Mon, 19 Jan 2026 10:32:00 +0900",
+        "brand": "듀베티카"
+      },
+      {
+        "title": "현대홈쇼핑, 온라인판 초저가 아울렛 ‘D숍’ 선보인다",
+        "originallink": "https://www.cnbnews.com/news/article.html?no=773709",
+        "link": "https://www.cnbnews.com/news/article.html?no=773709",
+        "description": "머티리얼랩, 어반어라운드 등 PB와 프리마클라쎄, 누캐시미어 등 LB, 그리고 현대홈쇼핑이 직매입해 운영하는 지미추, <b>듀베티카</b>, 지포어 등이 대표적이다. TV홈쇼핑 판매방송 종료 후 1년 이상 경과한 상품 중에서... ",
         "pubDate": "Mon, 19 Jan 2026 10:32:00 +0900",
         "brand": "듀베티카"
       },
@@ -4815,6 +4815,14 @@
     ],
     "디스커버리": [
       {
+        "title": "[기획]의류에서 車까지…폐플라스틱 활용 커진다",
+        "originallink": "https://www.m-i.kr/news/articleView.html?idxno=1365963",
+        "link": "https://www.m-i.kr/news/articleView.html?idxno=1365963",
+        "description": "노스페이스, K2, <b>디스커버리 익스페디션</b>, 플리츠마마 등과 협업도 이어왔다. 폐어망을 재활용한 나일론 섬유 '리젠 오션 나일론'도 개발해 공급하고 있다. 현대자동차는 인도네시아 브카시에 플라스틱 자원순환시설을... ",
+        "pubDate": "Mon, 20 Apr 2026 14:58:00 +0900",
+        "brand": "디스커버리"
+      },
+      {
         "title": "바람막이, 가벼움 넘어 '일상 아이템'으로 진화한다 [최기자의 패션 털...",
         "originallink": "https://www.meconomynews.com/news/articleView.html?idxno=130313",
         "link": "https://www.meconomynews.com/news/articleView.html?idxno=130313",
@@ -5431,18 +5439,18 @@
         "brand": "디스커버리"
       },
       {
-        "title": "에스파 닝닝, 눈빛에 사르르",
-        "originallink": "https://sports.hankooki.com/news/articleView.html?idxno=6928164",
-        "link": "https://sports.hankooki.com/news/articleView.html?idxno=6928164",
-        "description": "2026.3.12 ⓒ이혜영 기자 lhy@hankooki.com '<b>디스커버리 익스페디션</b>' 브랜드 체험 행사가 열렸다. 그룹 에스파 닝닝이 12일 오전 서울 한남동 낫배드커피 한남에서 열린 '디스커버리 유어 액티브 웰니스... ",
-        "pubDate": "Thu, 12 Mar 2026 14:52:00 +0900",
-        "brand": "디스커버리"
-      },
-      {
         "title": "[GJ포토+] <b>디스커버리</b> 브랜드 앰버서더 에스파 닝닝(Discovery)",
         "originallink": "https://www.gukjenews.com/news/articleView.html?idxno=3527481",
         "link": "https://www.gukjenews.com/news/articleView.html?idxno=3527481",
         "description": "▲ 걸그룹 에스파(aespa) 닝닝 / ⓒ이대웅 기자  걸그룹 에스파(aespa) 닝닝이 12일 서울 용산구 낫배드커피 한남점에서 열린 <b>디스커버리 익스페디션</b> 체험 행사에 참석해 포즈를 취하고 있다. ▲ 걸그룹 에스파(aespa)... ",
+        "pubDate": "Thu, 12 Mar 2026 14:52:00 +0900",
+        "brand": "디스커버리"
+      },
+      {
+        "title": "에스파 닝닝, 눈빛에 사르르",
+        "originallink": "https://sports.hankooki.com/news/articleView.html?idxno=6928164",
+        "link": "https://sports.hankooki.com/news/articleView.html?idxno=6928164",
+        "description": "2026.3.12 ⓒ이혜영 기자 lhy@hankooki.com '<b>디스커버리 익스페디션</b>' 브랜드 체험 행사가 열렸다. 그룹 에스파 닝닝이 12일 오전 서울 한남동 낫배드커피 한남에서 열린 '디스커버리 유어 액티브 웰니스... ",
         "pubDate": "Thu, 12 Mar 2026 14:52:00 +0900",
         "brand": "디스커버리"
       },
@@ -5591,14 +5599,6 @@
         "brand": "디스커버리"
       },
       {
-        "title": "[포토]에스파 닝닝, 일상이 화보",
-        "originallink": "http://www.edaily.co.kr/news/newspath.asp?newsid=03680166645382664",
-        "link": "https://m.entertain.naver.com/article/018/0006233334",
-        "description": "에스파 닝닝이 12일 오전 서울 용산구 한남동에서 진행된 프리미엄 라이프스타일 브랜드 <b>디스커버리 익스페디션</b>(이하 '디스커버리')의 브랜드 체험 행사 'Discover your active wellness'에 참석해 포즈를 취하고... ",
-        "pubDate": "Thu, 12 Mar 2026 12:33:00 +0900",
-        "brand": "디스커버리"
-      },
-      {
         "title": "[포토]에스파 닝닝, 등장부터 시선 집중",
         "originallink": "http://www.edaily.co.kr/news/newspath.asp?newsid=03683446645382664",
         "link": "https://m.entertain.naver.com/article/018/0006233336",
@@ -5607,11 +5607,11 @@
         "brand": "디스커버리"
       },
       {
-        "title": "[포토]에스파 닝닝, 화려한 미모",
-        "originallink": "http://www.edaily.co.kr/news/newspath.asp?newsid=03670326645382664",
-        "link": "https://m.entertain.naver.com/article/018/0006233332",
+        "title": "[포토]에스파 닝닝, 일상이 화보",
+        "originallink": "http://www.edaily.co.kr/news/newspath.asp?newsid=03680166645382664",
+        "link": "https://m.entertain.naver.com/article/018/0006233334",
         "description": "에스파 닝닝이 12일 오전 서울 용산구 한남동에서 진행된 프리미엄 라이프스타일 브랜드 <b>디스커버리 익스페디션</b>(이하 '디스커버리')의 브랜드 체험 행사 'Discover your active wellness'에 참석해 포즈를 취하고... ",
-        "pubDate": "Thu, 12 Mar 2026 12:32:00 +0900",
+        "pubDate": "Thu, 12 Mar 2026 12:33:00 +0900",
         "brand": "디스커버리"
       }
     ]
