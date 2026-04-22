@@ -235,10 +235,12 @@ async function main() {
   const summary = { startedAt: new Date().toISOString(), brands: {}, totalCollected: 0, totalInserted: 0 };
 
   // Serper는 credit 아끼려고 KST 짝수 시간에만 호출 (2시간 간격)
+  // 수동 실행(workflow_dispatch)시엔 무조건 호출
   // 월 예상 사용: 7브랜드 × 2 credit × 12회/일 × 30일 = 2520 credit (무료 한도 2500 근처)
   const kstHour = (new Date().getUTCHours() + 9) % 24;
-  const runSerper = !!SERPER_API_KEY && (kstHour % 2 === 0);
-  console.log(`KST ${kstHour}시 — Serper 호출: ${runSerper ? 'YES' : 'skip'}`);
+  const isManual = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch';
+  const runSerper = !!SERPER_API_KEY && (isManual || kstHour % 2 === 0);
+  console.log(`KST ${kstHour}시 (event=${process.env.GITHUB_EVENT_NAME || 'local'}) — Serper 호출: ${runSerper ? 'YES' : 'skip'}`);
 
   for (const [brand, q] of Object.entries(BRANDS)) {
     const tb = Date.now();
