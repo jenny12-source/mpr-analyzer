@@ -15,74 +15,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch news from Naver API
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch news → Supabase
         env:
           NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
-        run: |
-          mkdir -p data
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: node scripts/fetch-news.js
 
-          # 브랜드별 검색어
-          declare -A BRANDS
-          BRANDS["MLB"]='"MLB" F&F 패션'
-          BRANDS["MLB키즈"]='"MLB키즈"'
-          BRANDS["디스커버리"]='"디스커버리 익스페디션"'
-          BRANDS["디스커버리키즈"]='"디스커버리키즈"'
-          BRANDS["듀베티카"]='"듀베티카"'
-          BRANDS["세르지오타키니"]='"세르지오 타키니"'
-          BRANDS["수프라"]='"수프라" F&F'
-
-          echo '{}' > data/news.json
-          RESULT='{}'
-
-          for BRAND in "${!BRANDS[@]}"; do
-            QUERY="${BRANDS[$BRAND]}"
-            echo "Fetching: $BRAND ($QUERY)"
-
-            # 네이버 뉴스 검색 API (100건까지 가능)
-            RESPONSE=$(curl -s -G \
-              --data-urlencode "query=$QUERY" \
-              --data-urlencode "display=100" \
-              --data-urlencode "sort=date" \
-              -H "X-Naver-Client-Id: $NAVER_CLIENT_ID" \
-              -H "X-Naver-Client-Secret: $NAVER_CLIENT_SECRET" \
-              "https://openapi.naver.com/v1/search/news.json")
-
-            # JSON에 브랜드명 추가해서 저장
-            ITEMS=$(echo "$RESPONSE" | python3 -c "
-          import sys, json
-          data = json.load(sys.stdin)
-          items = data.get('items', [])
-          for item in items:
-              item['brand'] = '$BRAND'
-          print(json.dumps(items, ensure_ascii=False))
-          " 2>/dev/null || echo '[]')
-
-            RESULT=$(echo "$RESULT" | python3 -c "
-          import sys, json
-          result = json.load(sys.stdin)
-          result['$BRAND'] = json.loads('''$ITEMS''')
-          print(json.dumps(result, ensure_ascii=False))
-          " 2>/dev/null || echo "$RESULT")
-
-            sleep 0.2
-          done
-
-          # 최종 JSON 저장 (타임스탬프 포함)
-          python3 -c "
-          import json, sys
-          from datetime import datetime, timezone, timedelta
-          kst = timezone(timedelta(hours=9))
-          now = datetime.now(kst).strftime('%Y-%m-%d %H:%M')
-          result = json.loads(sys.stdin.read())
-          output = {'updatedAt': now, 'brands': result}
-          print(json.dumps(output, ensure_ascii=False, indent=2))
-          " <<< "$RESULT" > data/news.json
-
-          echo "Done. Total brands: $(echo "$RESULT" | python3 -c "import sys,json; print(len(json.load(sys.stdin)))")"
-          cat data/news.json | python3 -c "import sys,json; d=json.load(sys.stdin); [print(f'  {k}: {len(v)}건') for k,v in d.get('brands',{}).items()]"
-
-      - name: Commit and push
+      - name: Commit JSON snapshot (backward compat)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
