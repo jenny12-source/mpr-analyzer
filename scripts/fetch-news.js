@@ -126,7 +126,7 @@ async function fetchSerper(brand, query, page = 1) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        q: query, gl: 'kr', hl: 'ko', num: 10, page, tbs: 'qdr:d',
+        q: query, gl: 'kr', hl: 'ko', num: 10, page, tbs: 'qdr:w',
       }),
     });
     if (!res.ok) {
