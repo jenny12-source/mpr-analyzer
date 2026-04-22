@@ -197,16 +197,29 @@ async function upsertRows(rows) {
         'apikey': SUPABASE_SERVICE_KEY,
         'Authorization': `Bearer ${SUPABASE_SERVICE_KEY}`,
         'Content-Type': 'application/json',
-        'Prefer': 'resolution=ignore-duplicates,return=representation,count=exact',
+        'Prefer': 'resolution=ignore-duplicates,return=representation',
       },
       body: JSON.stringify(batch),
     });
     if (!res.ok) {
-      console.error(`  upsert 실패 ${res.status}: ${(await res.text()).slice(0, 200)}`);
+      console.error(`  upsert 실패 ${res.status}: ${(await res.text()).slice(0, 300)}`);
       continue;
     }
-    const inserted = await res.json();
-    okTotal += Array.isArray(inserted) ? inserted.length : 0;
+    const body = await res.text();
+    try {
+      const inserted = JSON.parse(body);
+      // 배치 내 platform 통계
+      const batchPlat = {};
+      batch.forEach(r => { batchPlat[r.source_platform] = (batchPlat[r.source_platform] || 0) + 1; });
+      const insPlat = {};
+      inserted.forEach(r => { insPlat[r.source_platform] = (insPlat[r.source_platform] || 0) + 1; });
+      okTotal += inserted.length;
+      if (inserted.length > 0 || batch.some(r => r.source_platform === 'serper')) {
+        console.log(`    batch ${i}: batch=${JSON.stringify(batchPlat)} inserted=${inserted.length}(${JSON.stringify(insPlat)})`);
+      }
+    } catch (e) {
+      console.log(`    batch ${i}: JSON parse fail, body len=${body.length}, preview=${body.slice(0, 200)}`);
+    }
   }
   return okTotal;
 }
