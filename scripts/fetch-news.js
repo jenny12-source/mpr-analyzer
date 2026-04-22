@@ -72,20 +72,46 @@ async function fetchNaver(brand, query) {
   return rows;
 }
 
-// ── 구글 뉴스 RSS (rss2json 경유) ──
+// ── 구글 뉴스 RSS (XML 직접 파싱, 최대 ~100건) ──
+function parseRssXml(xml) {
+  const items = [];
+  const itemRe = /<item>([\s\S]*?)<\/item>/g;
+  let m;
+  while ((m = itemRe.exec(xml)) !== null) {
+    const block = m[1];
+    const pick = (tag) => {
+      const cdataRe = new RegExp(`<${tag}[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]></${tag}>`);
+      const cm = block.match(cdataRe);
+      if (cm) return cm[1].trim();
+      const plainRe = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\/${tag}>`);
+      const pm = block.match(plainRe);
+      return pm ? pm[1].trim() : '';
+    };
+    items.push({
+      title: pick('title'),
+      link: pick('link'),
+      description: pick('description'),
+      pubDate: pick('pubDate'),
+      source: pick('source'),
+    });
+  }
+  return items;
+}
+
 async function fetchGoogle(brand, query) {
   const rssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=ko&gl=KR&ceid=KR:ko`;
-  const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
   try {
-    const res = await fetch(apiUrl);
+    const res = await fetch(rssUrl, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MPRMonitor/1.0)' },
+    });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    if (data.status !== 'ok' || !Array.isArray(data.items)) return [];
-    return data.items.map(it => {
+    const xml = await res.text();
+    const items = parseRssXml(xml);
+    return items.map(it => {
       const fullTitle = stripHtml(it.title);
       const m = fullTitle.match(/\s-\s([^-]+)$/);
       const cleanTitle = m ? fullTitle.replace(/\s-\s[^-]+$/, '').trim() : fullTitle;
-      const sourceLabel = m ? m[1].trim() : (it.author || '');
+      const sourceLabel = m ? m[1].trim() : (it.source || '');
       return {
         brand,
         title: cleanTitle,
