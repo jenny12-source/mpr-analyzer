@@ -116,7 +116,7 @@ function parseSerperDate(s) {
   return new Date(now - n * unitMs).toISOString();
 }
 
-async function fetchSerper(brand, query, page = 1) {
+async function fetchSerperNews(brand, query, page = 1) {
   if (!SERPER_API_KEY) return [];
   try {
     const res = await fetch('https://google.serper.dev/news', {
@@ -130,7 +130,7 @@ async function fetchSerper(brand, query, page = 1) {
       }),
     });
     if (!res.ok) {
-      console.error(`  serper ${brand} p${page}: HTTP ${res.status} ${await res.text().catch(() => '')}`);
+      console.error(`  serper-news ${brand} p${page}: HTTP ${res.status} ${await res.text().catch(() => '')}`);
       return [];
     }
     const data = await res.json();
@@ -147,7 +147,48 @@ async function fetchSerper(brand, query, page = 1) {
       search_query: query,
     }));
   } catch (e) {
-    console.error(`  serper ${brand}: ${e.message}`);
+    console.error(`  serper-news ${brand}: ${e.message}`);
+    return [];
+  }
+}
+
+// SNS/브랜드 자체 사이트 필터
+const EXCLUDE_DOMAINS = /(instagram|facebook|twitter|x\.com|youtube|tiktok|threads\.com|duvetica\.co\.kr|fnfcorp)/i;
+
+async function fetchSerperSearch(brand, query) {
+  if (!SERPER_API_KEY) return [];
+  try {
+    const res = await fetch('https://google.serper.dev/search', {
+      method: 'POST',
+      headers: {
+        'X-API-KEY': SERPER_API_KEY,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        q: query, gl: 'kr', hl: 'ko', num: 10, page: 1, tbs: 'qdr:w',
+      }),
+    });
+    if (!res.ok) {
+      console.error(`  serper-search ${brand}: HTTP ${res.status}`);
+      return [];
+    }
+    const data = await res.json();
+    const organic = data.organic || [];
+    return organic
+      .filter(it => it.link && !EXCLUDE_DOMAINS.test(it.link))
+      .map(it => ({
+        brand,
+        title: stripHtml(it.title),
+        description: stripHtml(it.snippet) || null,
+        link: it.link || null,
+        original_link: it.link || null,
+        source: hostname(it.link),
+        pub_date: parseSerperDate(it.date),
+        source_platform: 'serper',
+        search_query: query,
+      }));
+  } catch (e) {
+    console.error(`  serper-search ${brand}: ${e.message}`);
     return [];
   }
 }
@@ -235,12 +276,12 @@ async function main() {
   const t0 = Date.now();
   const summary = { startedAt: new Date().toISOString(), brands: {}, totalCollected: 0, totalInserted: 0 };
 
-  // Serper는 credit 아끼려고 KST 짝수 시간에만 호출 (2시간 간격)
-  // 수동 실행(workflow_dispatch)시엔 무조건 호출
-  // 월 예상 사용: 7브랜드 × 2 credit × 12회/일 × 30일 = 2520 credit (무료 한도 2500 근처)
+  // Serper credit 관리: 월 2500 무료 한도
+  // /news page 1+2 (2 credit) + /search page 1 (1 credit) = 3 credit/brand
+  // KST 9/13/17/21시만 호출 → 7브랜드 × 3 credit × 4회 × 30일 = 2520 credit (한도 근처)
   const kstHour = (new Date().getUTCHours() + 9) % 24;
   const isManual = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch';
-  const runSerper = !!SERPER_API_KEY && (isManual || kstHour % 2 === 0);
+  const runSerper = !!SERPER_API_KEY && (isManual || [9, 13, 17, 21].includes(kstHour));
   console.log(`KST ${kstHour}시 (event=${process.env.GITHUB_EVENT_NAME || 'local'}) — Serper 호출: ${runSerper ? 'YES' : 'skip'}`);
 
   for (const [brand, q] of Object.entries(BRANDS)) {
@@ -250,10 +291,12 @@ async function main() {
     let serperRows = [];
     if (runSerper) {
       const serperQuery = q.serper || q.google;
-      const p1 = await fetchSerper(brand, serperQuery, 1);
+      const nP1 = await fetchSerperNews(brand, serperQuery, 1);
       await sleep(200);
-      const p2 = await fetchSerper(brand, serperQuery, 2);
-      serperRows = [...p1, ...p2];
+      const nP2 = await fetchSerperNews(brand, serperQuery, 2);
+      await sleep(200);
+      const s1 = await fetchSerperSearch(brand, serperQuery);
+      serperRows = [...nP1, ...nP2, ...s1];
     }
     const all = [...naverRows, ...googleRows, ...serperRows];
     const ins = await upsertRows(all);
