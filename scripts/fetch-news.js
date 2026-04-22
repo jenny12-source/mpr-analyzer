@@ -160,22 +160,42 @@ async function fetchSerperNews(brand, query, page = 1) {
 }
 
 // 타겟 매체 — 네이버/구글 뉴스에 없지만 구글 웹 검색엔 나오는 패션 전문지/소규모 매체
+// 2026-04-22 대행사 일일 모니터링 docx 파싱으로 실제 도메인 검증 완료
 const TARGET_SITES = [
+  // 패션 전문지
   'fi.co.kr',             // 패션인사이트
   'apparelnews.co.kr',    // 어패럴뉴스
   'fashionseoul.com',     // 패션서울
   'fashionbiz.co.kr',     // 패션비즈
-  'madclub.co.kr',        // 매드클럽
-  'newsa.co.kr',          // 뉴스에이
-  'baccro.com',           // 바끄로뉴스
+  'itnk.co.kr',           // 국제섬유신문
+  'kfashionnews.com',     // K패션뉴스
   'tinnews.co.kr',        // TIN뉴스
-  'ktnews.com',           // 국제섬유신문(추정)
-  'pressm.kr',            // 프레스맨(추정)
-  'tongsinilbo.com',      // 통신일보
+  'pressman.kr',          // 프레스맨
+  'madclub.co.kr',        // 매드클럽
+  // 종합지·지역지
+  'weekly.hankooki.com',  // 주간한국
+  'sisacast.kr',          // 시사캐스트
+  'catchnews.kr',         // CATCH NEWS
+  'lkp.news',             // 리버티코리아포스트
+  'beyondpost.co.kr',     // 비욘드포스트
+  'slist.kr',             // 싱글리스트
+  'naewoeilbo.com',       // 내외일보
+  'cdnews.co.kr',         // 통신일보
   'anewsa.com',           // 아시아뉴스통신
-  'kfashion.co.kr',       // K패션(추정)
-  'kfnews.kr',            // K패션뉴스(추정)
-  'nwt.co.kr',            // 내외일보(추정)
+  'baccro.com',           // 바끄로뉴스
+  'newsa.co.kr',          // 뉴스에이
+  'enewstoday.co.kr',     // 이뉴스투데이
+  'pinpointnews.co.kr',   // 핀포인트뉴스
+  'segyenewsagency.com',  // 세계뉴스통신
+  // 경제·유통지
+  'dailysmart.co.kr',     // 스마트경제
+  '4th.kr',               // 포쓰저널
+  'biztribune.co.kr',     // 비즈트리뷴
+  'fetimes.co.kr',        // 금융경제신문
+  'fintechtimes.co.kr',   // 핀테크경제신문
+  'nanumy.co.kr',         // 나눔경제뉴스
+  'spochoo.com',          // 더게이트
+  'sportsq.co.kr',        // 스포츠Q
 ];
 
 // F&F 브랜드 자체 쇼핑몰/SNS 등은 필터링 (기사 아닌데도 /search가 잡아오는 경우)
