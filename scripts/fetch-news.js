@@ -10,6 +10,7 @@ const {
   NAVER_CLIENT_SECRET,
   SUPABASE_URL,
   SUPABASE_SERVICE_KEY,
+  SERPER_API_KEY, // 선택 — 없으면 구글 웹 검색 스킵
 } = process.env;
 
 for (const k of ['NAVER_CLIENT_ID', 'NAVER_CLIENT_SECRET', 'SUPABASE_URL', 'SUPABASE_SERVICE_KEY']) {
@@ -98,6 +99,59 @@ function parseRssXml(xml) {
   return items;
 }
 
+// ── Serper.dev (구글 웹/뉴스 검색 프록시, 월 2500 credit 무료) ──
+function parseSerperDate(s) {
+  if (!s) return null;
+  const now = Date.now();
+  const m = String(s).match(/(\d+)\s*(분|시간|일|주|min|minute|hour|day|week)s?\s*(전|ago)/i);
+  if (!m) return null;
+  const n = parseInt(m[1], 10);
+  const unitMs = {
+    '분': 60_000, 'min': 60_000, 'minute': 60_000,
+    '시간': 3_600_000, 'hour': 3_600_000,
+    '일': 86_400_000, 'day': 86_400_000,
+    '주': 7 * 86_400_000, 'week': 7 * 86_400_000,
+  }[m[2].toLowerCase()] || 0;
+  if (!unitMs) return null;
+  return new Date(now - n * unitMs).toISOString();
+}
+
+async function fetchSerper(brand, query, page = 1) {
+  if (!SERPER_API_KEY) return [];
+  try {
+    const res = await fetch('https://google.serper.dev/news', {
+      method: 'POST',
+      headers: {
+        'X-API-KEY': SERPER_API_KEY,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        q: query, gl: 'kr', hl: 'ko', num: 10, page, tbs: 'qdr:d',
+      }),
+    });
+    if (!res.ok) {
+      console.error(`  serper ${brand} p${page}: HTTP ${res.status} ${await res.text().catch(() => '')}`);
+      return [];
+    }
+    const data = await res.json();
+    const news = data.news || [];
+    return news.map(it => ({
+      brand,
+      title: stripHtml(it.title),
+      description: stripHtml(it.snippet) || null,
+      link: it.link || null,
+      original_link: it.link || null,
+      source: it.source || hostname(it.link),
+      pub_date: parseSerperDate(it.date),
+      source_platform: 'serper',
+      search_query: query,
+    }));
+  } catch (e) {
+    console.error(`  serper ${brand}: ${e.message}`);
+    return [];
+  }
+}
+
 async function fetchGoogle(brand, query) {
   const rssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=ko&gl=KR&ceid=KR:ko`;
   try {
@@ -180,22 +234,37 @@ async function main() {
   const t0 = Date.now();
   const summary = { startedAt: new Date().toISOString(), brands: {}, totalCollected: 0, totalInserted: 0 };
 
+  // Serper는 credit 아끼려고 KST 짝수 시간에만 호출 (2시간 간격)
+  // 월 예상 사용: 7브랜드 × 2 credit × 12회/일 × 30일 = 2520 credit (무료 한도 2500 근처)
+  const kstHour = (new Date().getUTCHours() + 9) % 24;
+  const runSerper = !!SERPER_API_KEY && (kstHour % 2 === 0);
+  console.log(`KST ${kstHour}시 — Serper 호출: ${runSerper ? 'YES' : 'skip'}`);
+
   for (const [brand, q] of Object.entries(BRANDS)) {
     const tb = Date.now();
     const naverRows = await fetchNaver(brand, q.naver);
     const googleRows = await fetchGoogle(brand, q.google);
-    const all = [...naverRows, ...googleRows];
+    let serperRows = [];
+    if (runSerper) {
+      const serperQuery = q.serper || q.google;
+      const p1 = await fetchSerper(brand, serperQuery, 1);
+      await sleep(200);
+      const p2 = await fetchSerper(brand, serperQuery, 2);
+      serperRows = [...p1, ...p2];
+    }
+    const all = [...naverRows, ...googleRows, ...serperRows];
     const ins = await upsertRows(all);
     summary.brands[brand] = {
       collected: all.length,
       naver: naverRows.length,
       google: googleRows.length,
+      serper: serperRows.length,
       inserted: ins,
       ms: Date.now() - tb,
     };
     summary.totalCollected += all.length;
     summary.totalInserted += ins;
-    console.log(`  ${brand}: 수집 ${all.length}건 (네이버 ${naverRows.length}/구글 ${googleRows.length}), 신규 ${ins}건, ${((Date.now() - tb) / 1000).toFixed(1)}초`);
+    console.log(`  ${brand}: 수집 ${all.length}건 (네이버 ${naverRows.length}/구글 ${googleRows.length}/serper ${serperRows.length}), 신규 ${ins}건, ${((Date.now() - tb) / 1000).toFixed(1)}초`);
     await sleep(300);
   }
 
