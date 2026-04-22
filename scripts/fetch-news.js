@@ -159,11 +159,33 @@ async function fetchSerperNews(brand, query, page = 1) {
   }
 }
 
-// SNS/브랜드 자체 사이트 필터
-const EXCLUDE_DOMAINS = /(instagram|facebook|twitter|x\.com|youtube|tiktok|threads\.com|duvetica\.co\.kr|fnfcorp)/i;
+// 타겟 매체 — 네이버/구글 뉴스에 없지만 구글 웹 검색엔 나오는 패션 전문지/소규모 매체
+const TARGET_SITES = [
+  'fi.co.kr',             // 패션인사이트
+  'apparelnews.co.kr',    // 어패럴뉴스
+  'fashionseoul.com',     // 패션서울
+  'fashionbiz.co.kr',     // 패션비즈
+  'madclub.co.kr',        // 매드클럽
+  'newsa.co.kr',          // 뉴스에이
+  'baccro.com',           // 바끄로뉴스
+  'tinnews.co.kr',        // TIN뉴스
+  'ktnews.com',           // 국제섬유신문(추정)
+  'pressm.kr',            // 프레스맨(추정)
+  'tongsinilbo.com',      // 통신일보
+  'anewsa.com',           // 아시아뉴스통신
+  'kfashion.co.kr',       // K패션(추정)
+  'kfnews.kr',            // K패션뉴스(추정)
+  'nwt.co.kr',            // 내외일보(추정)
+];
 
-async function fetchSerperSearch(brand, query) {
+// F&F 브랜드 자체 쇼핑몰/SNS 등은 필터링 (기사 아닌데도 /search가 잡아오는 경우)
+const EXCLUDE_DOMAINS = /(instagram|facebook|twitter|x\.com|youtube|tiktok|threads\.com|musinsa|discovery-expedition|mlb-korea|mlbkids|duvetica\.co\.kr|sergiotacchini|suprafootwear|fnfcorp|blog\.naver|smartstore\.naver|shopping\.naver|11st\.co\.kr|gmarket|coupang|auction\.co\.kr)/i;
+
+// 타겟 매체 전용 검색 (site: OR 체인으로 1 credit에 여러 매체 동시 훑기)
+async function fetchSerperTargeted(brand, baseQuery) {
   if (!SERPER_API_KEY) return [];
+  const siteChain = TARGET_SITES.map(s => `site:${s}`).join(' OR ');
+  const query = `${baseQuery} (${siteChain})`;
   try {
     const res = await fetch('https://google.serper.dev/search', {
       method: 'POST',
@@ -172,11 +194,11 @@ async function fetchSerperSearch(brand, query) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        q: query, gl: 'kr', hl: 'ko', num: 10, page: 1, tbs: 'qdr:w',
+        q: query, gl: 'kr', hl: 'ko', num: 20, page: 1, tbs: 'qdr:w',
       }),
     });
     if (!res.ok) {
-      console.error(`  serper-search ${brand}: HTTP ${res.status}`);
+      console.error(`  serper-targeted ${brand}: HTTP ${res.status}`);
       return [];
     }
     const data = await res.json();
@@ -195,7 +217,7 @@ async function fetchSerperSearch(brand, query) {
         search_query: query,
       }));
   } catch (e) {
-    console.error(`  serper-search ${brand}: ${e.message}`);
+    console.error(`  serper-targeted ${brand}: ${e.message}`);
     return [];
   }
 }
@@ -302,8 +324,8 @@ async function main() {
       await sleep(200);
       const nP2 = await fetchSerperNews(brand, serperQuery, 2);
       await sleep(200);
-      const s1 = await fetchSerperSearch(brand, serperQuery);
-      serperRows = [...nP1, ...nP2, ...s1];
+      const t1 = await fetchSerperTargeted(brand, serperQuery);
+      serperRows = [...nP1, ...nP2, ...t1];
     }
     const all = [...naverRows, ...googleRows, ...serperRows];
     const ins = await upsertRows(all);
