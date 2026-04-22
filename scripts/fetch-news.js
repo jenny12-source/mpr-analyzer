@@ -100,20 +100,27 @@ function parseRssXml(xml) {
 }
 
 // ── Serper.dev (구글 웹/뉴스 검색 프록시, 월 2500 credit 무료) ──
+// date 필드는 "1 day ago" 형태로 정확한 시각을 모름.
+// "분/시간 전"은 현재 기준 차감, "일/주 전"은 해당 날짜의 KST 정오로 근사 (날짜 단위 필터 정확성)
 function parseSerperDate(s) {
   if (!s) return null;
-  const now = Date.now();
   const m = String(s).match(/(\d+)\s*(분|시간|일|주|min|minute|hour|day|week)s?\s*(전|ago)/i);
   if (!m) return null;
   const n = parseInt(m[1], 10);
+  const unit = m[2].toLowerCase();
+  if (['일', 'day', '주', 'week'].includes(unit)) {
+    const days = ['주', 'week'].includes(unit) ? n * 7 : n;
+    const d = new Date();
+    d.setUTCHours(3, 0, 0, 0); // KST 정오
+    d.setUTCDate(d.getUTCDate() - days);
+    return d.toISOString();
+  }
   const unitMs = {
     '분': 60_000, 'min': 60_000, 'minute': 60_000,
     '시간': 3_600_000, 'hour': 3_600_000,
-    '일': 86_400_000, 'day': 86_400_000,
-    '주': 7 * 86_400_000, 'week': 7 * 86_400_000,
-  }[m[2].toLowerCase()] || 0;
+  }[unit] || 0;
   if (!unitMs) return null;
-  return new Date(now - n * unitMs).toISOString();
+  return new Date(Date.now() - n * unitMs).toISOString();
 }
 
 async function fetchSerperNews(brand, query, page = 1) {
