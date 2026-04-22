@@ -191,7 +191,8 @@ async function upsertRows(rows) {
   let okTotal = 0;
   for (let i = 0; i < rows.length; i += CHUNK) {
     const batch = rows.slice(i, i + CHUNK);
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/articles`, {
+    // on_conflict로 UNIQUE CONSTRAINT 명시 → PostgREST가 ON CONFLICT DO NOTHING 처리
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/articles?on_conflict=brand,dedup_key`, {
       method: 'POST',
       headers: {
         'apikey': SUPABASE_SERVICE_KEY,
@@ -205,21 +206,8 @@ async function upsertRows(rows) {
       console.error(`  upsert 실패 ${res.status}: ${(await res.text()).slice(0, 300)}`);
       continue;
     }
-    const body = await res.text();
-    try {
-      const inserted = JSON.parse(body);
-      // 배치 내 platform 통계
-      const batchPlat = {};
-      batch.forEach(r => { batchPlat[r.source_platform] = (batchPlat[r.source_platform] || 0) + 1; });
-      const insPlat = {};
-      inserted.forEach(r => { insPlat[r.source_platform] = (insPlat[r.source_platform] || 0) + 1; });
-      okTotal += inserted.length;
-      if (inserted.length > 0 || batch.some(r => r.source_platform === 'serper')) {
-        console.log(`    batch ${i}: batch=${JSON.stringify(batchPlat)} inserted=${inserted.length}(${JSON.stringify(insPlat)})`);
-      }
-    } catch (e) {
-      console.log(`    batch ${i}: JSON parse fail, body len=${body.length}, preview=${body.slice(0, 200)}`);
-    }
+    const inserted = await res.json();
+    okTotal += Array.isArray(inserted) ? inserted.length : 0;
   }
   return okTotal;
 }
