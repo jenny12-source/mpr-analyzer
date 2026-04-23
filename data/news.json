@@ -1,7 +1,14 @@
 {
-  "updatedAt": "2026-04-23 20:52",
+  "updatedAt": "2026-04-23 21:55",
   "brands": {
     "MLB키즈": [
+      {
+        "title": "대전 유통업계, 봄 시즌 맞아 프로모션 잇따라",
+        "originallink": "https://www.dailycc.net/news/articleViewAmp.html?idxno=865612",
+        "link": "https://www.dailycc.net/news/articleViewAmp.html?idxno=865612",
+        "description": "[충청신문=대전] 하서영 기자 = 봄 시즌을 맞아 대전 지역 백화점과 아울렛이 할인 행사와 체험형 이벤트를 잇따라 선보이며 고객 유치에 나섰다.",
+        "pubDate": "Thu, 23 Apr 2026 08:54:48 GMT"
+      },
       {
         "title": "[유통소식] 대전 백화점과 아울렛서 봄 시즌 준비해볼까",
         "originallink": "https://www.joongdo.co.kr/web/view.php?key=20260423010007263",
@@ -106,16 +113,23 @@
         "link": "https://www.shinsegaegroupnewsroom.com/shinsegae-simon-siheung-premium-outlets-and-the-s-mall-host-1st-anniversary-event/",
         "description": "신세계사이먼(대표 김영섭)은 4월 17일부터 26일까지 시흥 프리미엄 아울렛에서 '더에스몰(The S Mall)' 오픈 1주년을 기념해 다채로운 프로모션을 진행한다.",
         "pubDate": "Thu, 16 Apr 2026 15:00:00 GMT"
-      },
-      {
-        "title": "[브리프]GS리테일 롯데면세점 신세계사이먼 BGF 타임스퀘어",
-        "originallink": "http://www.biztribune.co.kr/news/articleView.html?idxno=352547",
-        "link": "http://www.biztribune.co.kr/news/articleView.html?idxno=352547",
-        "description": "MLB키즈는 최대 50% 할인 행사를 진행하며, 레고는 80여 종의 인기 품목을 최대 40% 할인 판매한다. 리빙·가전 브랜드 혜택도 풍성하다. 까사미아는 마테라소 포레스트 컬렉션 추가 할인 혜택을 제공하며, 템퍼는 매트리스... ",
-        "pubDate": "Thu, 16 Apr 2026 12:10:00 GMT"
       }
     ],
     "디스커버리키즈": [
+      {
+        "title": "글로벌세아그룹 경영진, 코스타리카 대통령 및 당선인 면담 …“긴밀한 ...",
+        "originallink": "https://www.itnk.co.kr/news/articleView.html?idxno=81056",
+        "link": "https://www.itnk.co.kr/news/articleView.html?idxno=81056",
+        "description": "김웅기 회장 등 그룹 경영진 코스타리카 방문…현 대통령 및 신임 대통령 면담 - 현지 경제 활성화와 고용 창출에 기여하고 있는 점에 깊은 감사 표시",
+        "pubDate": "Thu, 23 Apr 2026 04:55:17 GMT"
+      },
+      {
+        "title": "“K-브랜드+K-소재” 화제 - 국제섬유신문",
+        "originallink": "https://www.itnk.co.kr/news/articleView.html?idxno=81055",
+        "link": "https://www.itnk.co.kr/news/articleView.html?idxno=81055",
+        "description": "이번 행사는 글로벌 공급망 불안정과 원자재 가격 상승이라는 대외 환경 속에서 국내 소재 활용 확대와 공급망 내재화라는 산업적 과제를 해결하기 위해 기획되었으며, ...",
+        "pubDate": "Thu, 23 Apr 2026 03:55:17 GMT"
+      },
       {
         "title": "역대급 규모 '무신사 메가스토어' 내일(24일) 공개 - 국제섬유신문",
         "originallink": "https://www.itnk.co.kr/news/articleView.html?idxno=81054",
@@ -350,11 +364,32 @@
     ],
     "디스커버리": [
       {
+        "title": "글로벌세아그룹 경영진, 코스타리카 대통령 및 당선인 면담 …“긴밀한 ...",
+        "originallink": "https://www.itnk.co.kr/news/articleView.html?idxno=81056",
+        "link": "https://www.itnk.co.kr/news/articleView.html?idxno=81056",
+        "description": "디스커버리 익스페디션 앰버서더 에스파 닝닝. 1 / 4. 최신뉴스. 글로벌세아그룹 경영진, 코스타리카 대통령 및 당선인 면담 ...",
+        "pubDate": "Thu, 23 Apr 2026 04:55:04 GMT"
+      },
+      {
+        "title": "“K-브랜드+K-소재” 화제 - 국제섬유신문",
+        "originallink": "https://www.itnk.co.kr/news/articleView.html?idxno=81055",
+        "link": "https://www.itnk.co.kr/news/articleView.html?idxno=81055",
+        "description": "디스커버리 익스페디션 앰버서더 에스파 닝닝. 1 / 4. 최신뉴스. 글로벌세아그룹 경영진, 코스타리카 대통령 및 당선인 ...",
+        "pubDate": "Thu, 23 Apr 2026 03:55:04 GMT"
+      },
+      {
         "title": "역대급 규모 '무신사 메가스토어' 내일(24일) 공개 - 국제섬유신문",
         "originallink": "https://www.itnk.co.kr/news/articleView.html?idxno=81054",
         "link": "https://www.itnk.co.kr/news/articleView.html?idxno=81054",
         "description": "디스커버리 익스페디션 앰버서더 에스파 닝닝. 1 / 4. 최신뉴스. 글로벌세아그룹 경영진, 코스타리카 대통령 및 당선인 ...",
         "pubDate": "Thu, 23 Apr 2026 03:27:14 GMT"
+      },
+      {
+        "title": "한세, 故 김기홍 박사 40주기 추모 헌혈 - 국제섬유신문",
+        "originallink": "https://www.itnk.co.kr/news/articleView.html?idxno=81052",
+        "link": "https://www.itnk.co.kr/news/articleView.html?idxno=81052",
+        "description": "디스커버리 익스페디션 앰버서더 에스파 닝닝. 1 / 4. 최신뉴스. 글로벌세아그룹 경영진, 코스타리카 대통령 및 당선인 ...",
+        "pubDate": "Thu, 23 Apr 2026 02:55:04 GMT"
       },
       {
         "title": "[아웃도어 트렌드] \"대관령의 수려한 자연에서 봄의 생동감을 만끽하세...",
@@ -372,6 +407,20 @@
       },
       {
         "title": "다가올 여름, 더 시원하게… 와이드앵글 권은비 여름필드룩 공개",
+        "originallink": "http://m.newsa.co.kr/news/articleView.html?idxno=340927",
+        "link": "http://m.newsa.co.kr/news/articleView.html?idxno=340927",
+        "description": "1뉴스종합패션뷰티디스커버리 익스페디션, 트렌디한 볼륨감의 '액티브 웰니스 라이프스타일' 패딩 부츠 라인 출시! 2전국뉴스전북이미선 도의원 후보, “하위 20% 누구 ...",
+        "pubDate": "Wed, 22 Apr 2026 15:55:04 GMT"
+      },
+      {
+        "title": "2026 한국 청소년 오지탐사대, 대원 모집 시작 - 뉴스에이",
+        "originallink": "http://www.newsa.co.kr/news/articleView.html?idxno=340931",
+        "link": "http://www.newsa.co.kr/news/articleView.html?idxno=340931",
+        "description": "1뉴스종합패션뷰티디스커버리 익스페디션, 트렌디한 볼륨감의 '액티브 웰니스 라이프스타일' 패딩 부츠 라인 출시! 2전국뉴스전북이미선 도의원 후보, “하위 20% 누구 ...",
+        "pubDate": "Wed, 22 Apr 2026 15:55:04 GMT"
+      },
+      {
+        "title": "다가올 여름, 더 시원하게… 와이드앵글 권은비 여름필드룩 공개",
         "originallink": "http://www.newsa.co.kr/news/articleView.html?idxno=340927",
         "link": "http://www.newsa.co.kr/news/articleView.html?idxno=340927",
         "description": "1뉴스종합패션뷰티디스커버리 익스페디션, 트렌디한 볼륨감의 '액티브 웰니스 라이프스타일' 패딩 부츠 라인 출시! 2전국뉴스전북이미선 도의원 후보, “하위 20% 누구 ...",
@@ -383,6 +432,13 @@
         "link": "http://www.newsa.co.kr/news/articleView.html?idxno=340932",
         "description": "1뉴스종합패션뷰티디스커버리 익스페디션, 트렌디한 볼륨감의 '액티브 웰니스 라이프스타일' 패딩 부츠 라인 출시! 2전국뉴스전북이미선 도의원 후보, “하위 20% 누구 ...",
         "pubDate": "Wed, 22 Apr 2026 15:27:14 GMT"
+      },
+      {
+        "title": "연극 〈베니스의 상인〉, 신구·박근형·이승주·이상윤·카이 - 뉴스에이",
+        "originallink": "http://m.newsa.co.kr/news/articleView.html?idxno=340925",
+        "link": "http://m.newsa.co.kr/news/articleView.html?idxno=340925",
+        "description": "인기기사. 1뉴스종합패션뷰티디스커버리 익스페디션, 트렌디한 볼륨감의 '액티브 웰니스 라이프스타일' 패딩 부츠 라인 출시! 2전국뉴스전북이미선 도의원 후보, “하위 ...",
+        "pubDate": "Wed, 22 Apr 2026 14:55:04 GMT"
       },
       {
         "title": "발렌티노, 2026 가을 캠페인 공개 - 뉴스에이",
@@ -411,6 +467,13 @@
         "link": "http://www.newsa.co.kr/news/articleView.html?idxno=340875",
         "description": "1뉴스종합패션뷰티디스커버리 익스페디션, 트렌디한 볼륨감의 '액티브 웰니스 라이프스타일' 패딩 부츠 라인 출시! 2전국뉴스전북이미선 도의원 후보, “하위 20% 누구 ...",
         "pubDate": "Wed, 22 Apr 2026 05:23:18 GMT"
+      },
+      {
+        "title": "더울수록 손이 가네… 달아오르는 ‘냉감 의류’ 전쟁",
+        "originallink": "https://v.daum.net/v/5GiwhlQ93l?f=p",
+        "link": "https://v.daum.net/v/5GiwhlQ93l?f=p",
+        "description": "짧아진 봄과 함께 이른 더위가 찾아오면서 패션업계가 냉감 소재 의류를 예년보다 일찍 선보이고 있다. 성인복은 물론이고 유아복까지 냉감 제품군을 확대하고,...",
+        "pubDate": "Wed, 22 Apr 2026 03:00:00 GMT"
       },
       {
         "title": "더핑크퐁컴퍼니 '베베핀 극장판', 전 세계 넷플릭스 공개… 극장 흥행 ...",
@@ -902,6 +965,20 @@
         "originallink": "https://www.itnk.co.kr/news/articleView.html?idxno=81017",
         "link": "https://www.itnk.co.kr/news/articleView.html?idxno=81017",
         "description": "올 여름 리조트 감성 뜨고 프리미엄 경량 소재 중심 카라 티셔츠 중심, 일상~여행 듀베티카 썸머 라인업. 이수아 기자; 입력 2026.04.21 11:49; 댓글 0. 글자크기 설정.",
+        "pubDate": "Tue, 21 Apr 2026 03:00:00 GMT"
+      },
+      {
+        "title": "리조트 입고 일상까지···듀베티카, ‘웰니스 룩’으로 여름 공략",
+        "originallink": "https://www.enewstoday.co.kr/news/articleView.html?idxno=2421156",
+        "link": "https://www.enewstoday.co.kr/news/articleView.html?idxno=2421156",
+        "description": "[이뉴스투데이 한민하 기자] 듀베티카(DUVETICA)가 배우 김지원과 함께한 여름 화보를 공개하며 리조트와 일상을 아우르는 '웰니스 룩'을 제안한다.",
+        "pubDate": "Tue, 21 Apr 2026 03:00:00 GMT"
+      },
+      {
+        "title": "듀베티카, 김지원과 '2026 서머' 화보 공개…프리미엄 웰니스 룩 제안",
+        "originallink": "https://www.dailysmart.co.kr/news/articleView.html?idxno=122894",
+        "link": "https://www.dailysmart.co.kr/news/articleView.html?idxno=122894",
+        "description": "최근 3040 여성 소비자를 중심으로 프리미엄 웰니스룩과 리조트-시티 스타일이 주목받는 가운데, 듀베티카는 일상과 여행을 아우르는 여름 스타일을 제안했다. 이번 화보는 ...",
         "pubDate": "Tue, 21 Apr 2026 03:00:00 GMT"
       },
       {
