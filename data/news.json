@@ -1,172 +1,35 @@
 {
-  "updatedAt": "2026-04-24 15:57",
+  "updatedAt": "2026-04-24 17:57",
   "brands": {
-    "MLB키즈": [
-      {
-        "title": "대전 백화점가, 봄·가정의 달 맞아 마케팅 '총력전'",
-        "originallink": "http://www.dtnews24.com/news/articleView.html?idxno=810929",
-        "link": "http://www.dtnews24.com/news/articleView.html?idxno=810929",
-        "description": "시세이도 단독 세트 판매를 비롯해 라코스테, 코데즈컴바인, 고세제화 등이 참여하는 할인 행사가 진행되며 타미힐피거 칠드런과 MLB 키즈 등에서는 사은품 증정과 이벤트가 마련됐다. 또 7층에서는 풋조이 골프, 리... ",
-        "pubDate": "Fri, 24 Apr 2026 06:26:00 GMT"
-      },
-      {
-        "title": "대전 유통업계, 봄 시즌 맞아 프로모션 잇따라",
-        "originallink": "https://www.dailycc.net/news/articleViewAmp.html?idxno=865612",
-        "link": "https://www.dailycc.net/news/articleViewAmp.html?idxno=865612",
-        "description": "[충청신문=대전] 하서영 기자 = 봄 시즌을 맞아 대전 지역 백화점과 아울렛이 할인 행사와 체험형 이벤트를 잇따라 선보이며 고객 유치에 나섰다.",
-        "pubDate": "Thu, 23 Apr 2026 08:54:48 GMT"
-      },
-      {
-        "title": "[유통소식] 대전 백화점과 아울렛서 봄 시즌 준비해볼까",
-        "originallink": "https://www.joongdo.co.kr/web/view.php?key=20260423010007263",
-        "link": "https://www.joongdo.co.kr/web/view.php?key=20260423010007263",
-        "description": "5층 클래식 캐주얼 브랜드 '타미힐피거 칠드런'은 금액 할인 혜택과 함께 추가 사은품을 증정하고, 프리미엄 라이프스타일 패션 브랜드 'MLB 키즈'에서는 'LUCK*KEY FESTA'를 펼쳐 일정 금액 이상 구매 고객에게 LED키캡 증정... ",
-        "pubDate": "Thu, 23 Apr 2026 07:54:00 GMT"
-      },
-      {
-        "title": "대전유통업계, 봄맞이 대형 행사... 할인·팝업·체험 총출동",
-        "originallink": "http://www.chungnamilbo.co.kr/news/articleView.html?idxno=885071",
-        "link": "http://www.chungnamilbo.co.kr/news/articleView.html?idxno=885071",
-        "description": "5층 '타미힐피거 칠드런'은 금액 할인과 사은품을 제공하며 'MLB 키즈'는 일정 금액 이상 구매 고객을 대상으로 경품 이벤트를 진행한다. 이어 7층에서는 '풋조이 골프', '리', '와키윌리' 등이 최대 70% 이월상품전을... ",
-        "pubDate": "Thu, 23 Apr 2026 06:32:00 GMT"
-      },
-      {
-        "title": "[백화점산책] 갤러리아타임월드, 완연한 봄을 맞아 다양한 상품행사",
-        "originallink": "https://www.ggilbo.com/news/articleView.html?idxno=1154584",
-        "link": "https://www.ggilbo.com/news/articleView.html?idxno=1154584",
-        "description": "5층의 클래식 캐주얼 브랜드 '타미힐피거 칠드런'은 금액 할인 혜택과 함께 추가 사은품을 증정하고 프리미엄 라이프스타일 패션 브랜드 'MLB 키즈'에서는 'LUCK*KEY FESTA'를 펼쳐 일정 금액 이상 구매 고객에게 LED키캡... ",
-        "pubDate": "Thu, 23 Apr 2026 05:38:00 GMT"
-      },
-      {
-        "title": "갤러리아타임월드 봄맞이 대규모 할인전",
-        "originallink": "https://www.news1.kr/local/daejeon-chungnam/6146602",
-        "link": "https://n.news.naver.com/mnews/article/421/0008907714?sid=102",
-        "description": "MLB 키즈는 ‘LUCK*KEY FESTA’ 이벤트로 일정 금액 이상 구매자에게 LED 키캡과 리조트 숙박권 등 다양한 경품 참여 기회를 제공한다. 7층에선 풋조이 골프, 리(LEE), 와키윌리가 전년도 인기 이월 상품을 최대 70%까지... ",
-        "pubDate": "Thu, 23 Apr 2026 04:41:00 GMT"
-      },
-      {
-        "title": "갤러리아타임월드, 봄 시즌 맞아 전층 프로모션 확대",
-        "originallink": "https://www.gukjenews.com/news/articleView.html?idxno=3564519",
-        "link": "https://www.gukjenews.com/news/articleView.html?idxno=3564519",
-        "description": "5층 '타미힐피거 칠드런'은 금액 할인과 함께 추가 사은품을 증정하며, 'MLB 키즈'는 'LUCK*KEY FESTA' 이벤트를 통해 일정 금액 이상 구매 고객에게 LED 키캡을 제공하고 리조트 숙박권, 여행 포인트 등 경품 이벤트 참여... ",
-        "pubDate": "Thu, 23 Apr 2026 04:36:00 GMT"
-      },
-      {
-        "title": "\"가볍고 단아해\" 듀베티카, 김지원과 '26 SUMMER' 화보 공개",
-        "originallink": "https://www.catchnews.kr/news/articleView.html?idxno=123039",
-        "link": "https://www.catchnews.kr/news/articleView.html?idxno=123039",
-        "description": "관련기사. 디스커버리 익스페디션, 에스파 닝닝과 함께 '러닝 바람막이' 소개 · \"홑겹 바람막이와 샌동화 매치\" MLB키즈, 26SS 키즈화보 공개. 키워드. #듀베티카 # ...",
-        "pubDate": "Tue, 21 Apr 2026 03:00:00 GMT"
-      },
-      {
-        "title": "F&F, 무난한 실적 뒤 숨겨진 성장 한계 드러났다",
-        "originallink": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=446557",
-        "link": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=446557",
-        "description": "'MLB' 성인 라인은 국내와 면세 채널을 합쳐 852억원으로 1% 증가에 그쳤고, 'MLB 키즈'는 194억원으로 2% 성장했다. 디스커버리는 840억원으로 전년과 유사한 수준을 유지하며 정체된 흐름을 보였다. 반면 중국 사업은 여전히... ",
-        "pubDate": "Sat, 18 Apr 2026 03:20:00 GMT"
-      },
-      {
-        "title": "통신일보",
-        "originallink": "https://www.cdnews.co.kr/news/quickViewArticleList.html?page=11&total=7765&sc_section_code=S1N6&sc_sub_section_code=&sc_serial_code=&sc_area=&sc_level=&sc_article_type=&sc_view_level=&sc_sdate=&sc_edate=&sc_serial_number=&sc_word=&sc_word2=&sc_andor=&view_type=",
-        "link": "https://www.cdnews.co.kr/news/quickViewArticleList.html?page=11&total=7765&sc_section_code=S1N6&sc_sub_section_code=&sc_serial_code=&sc_area=&sc_level=&sc_article_type=&sc_view_level=&sc_sdate=&sc_edate=&sc_serial_number=&sc_word=&sc_word2=&sc_andor=&view_type=",
-        "description": "MLB키즈, 쌈디 조카 '채채'와 함께 패밀리룩 아이템 선봬. ·, 올거나이즈, MCP 기반 '알리 에이전트 빌더' 출시. ·, 한국필립모리스, 아이코스 일루마 i 한정판 '미네라 ...",
-        "pubDate": "Sat, 18 Apr 2026 03:00:00 GMT"
-      },
-      {
-        "title": "mlb경량 - 추천•인기 상품, 신세계몰 - SSG.com",
-        "originallink": "https://shinsegaemall.ssg.com/search.ssg?query=mlb%EA%B2%BD%EB%9F%89",
-        "link": "https://shinsegaemall.ssg.com/search.ssg?query=mlb%EA%B2%BD%EB%9F%89",
-        "description": "MLB키즈 MLB 키즈 스트릿 메가 립스탑 초경량 바람막이 뉴욕양키스 GRAY 7AWJB0363 50GRS ... M MLB키즈바람막이 NQK 7AWJMD653-50IVS 다이아 모노그램 경량 바람막이 ...",
-        "pubDate": "Fri, 17 Apr 2026 15:00:00 GMT"
-      }
-    ],
-    "MLB": [
-      {
-        "title": "‘황제주’ 넘보던 F&F, 실적과 주가 ‘엇갈린’ 이유는 [정답은 TSR]",
-        "originallink": "http://www.fntimes.com/html/view.php?ud=202604231540205882b5b890e35c_18",
-        "link": "http://www.fntimes.com/html/view.php?ud=202604231540205882b5b890e35c_18",
-        "description": "패션기업 F&F는 한때 주가가 100만 원 수준에 이르며 ‘황제주’로 불렸다. 대표 브랜드 MLB와 디스커버리가 국내를 넘어 중국 등 해외 시장에서 흥행을 이어가면서 성장 기대감을 키운 결과다. 실적 역시 큰 흔들림... ",
-        "pubDate": "Thu, 23 Apr 2026 22:02:00 GMT"
-      },
-      {
-        "title": "‘황제주’ 넘보던 F&F, 실적과 주가 ‘엇갈린’ 이유는 [정답은 TSR]",
-        "originallink": "https://www.fntimes.com/html/view.php?ud=202604231540205882b5b890e35c_18",
-        "link": "https://www.fntimes.com/html/view.php?ud=202604231540205882b5b890e35c_18",
-        "description": "패션기업 F&F는 한때 주가가 100만 원 수준에 이르며 '황제주'로 불렸다. 대표 브랜드 MLB와 디스커버리가 국내를 넘어 중국 등 해외 시장에서 흥행을 이어가면서 성장...",
-        "pubDate": "Thu, 23 Apr 2026 21:44:31 GMT"
-      },
-      {
-        "title": "F&F 투자분석 2026. 04. 22",
-        "originallink": "https://www.judal.co.kr/?view=stockAI&shareToken=HZwX3dS3UfiKr9S8",
-        "link": "https://www.judal.co.kr/?view=stockAI&shareToken=HZwX3dS3UfiKr9S8",
-        "description": "F&F: 장기 성장 잠재력 기반, 적극 매수! F&F는 MLB, DISCOVERY 등 글로벌 라이선스 브랜드를 성공적으로 운영하는 패션 기업입니다. 2025년 연결기준 매출 약 1조...",
-        "pubDate": "Wed, 22 Apr 2026 10:40:46 GMT"
-      },
-      {
-        "title": "F&F, 중국 시장 확장 기대감 속 보합권 강세 유지하며 6만 7,700원 마감 : 금융",
-        "originallink": "https://news.jkn.co.kr/post/889832",
-        "link": "https://news.jkn.co.kr/post/889832",
-        "description": "F&F(383220)가 금일 시장에서 0.89% 상승하며 안정적인 흐름을 보였다. 2차전지 중심의 급등 장세 속에서도 섬유의류 섹터 대장주로서 견조한 주가 방어력을 입증했다.",
-        "pubDate": "Tue, 21 Apr 2026 15:00:00 GMT"
-      },
-      {
-        "title": "패션 넘어 향기 시장 진출 선언한 F&F 보합권 마감하며 사업 다각화 모색 : 금융",
-        "originallink": "https://news.jkn.co.kr/post/889499",
-        "link": "https://news.jkn.co.kr/post/889499",
-        "description": "F&F(383220)가 전 거래일 대비 0.30% 상승한 67100원에 장을 마감했다. 대규모 향수 및 디퓨저 기업 지분 투자 소식에도 불구하고 거래량은 5만 8천 주대에 머물며...",
-        "pubDate": "Tue, 21 Apr 2026 08:22:48 GMT"
-      },
-      {
-        "title": "MLB(브랜드) - 나무위키:대문",
-        "originallink": "https://namu.wiki/w/MLB(%EB%B8%8C%EB%9E%9C%EB%93%9C)",
-        "link": "https://namu.wiki/w/MLB(%EB%B8%8C%EB%9E%9C%EB%93%9C)",
-        "description": "MLB는 에프앤에프가 메이저 리그 베이스볼로부터 정식 라이선스를 받아 만든 의류 브랜드이다. 2. 상세[편집]. 에프앤에프는 1999년 미국 메이저리그 협회(MLB)로부터 ...",
-        "pubDate": "Sun, 19 Apr 2026 15:00:00 GMT"
-      },
-      {
-        "title": "F&F홀딩스 투자분석 2026. 04. 18",
-        "originallink": "https://www.judal.co.kr/?view=stockAI&shareToken=LtEPnJEFH3tZk8ca",
-        "link": "https://www.judal.co.kr/?view=stockAI&shareToken=LtEPnJEFH3tZk8ca",
-        "description": "F&F홀딩스: 상승 추세 지속, 긍정적 매수 관점. F&F홀딩스는 패션 브랜드 MLB, DISCOVERY 등을 보유한 F&F의 지주회사로서, 국내외 패션 시장에서 높은 성장세를 견인...",
-        "pubDate": "Sun, 19 Apr 2026 15:00:00 GMT"
-      },
-      {
-        "title": "F&F홀딩스 투자분석 2026. 04. 18",
-        "originallink": "https://www.judal.co.kr/?view=stockAI&shareToken=jQiwvXdFiqfEe7YR",
-        "link": "https://www.judal.co.kr/?view=stockAI&shareToken=jQiwvXdFiqfEe7YR",
-        "description": "F&F홀딩스: 적극 매수, 중장기 목표가 33,000원 제시. F&F홀딩스는 패션 브랜드 MLB, DISCOVERY 등을 보유한 F&F의 지주회사로, 브랜드 라이선스 및 투자사업을 영위...",
-        "pubDate": "Sun, 19 Apr 2026 15:00:00 GMT"
-      },
-      {
-        "title": "F&F, 향기 사업 진출로 포트폴리오 다변화 꾀하며 강보합세 마감 : 금융",
-        "originallink": "https://news.jkn.co.kr/post/886307",
-        "link": "https://news.jkn.co.kr/post/886307",
-        "description": "F&F가 패션 사업을 넘어 향기 사업으로의 영역 확장을 공식화하며 소폭 상승세로 거래를 마쳤다. 금일 주가는 전 거래일 대비 0.30% 상승한 66900원을 기록했으며 총...",
-        "pubDate": "Sat, 18 Apr 2026 15:00:00 GMT"
-      },
-      {
-        "title": "F&F, 무난한 실적 뒤 숨겨진 성장 한계 드러났다",
-        "originallink": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=446557",
-        "link": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=446557",
-        "description": "패션 기업 F&F이 안정적인 실적 흐름을 이어가고 있지만, 시장 기대감은 다소 낮아진 국면에 접어들었다는... 'MLB' 성인 라인은 국내와 면세 채널을 합쳐 852억원으로 1% 증가에 그쳤고, 'MLB 키즈'는 194억원으로 2... ",
-        "pubDate": "Sat, 18 Apr 2026 03:20:00 GMT"
-      },
-      {
-        "title": "F&F Co., Ltd (KRX:383220) Company Profile & Description",
-        "originallink": "https://stockanalysis.com/quote/krx/383220/company/",
-        "link": "https://stockanalysis.com/quote/krx/383220/company/",
-        "description": "F&F Co., Ltd. manufactures and sells apparel and accessories in South Korea. The company offers fashion products under the MLB, MLB KIDS, DISCOVERY, ...",
-        "pubDate": "Fri, 17 Apr 2026 15:00:00 GMT"
-      },
-      {
-        "title": "F&F, 향기 사업 투자에 2%대 강세... 섬유의류 섹터 내 주도적 위치 공고 : 금융",
-        "originallink": "https://news.jkn.co.kr/post/884540",
-        "link": "https://news.jkn.co.kr/post/884540",
-        "description": "F&F(383220)는 금일 2.30% 상승한 66700원에 장을 마감했다. 이는 최근 향기 사업 관련 투자 결정에 따른 긍정적인 시장 반응으로 분석된다. 해당 종목은 섬유,의류,...",
-        "pubDate": "Fri, 17 Apr 2026 15:00:00 GMT"
-      }
-    ],
     "디스커버리": [
+      {
+        "title": "[포토] 공항패션 선보이는 에스파",
+        "originallink": "https://www.ajunews.com/amp/20260424160448975",
+        "link": "https://www.ajunews.com/amp/20260424160448975",
+        "description": "사진=유대길 기자 dbeorlf123@ajunews.com]걸그룹 에스파(aespa)가 24일 오후 서울 강서구 김포국제공항 국제선을 통해 2026 aespa ...",
+        "pubDate": "Fri, 24 Apr 2026 06:57:09 GMT"
+      },
+      {
+        "title": "[포토] 투어 일정차 일본 향하는 에스파",
+        "originallink": "https://news.nate.com/view/20260424n23942",
+        "link": "https://news.nate.com/view/20260424n23942",
+        "description": "한눈에 보는 오늘 : 종합 - 뉴스 : [사진=유대길 기자 dbeorlf123@ajunews.com]걸그룹 에스파(aespa)가 24일 오후 서울 강서구 김포국제공항 국제선을 통해 '2026...",
+        "pubDate": "Fri, 24 Apr 2026 06:57:09 GMT"
+      },
+      {
+        "title": "위베어소프트, 티맥스소프트 출신 미들웨어 전문가 부대표 영입 ...",
+        "originallink": "http://www.newsa.co.kr/news/articleView.html?idxno=340966",
+        "link": "http://www.newsa.co.kr/news/articleView.html?idxno=340966",
+        "description": "1뉴스종합패션뷰티디스커버리 익스페디션, 트렌디한 볼륨감의 '액티브 웰니스 라이프스타일' 패딩 부츠 라인 출시! 2전국뉴스전북이미선 도의원 후보, “하위 20% 누구 ...",
+        "pubDate": "Thu, 23 Apr 2026 16:57:12 GMT"
+      },
+      {
+        "title": "홍콩관광청, 세계 럭비 대회 '홍콩 세븐스' 50주년 성공적 개최 ...",
+        "originallink": "http://www.newsa.co.kr/news/articleView.html?idxno=340970",
+        "link": "http://www.newsa.co.kr/news/articleView.html?idxno=340970",
+        "description": "인기기사. 1뉴스종합패션뷰티디스커버리 익스페디션, 트렌디한 볼륨감의 '액티브 웰니스 라이프스타일' 패딩 부츠 라인 출시! 2전국뉴스전북이미선 도의원 후보, “하위 ...",
+        "pubDate": "Thu, 23 Apr 2026 16:57:12 GMT"
+      },
       {
         "title": "네스프레소, 버튼 한 번으로 완성하는 '커피 탐험'… 새로운 브랜드 전략 ...",
         "originallink": "http://www.newsa.co.kr/news/articleView.html?idxno=340971",
@@ -501,6 +364,178 @@
         "originallink": "https://www.discovery-expedition.com/product-detail/DXSH7275N-BLL?category=DXMB03B01&srsltid=AfmBOop1AaewrcpsmLLUCr3Zq1XRu78KYi8SLYus0HyYMppcU89QkSLS",
         "link": "https://www.discovery-expedition.com/product-detail/DXSH7275N-BLL?category=DXMB03B01&srsltid=AfmBOop1AaewrcpsmLLUCr3Zq1XRu78KYi8SLYus0HyYMppcU89QkSLS",
         "description": "디스커버리 익스페디션 온라인 공식몰과 공식 판매처에서 판매된 상품은 정품으로 제품의 고유 번호와 RFID를 보유하고 있습니다. 정품 확인이 불가 ...",
+        "pubDate": "Fri, 17 Apr 2026 15:00:00 GMT"
+      }
+    ],
+    "MLB키즈": [
+      {
+        "title": "대전 백화점가, 봄·가정의 달 맞아 마케팅 '총력전'",
+        "originallink": "http://www.dtnews24.com/news/articleView.html?idxno=810929",
+        "link": "http://www.dtnews24.com/news/articleView.html?idxno=810929",
+        "description": "시세이도 단독 세트 판매를 비롯해 라코스테, 코데즈컴바인, 고세제화 등이 참여하는 할인 행사가 진행되며 타미힐피거 칠드런과 MLB 키즈 등에서는 사은품 증정과 이벤트가 마련됐다. 또 7층에서는 풋조이 골프, 리... ",
+        "pubDate": "Fri, 24 Apr 2026 06:26:00 GMT"
+      },
+      {
+        "title": "대전 백화점가, 봄·가정의 달 맞아 마케팅 ‘총력전’",
+        "originallink": "https://www.dtnews24.com/news/articleView.html?idxno=810929",
+        "link": "https://www.dtnews24.com/news/articleView.html?idxno=810929",
+        "description": "대전 지역 주요 백화점들이 봄 시즌과 가정의 달을 맞아 대규모 할인 행사와 팝업스토어, 체험형 이벤트를 앞세운 마케팅 경쟁에 돌입했다.",
+        "pubDate": "Fri, 24 Apr 2026 05:56:58 GMT"
+      },
+      {
+        "title": "대전 유통업계, 봄 시즌 맞아 프로모션 잇따라",
+        "originallink": "https://www.dailycc.net/news/articleViewAmp.html?idxno=865612",
+        "link": "https://www.dailycc.net/news/articleViewAmp.html?idxno=865612",
+        "description": "[충청신문=대전] 하서영 기자 = 봄 시즌을 맞아 대전 지역 백화점과 아울렛이 할인 행사와 체험형 이벤트를 잇따라 선보이며 고객 유치에 나섰다.",
+        "pubDate": "Thu, 23 Apr 2026 08:54:48 GMT"
+      },
+      {
+        "title": "[유통소식] 대전 백화점과 아울렛서 봄 시즌 준비해볼까",
+        "originallink": "https://www.joongdo.co.kr/web/view.php?key=20260423010007263",
+        "link": "https://www.joongdo.co.kr/web/view.php?key=20260423010007263",
+        "description": "5층 클래식 캐주얼 브랜드 '타미힐피거 칠드런'은 금액 할인 혜택과 함께 추가 사은품을 증정하고, 프리미엄 라이프스타일 패션 브랜드 'MLB 키즈'에서는 'LUCK*KEY FESTA'를 펼쳐 일정 금액 이상 구매 고객에게 LED키캡 증정... ",
+        "pubDate": "Thu, 23 Apr 2026 07:54:00 GMT"
+      },
+      {
+        "title": "대전유통업계, 봄맞이 대형 행사... 할인·팝업·체험 총출동",
+        "originallink": "http://www.chungnamilbo.co.kr/news/articleView.html?idxno=885071",
+        "link": "http://www.chungnamilbo.co.kr/news/articleView.html?idxno=885071",
+        "description": "5층 '타미힐피거 칠드런'은 금액 할인과 사은품을 제공하며 'MLB 키즈'는 일정 금액 이상 구매 고객을 대상으로 경품 이벤트를 진행한다. 이어 7층에서는 '풋조이 골프', '리', '와키윌리' 등이 최대 70% 이월상품전을... ",
+        "pubDate": "Thu, 23 Apr 2026 06:32:00 GMT"
+      },
+      {
+        "title": "[백화점산책] 갤러리아타임월드, 완연한 봄을 맞아 다양한 상품행사",
+        "originallink": "https://www.ggilbo.com/news/articleView.html?idxno=1154584",
+        "link": "https://www.ggilbo.com/news/articleView.html?idxno=1154584",
+        "description": "5층의 클래식 캐주얼 브랜드 '타미힐피거 칠드런'은 금액 할인 혜택과 함께 추가 사은품을 증정하고 프리미엄 라이프스타일 패션 브랜드 'MLB 키즈'에서는 'LUCK*KEY FESTA'를 펼쳐 일정 금액 이상 구매 고객에게 LED키캡... ",
+        "pubDate": "Thu, 23 Apr 2026 05:38:00 GMT"
+      },
+      {
+        "title": "갤러리아타임월드 봄맞이 대규모 할인전",
+        "originallink": "https://www.news1.kr/local/daejeon-chungnam/6146602",
+        "link": "https://n.news.naver.com/mnews/article/421/0008907714?sid=102",
+        "description": "MLB 키즈는 ‘LUCK*KEY FESTA’ 이벤트로 일정 금액 이상 구매자에게 LED 키캡과 리조트 숙박권 등 다양한 경품 참여 기회를 제공한다. 7층에선 풋조이 골프, 리(LEE), 와키윌리가 전년도 인기 이월 상품을 최대 70%까지... ",
+        "pubDate": "Thu, 23 Apr 2026 04:41:00 GMT"
+      },
+      {
+        "title": "갤러리아타임월드, 봄 시즌 맞아 전층 프로모션 확대",
+        "originallink": "https://www.gukjenews.com/news/articleView.html?idxno=3564519",
+        "link": "https://www.gukjenews.com/news/articleView.html?idxno=3564519",
+        "description": "5층 '타미힐피거 칠드런'은 금액 할인과 함께 추가 사은품을 증정하며, 'MLB 키즈'는 'LUCK*KEY FESTA' 이벤트를 통해 일정 금액 이상 구매 고객에게 LED 키캡을 제공하고 리조트 숙박권, 여행 포인트 등 경품 이벤트 참여... ",
+        "pubDate": "Thu, 23 Apr 2026 04:36:00 GMT"
+      },
+      {
+        "title": "\"가볍고 단아해\" 듀베티카, 김지원과 '26 SUMMER' 화보 공개",
+        "originallink": "https://www.catchnews.kr/news/articleView.html?idxno=123039",
+        "link": "https://www.catchnews.kr/news/articleView.html?idxno=123039",
+        "description": "관련기사. 디스커버리 익스페디션, 에스파 닝닝과 함께 '러닝 바람막이' 소개 · \"홑겹 바람막이와 샌동화 매치\" MLB키즈, 26SS 키즈화보 공개. 키워드. #듀베티카 # ...",
+        "pubDate": "Tue, 21 Apr 2026 03:00:00 GMT"
+      },
+      {
+        "title": "F&F, 무난한 실적 뒤 숨겨진 성장 한계 드러났다",
+        "originallink": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=446557",
+        "link": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=446557",
+        "description": "'MLB' 성인 라인은 국내와 면세 채널을 합쳐 852억원으로 1% 증가에 그쳤고, 'MLB 키즈'는 194억원으로 2% 성장했다. 디스커버리는 840억원으로 전년과 유사한 수준을 유지하며 정체된 흐름을 보였다. 반면 중국 사업은 여전히... ",
+        "pubDate": "Sat, 18 Apr 2026 03:20:00 GMT"
+      },
+      {
+        "title": "통신일보",
+        "originallink": "https://www.cdnews.co.kr/news/quickViewArticleList.html?page=11&total=7765&sc_section_code=S1N6&sc_sub_section_code=&sc_serial_code=&sc_area=&sc_level=&sc_article_type=&sc_view_level=&sc_sdate=&sc_edate=&sc_serial_number=&sc_word=&sc_word2=&sc_andor=&view_type=",
+        "link": "https://www.cdnews.co.kr/news/quickViewArticleList.html?page=11&total=7765&sc_section_code=S1N6&sc_sub_section_code=&sc_serial_code=&sc_area=&sc_level=&sc_article_type=&sc_view_level=&sc_sdate=&sc_edate=&sc_serial_number=&sc_word=&sc_word2=&sc_andor=&view_type=",
+        "description": "MLB키즈, 쌈디 조카 '채채'와 함께 패밀리룩 아이템 선봬. ·, 올거나이즈, MCP 기반 '알리 에이전트 빌더' 출시. ·, 한국필립모리스, 아이코스 일루마 i 한정판 '미네라 ...",
+        "pubDate": "Sat, 18 Apr 2026 03:00:00 GMT"
+      },
+      {
+        "title": "mlb경량 - 추천•인기 상품, 신세계몰 - SSG.com",
+        "originallink": "https://shinsegaemall.ssg.com/search.ssg?query=mlb%EA%B2%BD%EB%9F%89",
+        "link": "https://shinsegaemall.ssg.com/search.ssg?query=mlb%EA%B2%BD%EB%9F%89",
+        "description": "MLB키즈 MLB 키즈 스트릿 메가 립스탑 초경량 바람막이 뉴욕양키스 GRAY 7AWJB0363 50GRS ... M MLB키즈바람막이 NQK 7AWJMD653-50IVS 다이아 모노그램 경량 바람막이 ...",
+        "pubDate": "Fri, 17 Apr 2026 15:00:00 GMT"
+      }
+    ],
+    "MLB": [
+      {
+        "title": "‘황제주’ 넘보던 F&F, 실적과 주가 ‘엇갈린’ 이유는 [정답은 TSR]",
+        "originallink": "http://www.fntimes.com/html/view.php?ud=202604231540205882b5b890e35c_18",
+        "link": "http://www.fntimes.com/html/view.php?ud=202604231540205882b5b890e35c_18",
+        "description": "패션기업 F&F는 한때 주가가 100만 원 수준에 이르며 ‘황제주’로 불렸다. 대표 브랜드 MLB와 디스커버리가 국내를 넘어 중국 등 해외 시장에서 흥행을 이어가면서 성장 기대감을 키운 결과다. 실적 역시 큰 흔들림... ",
+        "pubDate": "Thu, 23 Apr 2026 22:02:00 GMT"
+      },
+      {
+        "title": "‘황제주’ 넘보던 F&F, 실적과 주가 ‘엇갈린’ 이유는 [정답은 TSR]",
+        "originallink": "https://www.fntimes.com/html/view.php?ud=202604231540205882b5b890e35c_18",
+        "link": "https://www.fntimes.com/html/view.php?ud=202604231540205882b5b890e35c_18",
+        "description": "패션기업 F&F는 한때 주가가 100만 원 수준에 이르며 '황제주'로 불렸다. 대표 브랜드 MLB와 디스커버리가 국내를 넘어 중국 등 해외 시장에서 흥행을 이어가면서 성장...",
+        "pubDate": "Thu, 23 Apr 2026 21:44:31 GMT"
+      },
+      {
+        "title": "F&F 투자분석 2026. 04. 22",
+        "originallink": "https://www.judal.co.kr/?view=stockAI&shareToken=HZwX3dS3UfiKr9S8",
+        "link": "https://www.judal.co.kr/?view=stockAI&shareToken=HZwX3dS3UfiKr9S8",
+        "description": "F&F: 장기 성장 잠재력 기반, 적극 매수! F&F는 MLB, DISCOVERY 등 글로벌 라이선스 브랜드를 성공적으로 운영하는 패션 기업입니다. 2025년 연결기준 매출 약 1조...",
+        "pubDate": "Wed, 22 Apr 2026 10:40:46 GMT"
+      },
+      {
+        "title": "F&F, 중국 시장 확장 기대감 속 보합권 강세 유지하며 6만 7,700원 마감 : 금융",
+        "originallink": "https://news.jkn.co.kr/post/889832",
+        "link": "https://news.jkn.co.kr/post/889832",
+        "description": "F&F(383220)가 금일 시장에서 0.89% 상승하며 안정적인 흐름을 보였다. 2차전지 중심의 급등 장세 속에서도 섬유의류 섹터 대장주로서 견조한 주가 방어력을 입증했다.",
+        "pubDate": "Tue, 21 Apr 2026 15:00:00 GMT"
+      },
+      {
+        "title": "패션 넘어 향기 시장 진출 선언한 F&F 보합권 마감하며 사업 다각화 모색 : 금융",
+        "originallink": "https://news.jkn.co.kr/post/889499",
+        "link": "https://news.jkn.co.kr/post/889499",
+        "description": "F&F(383220)가 전 거래일 대비 0.30% 상승한 67100원에 장을 마감했다. 대규모 향수 및 디퓨저 기업 지분 투자 소식에도 불구하고 거래량은 5만 8천 주대에 머물며...",
+        "pubDate": "Tue, 21 Apr 2026 08:22:48 GMT"
+      },
+      {
+        "title": "MLB(브랜드) - 나무위키:대문",
+        "originallink": "https://namu.wiki/w/MLB(%EB%B8%8C%EB%9E%9C%EB%93%9C)",
+        "link": "https://namu.wiki/w/MLB(%EB%B8%8C%EB%9E%9C%EB%93%9C)",
+        "description": "MLB는 에프앤에프가 메이저 리그 베이스볼로부터 정식 라이선스를 받아 만든 의류 브랜드이다. 2. 상세[편집]. 에프앤에프는 1999년 미국 메이저리그 협회(MLB)로부터 ...",
+        "pubDate": "Sun, 19 Apr 2026 15:00:00 GMT"
+      },
+      {
+        "title": "F&F홀딩스 투자분석 2026. 04. 18",
+        "originallink": "https://www.judal.co.kr/?view=stockAI&shareToken=LtEPnJEFH3tZk8ca",
+        "link": "https://www.judal.co.kr/?view=stockAI&shareToken=LtEPnJEFH3tZk8ca",
+        "description": "F&F홀딩스: 상승 추세 지속, 긍정적 매수 관점. F&F홀딩스는 패션 브랜드 MLB, DISCOVERY 등을 보유한 F&F의 지주회사로서, 국내외 패션 시장에서 높은 성장세를 견인...",
+        "pubDate": "Sun, 19 Apr 2026 15:00:00 GMT"
+      },
+      {
+        "title": "F&F홀딩스 투자분석 2026. 04. 18",
+        "originallink": "https://www.judal.co.kr/?view=stockAI&shareToken=jQiwvXdFiqfEe7YR",
+        "link": "https://www.judal.co.kr/?view=stockAI&shareToken=jQiwvXdFiqfEe7YR",
+        "description": "F&F홀딩스: 적극 매수, 중장기 목표가 33,000원 제시. F&F홀딩스는 패션 브랜드 MLB, DISCOVERY 등을 보유한 F&F의 지주회사로, 브랜드 라이선스 및 투자사업을 영위...",
+        "pubDate": "Sun, 19 Apr 2026 15:00:00 GMT"
+      },
+      {
+        "title": "F&F, 향기 사업 진출로 포트폴리오 다변화 꾀하며 강보합세 마감 : 금융",
+        "originallink": "https://news.jkn.co.kr/post/886307",
+        "link": "https://news.jkn.co.kr/post/886307",
+        "description": "F&F가 패션 사업을 넘어 향기 사업으로의 영역 확장을 공식화하며 소폭 상승세로 거래를 마쳤다. 금일 주가는 전 거래일 대비 0.30% 상승한 66900원을 기록했으며 총...",
+        "pubDate": "Sat, 18 Apr 2026 15:00:00 GMT"
+      },
+      {
+        "title": "F&F, 무난한 실적 뒤 숨겨진 성장 한계 드러났다",
+        "originallink": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=446557",
+        "link": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=446557",
+        "description": "패션 기업 F&F이 안정적인 실적 흐름을 이어가고 있지만, 시장 기대감은 다소 낮아진 국면에 접어들었다는... 'MLB' 성인 라인은 국내와 면세 채널을 합쳐 852억원으로 1% 증가에 그쳤고, 'MLB 키즈'는 194억원으로 2... ",
+        "pubDate": "Sat, 18 Apr 2026 03:20:00 GMT"
+      },
+      {
+        "title": "F&F Co., Ltd (KRX:383220) Company Profile & Description",
+        "originallink": "https://stockanalysis.com/quote/krx/383220/company/",
+        "link": "https://stockanalysis.com/quote/krx/383220/company/",
+        "description": "F&F Co., Ltd. manufactures and sells apparel and accessories in South Korea. The company offers fashion products under the MLB, MLB KIDS, DISCOVERY, ...",
+        "pubDate": "Fri, 17 Apr 2026 15:00:00 GMT"
+      },
+      {
+        "title": "F&F, 향기 사업 투자에 2%대 강세... 섬유의류 섹터 내 주도적 위치 공고 : 금융",
+        "originallink": "https://news.jkn.co.kr/post/884540",
+        "link": "https://news.jkn.co.kr/post/884540",
+        "description": "F&F(383220)는 금일 2.30% 상승한 66700원에 장을 마감했다. 이는 최근 향기 사업 관련 투자 결정에 따른 긍정적인 시장 반응으로 분석된다. 해당 종목은 섬유,의류,...",
         "pubDate": "Fri, 17 Apr 2026 15:00:00 GMT"
       }
     ],
