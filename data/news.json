@@ -1,44 +1,847 @@
 {
-  "updatedAt": "2026-04-29 10:46",
+  "updatedAt": "2026-04-29 14:16",
   "brands": {
-    "MLB": [
-      {
-        "title": "F&F, 기업가치 2200억 디퓨저 신흥 강자 '쑥쑥컴퍼니' 전격 인수... K-뷰티...",
-        "originallink": "http://www.lkp.news/news/articleView.html?idxno=79675",
-        "link": "http://www.lkp.news/news/articleView.html?idxno=79675",
-        "description": "시장에서는 F&F의 이번 행보를 'K-패션'을 넘어 'K-뷰티'로 비즈니스 생태계를 넓히는 중장기 전략의 신호탄으로 해석하고 있다. 과거 MLB, 디스커버리(Discovery) 등 외부 IP를 성공적인 글로벌 메가 브랜드로 안착시킨... ",
-        "pubDate": "Wed, 29 Apr 2026 01:22:00 GMT"
-      },
-      {
-        "title": "F&F, '헤트라스' 인수 추진…뷰티 포트폴리오 확대",
-        "originallink": "http://www.apparelnews.co.kr/news/news_view/?cat=CAT11Z&idx=224880",
-        "link": "http://www.apparelnews.co.kr/news/news_view/?cat=CAT11Z&idx=224880",
-        "description": "[어패럴뉴스 오경천 기자] F&F가 디퓨저 시장의 신흥 강자 '헤트라스'의 운영사인 쑥쑥컴퍼니 인수를 위한 투자에 나서며, 라이프스타일 사업 확장의 발판을 마련했다.",
-        "pubDate": "Sun, 26 Apr 2026 12:57:09 GMT"
-      },
-      {
-        "title": "‘황제주’ 넘보던 F&F, 실적과 주가 ‘엇갈린’ 이유는 [정답은 TSR]",
-        "originallink": "http://www.fntimes.com/html/view.php?ud=202604231540205882b5b890e35c_18",
-        "link": "http://www.fntimes.com/html/view.php?ud=202604231540205882b5b890e35c_18",
-        "description": "패션기업 F&F는 한때 주가가 100만 원 수준에 이르며 ‘황제주’로 불렸다. 대표 브랜드 MLB와 디스커버리가 국내를 넘어 중국 등 해외 시장에서 흥행을 이어가면서 성장 기대감을 키운 결과다. 실적 역시 큰 흔들림... ",
-        "pubDate": "Thu, 23 Apr 2026 22:02:00 GMT"
-      },
-      {
-        "title": "‘황제주’ 넘보던 F&F, 실적과 주가 ‘엇갈린’ 이유는 [정답은 TSR]",
-        "originallink": "https://www.fntimes.com/html/view.php?ud=202604231540205882b5b890e35c_18",
-        "link": "https://www.fntimes.com/html/view.php?ud=202604231540205882b5b890e35c_18",
-        "description": "패션기업 F&F는 한때 주가가 100만 원 수준에 이르며 '황제주'로 불렸다. 대표 브랜드 MLB와 디스커버리가 국내를 넘어 중국 등 해외 시장에서 흥행을 이어가면서 성장...",
-        "pubDate": "Thu, 23 Apr 2026 21:44:31 GMT"
-      },
-      {
-        "title": "F&F 투자분석 2026. 04. 22",
-        "originallink": "https://www.judal.co.kr/?view=stockAI&shareToken=HZwX3dS3UfiKr9S8",
-        "link": "https://www.judal.co.kr/?view=stockAI&shareToken=HZwX3dS3UfiKr9S8",
-        "description": "F&F: 장기 성장 잠재력 기반, 적극 매수! F&F는 MLB, DISCOVERY 등 글로벌 라이선스 브랜드를 성공적으로 운영하는 패션 기업입니다. 2025년 연결기준 매출 약 1조...",
-        "pubDate": "Wed, 22 Apr 2026 10:40:46 GMT"
-      }
-    ],
     "디스커버리": [
+      {
+        "title": "[포토] 변우석 '로맨틱한 이안대군'",
+        "originallink": "https://www.segye.com/newsView/20260429510879?OutUrl=naver",
+        "link": "https://m.entertain.naver.com/article/022/0004124582",
+        "description": "배우 변우석이 29일 서울 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 05:13:00 GMT"
+      },
+      {
+        "title": "[포토] 변우석 '심쿵'",
+        "originallink": "https://www.segye.com/newsView/20260429510778?OutUrl=naver",
+        "link": "https://m.entertain.naver.com/article/022/0004124580",
+        "description": "배우 변우석이 29일 서울 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 05:09:00 GMT"
+      },
+      {
+        "title": "[포토] 변우석 '반가운 손인사'",
+        "originallink": "https://www.segye.com/newsView/20260429510765?OutUrl=naver",
+        "link": "https://m.entertain.naver.com/article/022/0004124579",
+        "description": "배우 변우석이 29일 서울 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 05:08:00 GMT"
+      },
+      {
+        "title": "[포토] 변우석 '눈부신 미소'",
+        "originallink": "https://www.segye.com/newsView/20260429510707?OutUrl=naver",
+        "link": "https://m.entertain.naver.com/article/022/0004124578",
+        "description": "배우 변우석이 29일 서울 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 05:06:00 GMT"
+      },
+      {
+        "title": "[ET포토] 변우석, '심쿵 볼하트'",
+        "originallink": "https://www.etnews.com/20260429000303",
+        "link": "https://m.entertain.naver.com/article/030/0003422988",
+        "description": "배우 변우석이 29일 서울 성수동 모처에서 진행된 패션 브랜드 '디스커버리 익스페디션' 여름 체험 행사 일정에 참석했다.",
+        "pubDate": "Wed, 29 Apr 2026 05:04:00 GMT"
+      },
+      {
+        "title": "[C포토] 변우석, 이안에 너 있다",
+        "originallink": "https://www.cbci.co.kr/news/articleView.html?idxno=571078",
+        "link": "https://www.cbci.co.kr/news/articleView.html?idxno=571078",
+        "description": "배우 변우석이 29일 서울 성동구 성수동 쎈느에서 진행된 디스커버리 익스페디션의 여름시즌 브랜드 체험행사 'DISCOVER YOUR ACTIVE SUMMER'행사에 참석했다. 이번 행사는 운동과 일상의 경계를 허물고 러닝에서 시작해... ",
+        "pubDate": "Wed, 29 Apr 2026 05:02:00 GMT"
+      },
+      {
+        "title": "[ET포토] 변우석, '피부가 고은 남자'",
+        "originallink": "https://www.etnews.com/20260429000299",
+        "link": "https://m.entertain.naver.com/article/030/0003422984",
+        "description": "배우 변우석이 29일 서울 성수동 모처에서 진행된 패션 브랜드 '디스커버리 익스페디션' 여름 체험 행사 일정에 참석했다.",
+        "pubDate": "Wed, 29 Apr 2026 05:02:00 GMT"
+      },
+      {
+        "title": "[ET포토] 변우석, '이안 대군의 엄청난 피지컬'",
+        "originallink": "https://www.etnews.com/20260429000298",
+        "link": "https://m.entertain.naver.com/article/030/0003422982",
+        "description": "배우 변우석이 29일 서울 성수동 모처에서 진행된 패션 브랜드 '디스커버리 익스페디션' 여름 체험 행사 일정에 참석했다.",
+        "pubDate": "Wed, 29 Apr 2026 05:01:00 GMT"
+      },
+      {
+        "title": "[ET포토] 성수동에 뜬 변우석",
+        "originallink": "https://www.etnews.com/20260429000295",
+        "link": "https://m.entertain.naver.com/article/030/0003422981",
+        "description": "배우 변우석이 29일 서울 성수동 모처에서 진행된 패션 브랜드 '디스커버리 익스페디션' 여름 체험 행사 일정에 참석했다.",
+        "pubDate": "Wed, 29 Apr 2026 04:58:00 GMT"
+      },
+      {
+        "title": "[ET포토] 변우석, '설렘 유발자'",
+        "originallink": "https://www.etnews.com/20260429000292",
+        "link": "https://m.entertain.naver.com/article/030/0003422978",
+        "description": "배우 변우석이 29일 서울 성수동 모처에서 진행된 패션 브랜드 '디스커버리 익스페디션' 여름 체험 행사 일정에 참석했다.",
+        "pubDate": "Wed, 29 Apr 2026 04:57:00 GMT"
+      },
+      {
+        "title": "[ET포토] 변우석, '말문 막히는 실물 비율'",
+        "originallink": "https://www.etnews.com/20260429000288",
+        "link": "https://m.entertain.naver.com/article/030/0003422972",
+        "description": "배우 변우석이 29일 서울 성수동 모처에서 진행된 패션 브랜드 '디스커버리 익스페디션' 여름 체험 행사 일정에 참석했다.",
+        "pubDate": "Wed, 29 Apr 2026 04:55:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 달달해",
+        "originallink": "http://www.osen.co.kr/article/G1112791126",
+        "link": "https://m.entertain.naver.com/article/109/0005523868",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:53:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 러닝룩도 찰떡",
+        "originallink": "http://www.osen.co.kr/article/G1112791123",
+        "link": "https://m.entertain.naver.com/article/109/0005523867",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:53:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 볼콕 하는 대군자가",
+        "originallink": "http://www.osen.co.kr/article/G1112791122",
+        "link": "https://m.entertain.naver.com/article/109/0005523865",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:53:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 볼하트 하는 대군자가",
+        "originallink": "http://www.osen.co.kr/article/G1112791124",
+        "link": "https://m.entertain.naver.com/article/109/0005523866",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:53:00 GMT"
+      },
+      {
+        "title": "[ET포토] 변우석, '곧은 손가락으로 볼터치'",
+        "originallink": "https://www.etnews.com/20260429000286",
+        "link": "https://m.entertain.naver.com/article/030/0003422970",
+        "description": "배우 변우석이 29일 서울 성수동 모처에서 진행된 패션 브랜드 '디스커버리 익스페디션' 여름 체험 행사 일정에 참석했다.",
+        "pubDate": "Wed, 29 Apr 2026 04:53:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 볼콕 미소",
+        "originallink": "http://www.osen.co.kr/article/G1112791121",
+        "link": "https://m.entertain.naver.com/article/109/0005523864",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:53:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 안녕",
+        "originallink": "http://www.osen.co.kr/article/G1112791109",
+        "link": "https://m.entertain.naver.com/article/109/0005523854",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:52:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 눈빛이 달달하네",
+        "originallink": "http://www.osen.co.kr/article/G1112791118",
+        "link": "https://m.entertain.naver.com/article/109/0005523859",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:52:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 반가워요",
+        "originallink": "http://www.osen.co.kr/article/G1112791108",
+        "link": "https://m.entertain.naver.com/article/109/0005523852",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:52:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 이기적인 비율",
+        "originallink": "http://www.osen.co.kr/article/G1112791115",
+        "link": "https://m.entertain.naver.com/article/109/0005523860",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:52:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 심쿵 하트",
+        "originallink": "http://www.osen.co.kr/article/G1112791111",
+        "link": "https://m.entertain.naver.com/article/109/0005523856",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:52:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 하트 드려요",
+        "originallink": "http://www.osen.co.kr/article/G1112791110",
+        "link": "https://m.entertain.naver.com/article/109/0005523855",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:52:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 눈길이 머문 곳",
+        "originallink": "http://www.osen.co.kr/article/G1112791113",
+        "link": "https://m.entertain.naver.com/article/109/0005523857",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:52:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 설렘 포인트",
+        "originallink": "http://www.osen.co.kr/article/G1112791119",
+        "link": "https://m.entertain.naver.com/article/109/0005523861",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:52:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 안녕",
+        "originallink": "http://www.osen.co.kr/article/G1112791114",
+        "link": "https://m.entertain.naver.com/article/109/0005523858",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:52:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 대군자가",
+        "originallink": "http://www.osen.co.kr/article/G1112791106",
+        "link": "https://m.entertain.naver.com/article/109/0005523851",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:51:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 꽃단장",
+        "originallink": "http://www.osen.co.kr/article/G1112791105",
+        "link": "https://m.entertain.naver.com/article/109/0005523849",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:51:00 GMT"
+      },
+      {
+        "title": "[ET포토] 변우석, '클로즈업 할 수록 빛이나네'",
+        "originallink": "https://www.etnews.com/20260429000278",
+        "link": "https://m.entertain.naver.com/article/030/0003422965",
+        "description": "배우 변우석이 29일 서울 성수동 모처에서 진행된 패션 브랜드 '디스커버리 익스페디션' 여름 체험 행사 일정에 참석했다.",
+        "pubDate": "Wed, 29 Apr 2026 04:51:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 하트에 녹는다",
+        "originallink": "http://www.osen.co.kr/article/G1112791107",
+        "link": "https://m.entertain.naver.com/article/109/0005523850",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:51:00 GMT"
+      },
+      {
+        "title": "[ET포토] 변우석, '스위트한 미소'",
+        "originallink": "https://www.etnews.com/20260429000275",
+        "link": "https://m.entertain.naver.com/article/030/0003422960",
+        "description": "배우 변우석이 29일 서울 성수동 모처에서 진행된 패션 브랜드 '디스커버리 익스페디션' 여름 체험 행사 일정에 참석했다.",
+        "pubDate": "Wed, 29 Apr 2026 04:49:00 GMT"
+      },
+      {
+        "title": "[ET포토] 변우석, '자비로운 손인사'",
+        "originallink": "https://www.etnews.com/20260429000272",
+        "link": "https://m.entertain.naver.com/article/030/0003422958",
+        "description": "배우 변우석이 29일 서울 성수동 모처에서 진행된 패션 브랜드 '디스커버리 익스페디션' 여름 체험 행사 일정에 참석했다.",
+        "pubDate": "Wed, 29 Apr 2026 04:47:00 GMT"
+      },
+      {
+        "title": "[뉴스1 ★]‘행복할 채비를 하세요’ 변우석, 성수동 접수한 21세기 이안대군",
+        "originallink": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFB1aHdKc1ZFQVFOMFBzRUhMRnhhOEVNTXpUSDBtZmktbTdPa3Z2akwwMTg3Y1dPR19DTjF3X0NrSWN4cTI5U0UtbFp2T2lCdERTV25HX0pXY1VyMVI3S0JsZ0dTbmE?oc=5",
+        "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFB1aHdKc1ZFQVFOMFBzRUhMRnhhOEVNTXpUSDBtZmktbTdPa3Z2akwwMTg3Y1dPR19DTjF3X0NrSWN4cTI5U0UtbFp2T2lCdERTV25HX0pXY1VyMVI3S0JsZ0dTbmE?oc=5",
+        "description": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTFB1aHdKc1ZFQVFOMFBzRUhMRnhhOEVNTXpUSDBtZmktbTdPa3Z2akwwMTg3Y1dPR19DTjF3X0NrSWN4cTI5U0UtbFp2T2lCdERTV25HX0pXY1VyMVI3S0JsZ0dTbmE?oc=5\" target=\"_blank\">[뉴스1 ★]‘행복할 채비를 하세요’ 변우석, 성수동 접수한 21세기 이안대군</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">뉴스1</font>",
+        "pubDate": "Wed, 29 Apr 2026 04:44:02 GMT"
+      },
+      {
+        "title": "[뉴스1 ★]‘행복할 채비를 하세요’ 변우석, 성수동 접수한 21세기 이안...",
+        "originallink": "https://www.news1.kr/entertain/celebrity-topic/6152638",
+        "link": "https://m.entertain.naver.com/article/421/0008918824",
+        "description": "변우석은 29일 서울 성동구 성수동 쎈느에서 열린 액티브 웰니스 라이프스타일 브랜드 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사 ‘DISCOVER YOUR ACTIVE SUMMER’에 참석했다. 행사장 주변은 이른 시간부터 변우석을... ",
+        "pubDate": "Wed, 29 Apr 2026 04:44:00 GMT"
+      },
+      {
+        "title": "변우석, 이안대군 행차에 성수동 들썩 [K직캠]",
+        "originallink": "http://www.starnewsk.com/news/articleView.html?idxno=55245",
+        "link": "http://www.starnewsk.com/news/articleView.html?idxno=55245",
+        "description": "26년 4월 29일(수) 오후 프리미엄 액티브 웰니스 라이프스타일 브랜드 '디스커버리 익스페디션(Discovery Expedition)' 여름 시즌 브랜드 체험 기념 포토콜 행사",
+        "pubDate": "Wed, 29 Apr 2026 04:44:00 GMT"
+      },
+      {
+        "title": "[ET포토] 변우석, '대군의 하트'",
+        "originallink": "https://www.etnews.com/20260429000269",
+        "link": "https://m.entertain.naver.com/article/030/0003422955",
+        "description": "배우 변우석이 29일 서울 성수동 모처에서 진행된 패션 브랜드 '디스커버리 익스페디션' 여름 체험 행사 일정에 참석했다.",
+        "pubDate": "Wed, 29 Apr 2026 04:44:00 GMT"
+      },
+      {
+        "title": "변우석, 손인사에 심쿵",
+        "originallink": "https://sports.hankooki.com/news/articleView.html?idxno=6932065",
+        "link": "https://sports.hankooki.com/news/articleView.html?idxno=6932065",
+        "description": "2026.4.29 ⓒ이혜영 기자 lhy@hankooki.com 디스커버리 익스페디션이 여름 시즌, 브랜드 체험 행사를 개최했다. 배우 변우석이 29일 서울 성수동 쎈느에서 진행된 '디스커버리 유어 액티브 썸머' 오픈 행사에... ",
+        "pubDate": "Wed, 29 Apr 2026 04:40:00 GMT"
+      },
+      {
+        "title": "변우석, 압도적인 존재감 '성수 일대 마비시키는 이안대군'",
+        "originallink": "http://www.seoulwire.com/news/articleView.html?idxno=719458",
+        "link": "http://www.seoulwire.com/news/articleView.html?idxno=719458",
+        "description": "배우 변우석이 29일 오후 서울시 성동구 성수 쎈느 성수에서 진행된 프리미엄 라이프스타일 브랜드 디스커버리 익스페디션이 'DISCOVER YOUR ACTIVE SUMMER' 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 04:38:00 GMT"
+      },
+      {
+        "title": "[C포토] 변우석, 즐겁게!",
+        "originallink": "https://www.cbci.co.kr/news/articleView.html?idxno=571066",
+        "link": "https://www.cbci.co.kr/news/articleView.html?idxno=571066",
+        "description": "배우 변우석이 29일 서울 성동구 성수동 쎈느에서 진행된 디스커버리 익스페디션의 여름시즌 브랜드 체험행사 'DISCOVER YOUR ACTIVE SUMMER'행사에 참석했다. 이번 행사는 운동과 일상의 경계를 허물고 러닝에서 시작해... ",
+        "pubDate": "Wed, 29 Apr 2026 04:38:00 GMT"
+      },
+      {
+        "title": "[C포토] 변우석, 잘생쁨",
+        "originallink": "https://www.cbci.co.kr/news/articleView.html?idxno=571068",
+        "link": "https://www.cbci.co.kr/news/articleView.html?idxno=571068",
+        "description": "배우 변우석이 29일 서울 성동구 성수동 쎈느에서 진행된 디스커버리 익스페디션의 여름시즌 브랜드 체험행사 'DISCOVER YOUR ACTIVE SUMMER'행사에 참석했다. 이번 행사는 운동과 일상의 경계를 허물고 러닝에서 시작해... ",
+        "pubDate": "Wed, 29 Apr 2026 04:38:00 GMT"
+      },
+      {
+        "title": "[C포토] 변우석, 치명적인 볼콕",
+        "originallink": "https://www.cbci.co.kr/news/articleView.html?idxno=571065",
+        "link": "https://www.cbci.co.kr/news/articleView.html?idxno=571065",
+        "description": "배우 변우석이 29일 서울 성동구 성수동 쎈느에서 진행된 디스커버리 익스페디션의 여름시즌 브랜드 체험행사 'DISCOVER YOUR ACTIVE SUMMER'행사에 참석했다. 이번 행사는 운동과 일상의 경계를 허물고 러닝에서 시작해... ",
+        "pubDate": "Wed, 29 Apr 2026 04:38:00 GMT"
+      },
+      {
+        "title": "변우석 '언제나 멋진 대군자가'",
+        "originallink": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5HclRMMk5wWEt3MWpsdVd3c0FKcFpsMUg2U195VUdVUnl2bjhtSU0zU2w5M3J4c2poMGFBeERFTElzbHA1NUVXLVFKNjExcXlRX1ZPbHN4M2M?oc=5",
+        "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5HclRMMk5wWEt3MWpsdVd3c0FKcFpsMUg2U195VUdVUnl2bjhtSU0zU2w5M3J4c2poMGFBeERFTElzbHA1NUVXLVFKNjExcXlRX1ZPbHN4M2M?oc=5",
+        "description": "<a href=\"https://news.google.com/rss/articles/CBMiWEFVX3lxTE5HclRMMk5wWEt3MWpsdVd3c0FKcFpsMUg2U195VUdVUnl2bjhtSU0zU2w5M3J4c2poMGFBeERFTElzbHA1NUVXLVFKNjExcXlRX1ZPbHN4M2M?oc=5\" target=\"_blank\">변우석 '언제나 멋진 대군자가'</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">머니투데이</font>",
+        "pubDate": "Wed, 29 Apr 2026 04:37:52 GMT"
+      },
+      {
+        "title": "변우석 '언제나 멋진 대군자가' [★영상]",
+        "originallink": "https://www.starnewskorea.com/photo/2026/04/29/2026042913285947581",
+        "link": "https://m.entertain.naver.com/article/108/0003431288",
+        "description": "배우 변우석이 29일 오후 서울 성수동에서 진행된 '디스커버리 익스페디션 여름 브랜드 체험 행사'에 참석해 포즈를 취하고 있다. 2026.04.29",
+        "pubDate": "Wed, 29 Apr 2026 04:37:00 GMT"
+      },
+      {
+        "title": "변우석, 스윗한 미소",
+        "originallink": "https://sports.hankooki.com/news/articleView.html?idxno=6932062",
+        "link": "https://sports.hankooki.com/news/articleView.html?idxno=6932062",
+        "description": "2026.4.29 ⓒ이혜영 기자 lhy@hankooki.com 디스커버리 익스페디션이 여름 시즌, 브랜드 체험 행사를 개최했다. 배우 변우석이 29일 서울 성수동 쎈느에서 진행된 '디스커버리 유어 액티브 썸머' 오픈 행사에... ",
+        "pubDate": "Wed, 29 Apr 2026 04:36:00 GMT"
+      },
+      {
+        "title": "[C포토] 변우석, 봄이 오는날 가벼운 옷차림으로",
+        "originallink": "https://www.cbci.co.kr/news/articleView.html?idxno=571064",
+        "link": "https://www.cbci.co.kr/news/articleView.html?idxno=571064",
+        "description": "배우 변우석이 29일 서울 성동구 성수동 쎈느에서 진행된 디스커버리 익스페디션의 여름시즌 브랜드 체험행사 'DISCOVER YOUR ACTIVE SUMMER'행사에 참석했다. 이번 행사는 운동과 일상의 경계를 허물고 러닝에서 시작해... ",
+        "pubDate": "Wed, 29 Apr 2026 04:36:00 GMT"
+      },
+      {
+        "title": "[C포토] 변우석, 팬들을 향해 하트 발사",
+        "originallink": "https://www.cbci.co.kr/news/articleView.html?idxno=571062",
+        "link": "https://www.cbci.co.kr/news/articleView.html?idxno=571062",
+        "description": "배우 변우석이 29일 서울 성동구 성수동 쎈느에서 진행된 디스커버리 익스페디션의 여름시즌 브랜드 체험행사 'DISCOVER YOUR ACTIVE SUMMER'행사에 참석했다. 이번 행사는 운동과 일상의 경계를 허물고 러닝에서 시작해... ",
+        "pubDate": "Wed, 29 Apr 2026 04:34:00 GMT"
+      },
+      {
+        "title": "[C포토] 변우석, 완벽 볼하트",
+        "originallink": "https://www.cbci.co.kr/news/articleView.html?idxno=571063",
+        "link": "https://www.cbci.co.kr/news/articleView.html?idxno=571063",
+        "description": "배우 변우석이 29일 서울 성동구 성수동 쎈느에서 진행된 디스커버리 익스페디션의 여름시즌 브랜드 체험행사 'DISCOVER YOUR ACTIVE SUMMER'행사에 참석했다. 이번 행사는 운동과 일상의 경계를 허물고 러닝에서 시작해... ",
+        "pubDate": "Wed, 29 Apr 2026 04:34:00 GMT"
+      },
+      {
+        "title": "변우석, 이 비율에 귀여움까지 소화",
+        "originallink": "https://sports.hankooki.com/news/articleView.html?idxno=6932061",
+        "link": "https://sports.hankooki.com/news/articleView.html?idxno=6932061",
+        "description": "2026.4.29 ⓒ이혜영 기자 lhy@hankooki.com​ 디스커버리 익스페디션이 여름 시즌, 브랜드 체험 행사를 개최했다. 배우 변우석이 29일 서울 성수동 쎈느에서 진행된 '디스커버리 유어 액티브 썸머' 오픈... ",
+        "pubDate": "Wed, 29 Apr 2026 04:34:00 GMT"
+      },
+      {
+        "title": "[C포토] 변우석, 완벽 볼하트",
+        "originallink": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9WSlNCeGlaM1dZRkN2YTdMMDYzd3JndzgxWVJONHo2QnlNTHVCaThucmNRSHU2X0w4azZvMkRfUkIxYkdWZGRPWUtOQ1hOOWpETGY5TDR6NzBBbVRZbFViVDlNa3dPUlI0?oc=5",
+        "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9WSlNCeGlaM1dZRkN2YTdMMDYzd3JndzgxWVJONHo2QnlNTHVCaThucmNRSHU2X0w4azZvMkRfUkIxYkdWZGRPWUtOQ1hOOWpETGY5TDR6NzBBbVRZbFViVDlNa3dPUlI0?oc=5",
+        "description": "<a href=\"https://news.google.com/rss/articles/CBMiaEFVX3lxTE9WSlNCeGlaM1dZRkN2YTdMMDYzd3JndzgxWVJONHo2QnlNTHVCaThucmNRSHU2X0w4azZvMkRfUkIxYkdWZGRPWUtOQ1hOOWpETGY5TDR6NzBBbVRZbFViVDlNa3dPUlI0?oc=5\" target=\"_blank\">[C포토] 변우석, 완벽 볼하트</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CBC뉴스</font>",
+        "pubDate": "Wed, 29 Apr 2026 04:33:19 GMT"
+      },
+      {
+        "title": "변우석, 비현실적인 비율",
+        "originallink": "https://sports.hankooki.com/news/articleView.html?idxno=6932060",
+        "link": "https://sports.hankooki.com/news/articleView.html?idxno=6932060",
+        "description": "2026.4.29 ⓒ이혜영 기자 lhy@hankooki.com 디스커버리 익스페디션이 여름 시즌, 브랜드 체험 행사를 개최했다. 배우 변우석이 29일 서울 성수동 쎈느에서 진행된 '디스커버리 유어 액티브 썸머' 오픈 행사에... ",
+        "pubDate": "Wed, 29 Apr 2026 04:32:00 GMT"
+      },
+      {
+        "title": "[C포토] 변우석, 성수에 뜬 이안대군",
+        "originallink": "https://www.cbci.co.kr/news/articleView.html?idxno=571057",
+        "link": "https://www.cbci.co.kr/news/articleView.html?idxno=571057",
+        "description": "배우 변우석이 29일 서울 성동구 성수동 쎈느에서 진행된 디스커버리 익스페디션의 여름시즌 브랜드 체험행사 'DISCOVER YOUR ACTIVE SUMMER'행사에 참석했다. 이번 행사는 운동과 일상의 경계를 허물고 러닝에서 시작해... ",
+        "pubDate": "Wed, 29 Apr 2026 04:32:00 GMT"
+      },
+      {
+        "title": "[HD포토] 변우석, '오늘도 비주얼 맑음' (디스커버리 익스페디션 포토콜...",
+        "originallink": "https://www.topstarnews.net/news/articleView.html?idxno=16047664",
+        "link": "https://www.topstarnews.net/news/articleView.html?idxno=16047664",
+        "description": "4월 29일 서울 성수동 쎈느에서 디스커버리 익스페디션 포토콜 행사가 진행됐다. 변우석 배우가 포토타임을 갖고있다. 디스커버리 익스페디션(Discovery Expedition)이 4월 29일부터 30일까지 여름 시즌... ",
+        "pubDate": "Wed, 29 Apr 2026 04:32:00 GMT"
+      },
+      {
+        "title": "[C포토] 변우석, 대군의 하트",
+        "originallink": "https://www.cbci.co.kr/news/articleView.html?idxno=571061",
+        "link": "https://www.cbci.co.kr/news/articleView.html?idxno=571061",
+        "description": "배우 변우석이 29일 서울 성동구 성수동 쎈느에서 진행된 디스커버리 익스페디션의 여름시즌 브랜드 체험행사 'DISCOVER YOUR ACTIVE SUMMER'행사에 참석했다. 이번 행사는 운동과 일상의 경계를 허물고 러닝에서 시작해... ",
+        "pubDate": "Wed, 29 Apr 2026 04:32:00 GMT"
+      },
+      {
+        "title": "[HD포토] 변우석, '국보급 미소!' (디스커버리 익스페디션 포토콜)",
+        "originallink": "https://www.topstarnews.net/news/articleView.html?idxno=16047662",
+        "link": "https://www.topstarnews.net/news/articleView.html?idxno=16047662",
+        "description": "4월 29일 서울 성수동 쎈느에서 디스커버리 익스페디션 포토콜 행사가 진행됐다. 변우석 배우가 포토타임을 갖고있다. 디스커버리 익스페디션(Discovery Expedition)이 4월 29일부터 30일까지 여름 시즌... ",
+        "pubDate": "Wed, 29 Apr 2026 04:30:00 GMT"
+      },
+      {
+        "title": "[HD포토] 변우석, '클로즈업을 부르는 훈훈함!' (디스커버리 익스페디션...",
+        "originallink": "https://www.topstarnews.net/news/articleView.html?idxno=16047663",
+        "link": "https://www.topstarnews.net/news/articleView.html?idxno=16047663",
+        "description": "4월 29일 서울 성수동 쎈느에서 디스커버리 익스페디션 포토콜 행사가 진행됐다. 변우석 배우가 포토타임을 갖고있다. 디스커버리 익스페디션(Discovery Expedition)이 4월 29일부터 30일까지 여름 시즌... ",
+        "pubDate": "Wed, 29 Apr 2026 04:30:00 GMT"
+      },
+      {
+        "title": "[HD포토] 변우석, '자가의 볼 콕!' (디스커버리 익스페디션 포토콜)",
+        "originallink": "https://www.topstarnews.net/news/articleView.html?idxno=16047661",
+        "link": "https://www.topstarnews.net/news/articleView.html?idxno=16047661",
+        "description": "4월 29일 서울 성수동 쎈느에서 디스커버리 익스페디션 포토콜 행사가 진행됐다. 변우석 배우가 포토타임을 갖고있다. 디스커버리 익스페디션(Discovery Expedition)이 4월 29일부터 30일까지 여름 시즌... ",
+        "pubDate": "Wed, 29 Apr 2026 04:30:00 GMT"
+      },
+      {
+        "title": "[HD포토] 변우석, '칼각 하트' (디스커버리 익스페디션 포토콜)",
+        "originallink": "https://www.topstarnews.net/news/articleView.html?idxno=16047660",
+        "link": "https://www.topstarnews.net/news/articleView.html?idxno=16047660",
+        "description": "4월 29일 서울 성수동 쎈느에서 디스커버리 익스페디션 포토콜 행사가 진행됐다. 변우석 배우가 포토타임을 갖고있다. 디스커버리 익스페디션(Discovery Expedition)이 4월 29일부터 30일까지 여름 시즌... ",
+        "pubDate": "Wed, 29 Apr 2026 04:30:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 달달한 볼콕",
+        "originallink": "http://www.osen.co.kr/article/G1112791088",
+        "link": "https://m.entertain.naver.com/article/109/0005523835",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:29:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 바라보면 이런 느낌",
+        "originallink": "http://www.osen.co.kr/article/G1112791085",
+        "link": "https://m.entertain.naver.com/article/109/0005523833",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:29:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 볼하트에 녹는다",
+        "originallink": "http://www.osen.co.kr/article/G1112791089",
+        "link": "https://m.entertain.naver.com/article/109/0005523836",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:29:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 대군자가의 볼하트",
+        "originallink": "http://www.osen.co.kr/article/G1112791087",
+        "link": "https://m.entertain.naver.com/article/109/0005523834",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:29:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 여름 러닝 룩",
+        "originallink": "http://www.osen.co.kr/article/G1112791086",
+        "link": "https://m.entertain.naver.com/article/109/0005523832",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:29:00 GMT"
+      },
+      {
+        "title": "[사진]변우석, 성수동에 뜬 대군자가",
+        "originallink": "http://www.osen.co.kr/article/G1112791084",
+        "link": "https://m.entertain.naver.com/article/109/0005523831",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. 배우 변우석이... ",
+        "pubDate": "Wed, 29 Apr 2026 04:28:00 GMT"
+      },
+      {
+        "title": "변우석 '훤칠한 매력'[★포토]",
+        "originallink": "https://www.starnewskorea.com/photo/2026/04/29/2026042913280344549",
+        "link": "https://m.entertain.naver.com/article/108/0003431286",
+        "description": "배우 변우석이 29일 오후 서울 성수동에서 진행된 '디스커버리 익스페디션 여름 브랜드 체험 행사'에 참석해 포즈를 취하고 있다. 2026.04.29",
+        "pubDate": "Wed, 29 Apr 2026 04:28:00 GMT"
+      },
+      {
+        "title": "[HD포토] 변우석, '빛나는 피부' (디스커버리 익스페디션 포토콜)",
+        "originallink": "https://www.topstarnews.net/news/articleView.html?idxno=16047658",
+        "link": "https://www.topstarnews.net/news/articleView.html?idxno=16047658",
+        "description": "4월 29일 서울 성수동 쎈느에서 디스커버리 익스페디션 포토콜 행사가 진행됐다. 변우석 배우가 포토타임을 갖고있다. 디스커버리 익스페디션(Discovery Expedition)이 4월 29일부터 30일까지 여름 시즌... ",
+        "pubDate": "Wed, 29 Apr 2026 04:28:00 GMT"
+      },
+      {
+        "title": "[S포토] 변우석, '옥안을 찌르시었다'",
+        "originallink": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533715",
+        "link": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533715",
+        "description": "배우 변우석이 29일 오후, 서울 성동구 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사 'DISCOVER YOUR ACTIVE SUMMER'에 참석했다. 디스커버리 익스페디션의 여름 시즌 브랜드... ",
+        "pubDate": "Wed, 29 Apr 2026 04:28:00 GMT"
+      },
+      {
+        "title": "[HD포토] 변우석, '심쿵 하트!' (디스커버리 익스페디션 포토콜)",
+        "originallink": "https://www.topstarnews.net/news/articleView.html?idxno=16047656",
+        "link": "https://www.topstarnews.net/news/articleView.html?idxno=16047656",
+        "description": "4월 29일 서울 성수동 쎈느에서 디스커버리 익스페디션 포토콜 행사가 진행됐다. 변우석 배우가 포토타임을 갖고있다. 디스커버리 익스페디션(Discovery Expedition)이 4월 29일부터 30일까지 여름 시즌... ",
+        "pubDate": "Wed, 29 Apr 2026 04:28:00 GMT"
+      },
+      {
+        "title": "변우석 '심쿵 하트' [★포토]",
+        "originallink": "https://www.starnewskorea.com/photo/2026/04/29/2026042913270830631",
+        "link": "https://m.entertain.naver.com/article/108/0003431285",
+        "description": "배우 변우석이 29일 오후 서울 성수동에서 진행된 '디스커버리 익스페디션 여름 브랜드 체험 행사'에 참석해 포즈를 취하고 있다. 2026.04.29",
+        "pubDate": "Wed, 29 Apr 2026 04:27:00 GMT"
+      },
+      {
+        "title": "[S포토] 변우석, '대군께서 굽어 살피사'",
+        "originallink": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533714",
+        "link": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533714",
+        "description": "배우 변우석이 29일 오후, 서울 성동구 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사 'DISCOVER YOUR ACTIVE SUMMER'에 참석했다. 디스커버리 익스페디션의 여름 시즌 브랜드... ",
+        "pubDate": "Wed, 29 Apr 2026 04:26:00 GMT"
+      },
+      {
+        "title": "[HD포토] 변우석, '잘생겼다' (디스커버리 익스페디션 포토콜)",
+        "originallink": "https://www.topstarnews.net/news/articleView.html?idxno=16047654",
+        "link": "https://www.topstarnews.net/news/articleView.html?idxno=16047654",
+        "description": "4월 29일 서울 성수동 쎈느에서 디스커버리 익스페디션 포토콜 행사가 진행됐다. 변우석 배우가 포토타임을 갖고있다. 디스커버리 익스페디션(Discovery Expedition)이 4월 29일부터 30일까지 여름 시즌... ",
+        "pubDate": "Wed, 29 Apr 2026 04:26:00 GMT"
+      },
+      {
+        "title": "[HD포토] 변우석, '바람막이만 입어도 화보' (디스커버리 익스페디션 포...",
+        "originallink": "https://www.topstarnews.net/news/articleView.html?idxno=16047655",
+        "link": "https://www.topstarnews.net/news/articleView.html?idxno=16047655",
+        "description": "4월 29일 서울 성수동 쎈느에서 디스커버리 익스페디션 포토콜 행사가 진행됐다. 변우석 배우가 포토타임을 갖고있다. 디스커버리 익스페디션(Discovery Expedition)이 4월 29일부터 30일까지 여름 시즌... ",
+        "pubDate": "Wed, 29 Apr 2026 04:26:00 GMT"
+      },
+      {
+        "title": "[포토]변우석, 손바닥 보다 작은얼굴",
+        "originallink": "https://www.mk.co.kr/article/12030693",
+        "link": "https://m.entertain.naver.com/article/009/0005673080",
+        "description": "배우 변우석이 29일 오후 성수동 쎈느에서 열린 브랜드 ‘디스커버리 익스페디션’ 여름 시즌 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 04:26:00 GMT"
+      },
+      {
+        "title": "변우석, 성수동에 뜬 대군자가 ‘드라마와 현실이 똑같네’",
+        "originallink": "http://www.osen.co.kr/article/G1112791083",
+        "link": "https://m.entertain.naver.com/article/109/0005523830",
+        "description": "29일 서울 성동구 성수동 쎈느에서 디스커버리 익스페디션 포토 행사가 열렸다. 이날 참석한 브랜드 앰버서더 변우석은 자연스럽고 감각적인 여름 러닝 룩 스타일링으로 등장해 눈길을 끌었다. MBC 금토드라마 ‘21세기... ",
+        "pubDate": "Wed, 29 Apr 2026 04:25:00 GMT"
+      },
+      {
+        "title": "[포토]변우석, 성수동 마비",
+        "originallink": "https://www.mk.co.kr/article/12030691",
+        "link": "https://m.entertain.naver.com/article/009/0005673079",
+        "description": "배우 변우석이 29일 오후 성수동 쎈느에서 열린 브랜드 ‘디스커버리 익스페디션’ 여름 시즌 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 04:25:00 GMT"
+      },
+      {
+        "title": "[HD포토] 변우석, '셀럽의 손인사' (디스커버리 익스페디션 포토콜)",
+        "originallink": "https://www.topstarnews.net/news/articleView.html?idxno=16047652",
+        "link": "https://www.topstarnews.net/news/articleView.html?idxno=16047652",
+        "description": "4월 29일 서울 성수동 쎈느에서 디스커버리 익스페디션 포토콜 행사가 진행됐다. 변우석 배우가 포토타임을 갖고있다. 디스커버리 익스페디션(Discovery Expedition)이 4월 29일부터 30일까지 여름 시즌... ",
+        "pubDate": "Wed, 29 Apr 2026 04:24:00 GMT"
+      },
+      {
+        "title": "[HD포토] 변우석, '훈훈한 피지컬' (디스커버리 익스페디션 포토콜)",
+        "originallink": "https://www.topstarnews.net/news/articleView.html?idxno=16047653",
+        "link": "https://www.topstarnews.net/news/articleView.html?idxno=16047653",
+        "description": "4월 29일 서울 성수동 쎈느에서 디스커버리 익스페디션 포토콜 행사가 진행됐다. 변우석 배우가 포토타임을 갖고있다. 디스커버리 익스페디션(Discovery Expedition)이 4월 29일부터 30일까지 여름 시즌... ",
+        "pubDate": "Wed, 29 Apr 2026 04:24:00 GMT"
+      },
+      {
+        "title": "[포토]변우석, 잘생김 한도초과",
+        "originallink": "https://www.mk.co.kr/article/12030688",
+        "link": "https://m.entertain.naver.com/article/009/0005673078",
+        "description": "배우 변우석이 29일 오후 성수동 쎈느에서 열린 브랜드 ‘디스커버리 익스페디션’ 여름 시즌 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 04:24:00 GMT"
+      },
+      {
+        "title": "[HD포토] 변우석, '빛나는 용안' (디스커버리 익스페디션 포토콜)",
+        "originallink": "https://www.topstarnews.net/news/articleView.html?idxno=16047651",
+        "link": "https://www.topstarnews.net/news/articleView.html?idxno=16047651",
+        "description": "4월 29일 서울 성수동 쎈느에서 디스커버리 익스페디션 포토콜 행사가 진행됐다. 변우석 배우가 참석했다. 디스커버리 익스페디션(Discovery Expedition)이 4월 29일부터 30일까지 여름 시즌 브랜드 체험... ",
+        "pubDate": "Wed, 29 Apr 2026 04:24:00 GMT"
+      },
+      {
+        "title": "[S포토] 변우석, '반하겠네'",
+        "originallink": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533713",
+        "link": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533713",
+        "description": "배우 변우석이 29일 오후, 서울 성동구 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사 'DISCOVER YOUR ACTIVE SUMMER'에 참석했다. 디스커버리 익스페디션의 여름 시즌 브랜드... ",
+        "pubDate": "Wed, 29 Apr 2026 04:24:00 GMT"
+      },
+      {
+        "title": "[포토]변우석, 우월한 기럭지",
+        "originallink": "https://www.mk.co.kr/article/12030687",
+        "link": "https://m.entertain.naver.com/article/009/0005673077",
+        "description": "배우 변우석이 29일 오후 성수동 쎈느에서 열린 브랜드 ‘디스커버리 익스페디션’ 여름 시즌 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 04:23:00 GMT"
+      },
+      {
+        "title": "[S포토] 변우석, '촉촉해요'",
+        "originallink": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533712",
+        "link": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533712",
+        "description": "배우 변우석이 29일 오후, 서울 성동구 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사 'DISCOVER YOUR ACTIVE SUMMER'에 참석했다. 디스커버리 익스페디션의 여름 시즌 브랜드... ",
+        "pubDate": "Wed, 29 Apr 2026 04:22:00 GMT"
+      },
+      {
+        "title": "[포토]변우석, 성수동 밝히는 비주얼",
+        "originallink": "https://www.mk.co.kr/article/12030686",
+        "link": "https://m.entertain.naver.com/article/009/0005673076",
+        "description": "배우 변우석이 29일 오후 성수동 쎈느에서 열린 브랜드 ‘디스커버리 익스페디션’ 여름 시즌 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 04:22:00 GMT"
+      },
+      {
+        "title": "[포토Q] 변우석 '심쿵 비주얼에 콕!'",
+        "originallink": "http://www.sportsq.co.kr/news/articleView.html?idxno=493814",
+        "link": "http://www.sportsq.co.kr/news/articleView.html?idxno=493814",
+        "description": "배우 변우석이 29일 오후 서울 성동구 성수동 쎈느에서 진행된 '디스커버리 익스페디션'의 브랜드 체험 행사에서 포토타임을 갖고 있다. 프리미엄 액티브 웰니스 라이프스타일을 전개하는 브랜드 '디스커버리... ",
+        "pubDate": "Wed, 29 Apr 2026 04:22:00 GMT"
+      },
+      {
+        "title": "[포토]변우석, 볼하트도 훈훈해",
+        "originallink": "https://www.mk.co.kr/article/12030685",
+        "link": "https://m.entertain.naver.com/article/009/0005673075",
+        "description": "배우 변우석이 29일 오후 성수동 쎈느에서 열린 브랜드 ‘디스커버리 익스페디션’ 여름 시즌 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 04:22:00 GMT"
+      },
+      {
+        "title": "[HD포토] 변우석, '성수동에 나타난 이안 대군' (디스커버리 익스페디션...",
+        "originallink": "https://www.topstarnews.net/news/articleView.html?idxno=16047649",
+        "link": "https://www.topstarnews.net/news/articleView.html?idxno=16047649",
+        "description": "4월 29일 서울 성수동 쎈느에서 디스커버리 익스페디션 포토콜 행사가 진행됐다. 변우석 배우가 참석했다. 디스커버리 익스페디션(Discovery Expedition)이 4월 29일부터 30일까지 여름 시즌 브랜드 체험... ",
+        "pubDate": "Wed, 29 Apr 2026 04:22:00 GMT"
+      },
+      {
+        "title": "[S포토] 변우석, '모두가 이안대군을 사랑해'",
+        "originallink": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533711",
+        "link": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533711",
+        "description": "배우 변우석이 29일 오후, 서울 성동구 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사 'DISCOVER YOUR ACTIVE SUMMER'에 참석했다. 디스커버리 익스페디션의 여름 시즌 브랜드... ",
+        "pubDate": "Wed, 29 Apr 2026 04:22:00 GMT"
+      },
+      {
+        "title": "[포토]변우석, 성수동 밝히는 비주얼",
+        "originallink": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9Sb0JEMzN5YWxNM0Zud09QY0MyeWl2S2l1ZU8yYzloRHlfWjNvRURLY3Z4NGNodklIYWZlZU9vY0E5UFVxcHBGSjAtTXNadUxsNk1r?oc=5",
+        "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9Sb0JEMzN5YWxNM0Zud09QY0MyeWl2S2l1ZU8yYzloRHlfWjNvRURLY3Z4NGNodklIYWZlZU9vY0E5UFVxcHBGSjAtTXNadUxsNk1r?oc=5",
+        "description": "<a href=\"https://news.google.com/rss/articles/CBMiU0FVX3lxTE9Sb0JEMzN5YWxNM0Zud09QY0MyeWl2S2l1ZU8yYzloRHlfWjNvRURLY3Z4NGNodklIYWZlZU9vY0E5UFVxcHBGSjAtTXNadUxsNk1r?oc=5\" target=\"_blank\">[포토]변우석, 성수동 밝히는 비주얼</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">네이트</font>",
+        "pubDate": "Wed, 29 Apr 2026 04:22:00 GMT"
+      },
+      {
+        "title": "[포토Q] 변우석 '클로즈업 부르는 비주얼'",
+        "originallink": "http://www.sportsq.co.kr/news/articleView.html?idxno=493812",
+        "link": "http://www.sportsq.co.kr/news/articleView.html?idxno=493812",
+        "description": "배우 변우석이 29일 오후 서울 성동구 성수동 쎈느에서 진행된 '디스커버리 익스페디션'의 브랜드 체험 행사에서 포토타임을 갖고 있다. 프리미엄 액티브 웰니스 라이프스타일을 전개하는 브랜드 '디스커버리... ",
+        "pubDate": "Wed, 29 Apr 2026 04:20:00 GMT"
+      },
+      {
+        "title": "[포토Q] 변우석 '스포티한 스타일링'",
+        "originallink": "http://www.sportsq.co.kr/news/articleView.html?idxno=493813",
+        "link": "http://www.sportsq.co.kr/news/articleView.html?idxno=493813",
+        "description": "배우 변우석이 29일 오후 서울 성동구 성수동 쎈느에서 진행된 '디스커버리 익스페디션'의 브랜드 체험 행사에서 포토타임을 갖고 있다. 프리미엄 액티브 웰니스 라이프스타일을 전개하는 브랜드 '디스커버리... ",
+        "pubDate": "Wed, 29 Apr 2026 04:20:00 GMT"
+      },
+      {
+        "title": "[HD포토] 변우석, '꽃단장중인 대군 자가' (디스커버리 익스페디션 포토...",
+        "originallink": "https://www.topstarnews.net/news/articleView.html?idxno=16047645",
+        "link": "https://www.topstarnews.net/news/articleView.html?idxno=16047645",
+        "description": "4월 29일 서울 성수동 쎈느에서 디스커버리 익스페디션 포토콜 행사가 진행됐다. 변우석 배우가 참석했다. 디스커버리 익스페디션(Discovery Expedition)이 4월 29일부터 30일까지 여름 시즌 브랜드 체험... ",
+        "pubDate": "Wed, 29 Apr 2026 04:20:00 GMT"
+      },
+      {
+        "title": "[S포토] 변우석, '대군의 차렷'",
+        "originallink": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533710",
+        "link": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533710",
+        "description": "배우 변우석이 29일 오후, 서울 성동구 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사 'DISCOVER YOUR ACTIVE SUMMER'에 참석했다. 디스커버리 익스페디션의 여름 시즌 브랜드... ",
+        "pubDate": "Wed, 29 Apr 2026 04:20:00 GMT"
+      },
+      {
+        "title": "[HD포토] 변우석, '빛나는 존재감' (디스커버리 익스페디션 포토콜)",
+        "originallink": "https://www.topstarnews.net/news/articleView.html?idxno=16047647",
+        "link": "https://www.topstarnews.net/news/articleView.html?idxno=16047647",
+        "description": "4월 29일 서울 성수동 쎈느에서 디스커버리 익스페디션 포토콜 행사가 진행됐다. 변우석 배우가 참석했다. 디스커버리 익스페디션(Discovery Expedition)이 4월 29일부터 30일까지 여름 시즌 브랜드 체험... ",
+        "pubDate": "Wed, 29 Apr 2026 04:20:00 GMT"
+      },
+      {
+        "title": "[포토]변우석, 대군의 하트",
+        "originallink": "https://www.mk.co.kr/article/12030681",
+        "link": "https://m.entertain.naver.com/article/009/0005673073",
+        "description": "배우 변우석이 29일 오후 성수동 쎈느에서 열린 브랜드 ‘디스커버리 익스페디션’ 여름 시즌 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 04:19:00 GMT"
+      },
+      {
+        "title": "[HD포토] 변우석, ‘바람막이만 입어도 화보’ (디스커버리 익스페디션 포토콜)",
+        "originallink": "https://news.google.com/rss/articles/CBMickFVX3lxTE9TOWhyeXQxZElsQ1NiZVJlbjhyWHNqRnZuaHlFaGtGLUJObUJaVG5odzhvUGJZVWtYVXRLU19pd0xDaTZRV3owT3Y2QnlhWTNoemRFaGJERXRJNDE1SEVJcU5LNHNVWVBQbm43SU41dmp3Zw?oc=5",
+        "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE9TOWhyeXQxZElsQ1NiZVJlbjhyWHNqRnZuaHlFaGtGLUJObUJaVG5odzhvUGJZVWtYVXRLU19pd0xDaTZRV3owT3Y2QnlhWTNoemRFaGJERXRJNDE1SEVJcU5LNHNVWVBQbm43SU41dmp3Zw?oc=5",
+        "description": "<a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTE9TOWhyeXQxZElsQ1NiZVJlbjhyWHNqRnZuaHlFaGtGLUJObUJaVG5odzhvUGJZVWtYVXRLU19pd0xDaTZRV3owT3Y2QnlhWTNoemRFaGJERXRJNDE1SEVJcU5LNHNVWVBQbm43SU41dmp3Zw?oc=5\" target=\"_blank\">[HD포토] 변우석, ‘바람막이만 입어도 화보’ (디스커버리 익스페디션 포토콜)</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">톱스타뉴스</font>",
+        "pubDate": "Wed, 29 Apr 2026 04:18:53 GMT"
+      },
+      {
+        "title": "[S포토] 변우석, '예진을 그려다오'",
+        "originallink": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533709",
+        "link": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533709",
+        "description": "배우 변우석이 29일 오후, 서울 성동구 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사 'DISCOVER YOUR ACTIVE SUMMER'에 참석했다. 디스커버리 익스페디션의 여름 시즌 브랜드... ",
+        "pubDate": "Wed, 29 Apr 2026 04:18:00 GMT"
+      },
+      {
+        "title": "[포토] 변우석, 미소 한번 달콤하네!",
+        "originallink": "https://www.sportschosun.com/entertainment/2026-04-29/202604290100195890012851",
+        "link": "https://m.entertain.naver.com/article/076/0004400619",
+        "description": "배우 변우석이 29일 서울 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사에 참석해 포즈를 취하고 있다. 성수동=허상욱 기자 /2026.04.29/",
+        "pubDate": "Wed, 29 Apr 2026 04:18:00 GMT"
+      },
+      {
+        "title": "[포토Q] 변우석 '가볍게 운동 나오신 대군님'",
+        "originallink": "http://www.sportsq.co.kr/news/articleView.html?idxno=493811",
+        "link": "http://www.sportsq.co.kr/news/articleView.html?idxno=493811",
+        "description": "배우 변우석이 29일 오후 서울 성동구 성수동 쎈느에서 진행된 '디스커버리 익스페디션'의 브랜드 체험 행사에서 포토타임을 갖고 있다. 프리미엄 액티브 웰니스 라이프스타일을 전개하는 브랜드 '디스커버리... ",
+        "pubDate": "Wed, 29 Apr 2026 04:18:00 GMT"
+      },
+      {
+        "title": "변우석, 심쿵볼콕",
+        "originallink": "https://www.mk.co.kr/article/12030680",
+        "link": "https://m.entertain.naver.com/article/009/0005673072",
+        "description": "배우 변우석이 29일 오후 성수동 쎈느에서 열린 브랜드 ‘디스커버리 익스페디션’ 여름 시즌 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 04:18:00 GMT"
+      },
+      {
+        "title": "[포토]변우석, 꽉찬 잘생김",
+        "originallink": "https://www.mk.co.kr/article/12030678",
+        "link": "https://m.entertain.naver.com/article/009/0005673071",
+        "description": "배우 변우석이 29일 오후 성수동 쎈느에서 열린 브랜드 ‘디스커버리 익스페디션’ 여름 시즌 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 04:17:00 GMT"
+      },
+      {
+        "title": "[포토]변우석, 안녕하세요",
+        "originallink": "https://www.mk.co.kr/article/12030675",
+        "link": "https://m.entertain.naver.com/article/009/0005673069",
+        "description": "배우 변우석이 29일 오후 성수동 쎈느에서 열린 브랜드 ‘디스커버리 익스페디션’ 여름 시즌 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 04:16:00 GMT"
+      },
+      {
+        "title": "[S포토] 변우석, '나 이뽀?'",
+        "originallink": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533708",
+        "link": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533708",
+        "description": "배우 변우석이 29일 오후, 서울 성동구 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사 'DISCOVER YOUR ACTIVE SUMMER'에 참석했다. 디스커버리 익스페디션의 여름 시즌 브랜드... ",
+        "pubDate": "Wed, 29 Apr 2026 04:16:00 GMT"
+      },
+      {
+        "title": "[S포토] 변우석, '이안대군의 빛나는 옥안'",
+        "originallink": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533707",
+        "link": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533707",
+        "description": "배우 변우석이 29일 오후, 서울 성동구 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사 'DISCOVER YOUR ACTIVE SUMMER'에 참석했다. 디스커버리 익스페디션의 여름 시즌 브랜드... ",
+        "pubDate": "Wed, 29 Apr 2026 04:16:00 GMT"
+      },
+      {
+        "title": "[TOP영상] 변우석, 보는 순간 리프레시 되는 비주얼 '다시 보고 싶은 명...",
+        "originallink": "https://www.topstarnews.net/news/articleView.html?idxno=16047644",
+        "link": "https://www.topstarnews.net/news/articleView.html?idxno=16047644",
+        "description": "4월 29일 오전 성동구 Scene 쎈느에서 '디스커버리 익스페디션(Discovery EXPEDITION)' 여름 시즌 브랜드 체험 기념 포토콜이 열렸다. '디스커버리 익스페디션(Discovery EXPEDITION)' 여름 시즌 브랜드 체험 기념 포토콜에는... ",
+        "pubDate": "Wed, 29 Apr 2026 04:16:00 GMT"
+      },
+      {
+        "title": "[포토]변우석, 성수동 나들이",
+        "originallink": "https://www.mk.co.kr/article/12030674",
+        "link": "https://m.entertain.naver.com/article/009/0005673068",
+        "description": "배우 변우석이 29일 오후 성수동 쎈느에서 열린 브랜드 ‘디스커버리 익스페디션’ 여름 시즌 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 04:15:00 GMT"
+      },
+      {
+        "title": "[포토]변우석, 팬들향해",
+        "originallink": "https://www.mk.co.kr/article/12030672",
+        "link": "https://m.entertain.naver.com/article/009/0005673067",
+        "description": "배우 변우석이 29일 오후 성수동 쎈느에서 열린 브랜드 ‘디스커버리 익스페디션’ 여름 시즌 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 04:15:00 GMT"
+      },
+      {
+        "title": "[TOP영상] 변우석, 보는 순간 리프레시 되는 비주얼 ‘다시 보고 싶은 명장면’(디스커버리)",
+        "originallink": "https://news.google.com/rss/articles/CBMickFVX3lxTE00djFrTzVFSWlnQzJfUXNIOTFRTEhIeWNtM3p3QmJ0RTJ3dG1ubTFlNEFGcnRTSUlTRlIzOWxjOS05SktQdkliY0RFQnVWdzhhNW1ncTdzejVMOXAtNG5HNUlwNEx5NXBJX1VVaFBKSmxRQQ?oc=5",
+        "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE00djFrTzVFSWlnQzJfUXNIOTFRTEhIeWNtM3p3QmJ0RTJ3dG1ubTFlNEFGcnRTSUlTRlIzOWxjOS05SktQdkliY0RFQnVWdzhhNW1ncTdzejVMOXAtNG5HNUlwNEx5NXBJX1VVaFBKSmxRQQ?oc=5",
+        "description": "<a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTE00djFrTzVFSWlnQzJfUXNIOTFRTEhIeWNtM3p3QmJ0RTJ3dG1ubTFlNEFGcnRTSUlTRlIzOWxjOS05SktQdkliY0RFQnVWdzhhNW1ncTdzejVMOXAtNG5HNUlwNEx5NXBJX1VVaFBKSmxRQQ?oc=5\" target=\"_blank\">[TOP영상] 변우석, 보는 순간 리프레시 되는 비주얼 ‘다시 보고 싶은 명장면’(디스커버리)</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">톱스타뉴스</font>",
+        "pubDate": "Wed, 29 Apr 2026 04:14:47 GMT"
+      },
+      {
+        "title": "[포토Q] 변우석 '대군님의 사랑'",
+        "originallink": "http://www.sportsq.co.kr/news/articleView.html?idxno=493808",
+        "link": "http://www.sportsq.co.kr/news/articleView.html?idxno=493808",
+        "description": "배우 변우석이 29일 오후 서울 성동구 성수동 쎈느에서 진행된 '디스커버리 익스페디션'의 브랜드 체험 행사에서 포토타임을 갖고 있다. 프리미엄 액티브 웰니스 라이프스타일을 전개하는 브랜드 '디스커버리... ",
+        "pubDate": "Wed, 29 Apr 2026 04:14:00 GMT"
+      },
+      {
+        "title": "[포토]성수동에 뜬 변우석",
+        "originallink": "https://www.mk.co.kr/article/12030668",
+        "link": "https://m.entertain.naver.com/article/009/0005673066",
+        "description": "배우 변우석이 29일 오후 성수동 쎈느에서 열린 브랜드 ‘디스커버리 익스페디션’ 여름 시즌 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 04:14:00 GMT"
+      },
+      {
+        "title": "[포토Q] 변우석 '스위트한 안녕'",
+        "originallink": "http://www.sportsq.co.kr/news/articleView.html?idxno=493809",
+        "link": "http://www.sportsq.co.kr/news/articleView.html?idxno=493809",
+        "description": "배우 변우석이 29일 오후 서울 성동구 성수동 쎈느에서 진행된 '디스커버리 익스페디션'의 브랜드 체험 행사에서 포토타임을 갖고 있다. 프리미엄 액티브 웰니스 라이프스타일을 전개하는 브랜드 '디스커버리... ",
+        "pubDate": "Wed, 29 Apr 2026 04:14:00 GMT"
+      },
+      {
+        "title": "[S포토] 변우석, '성희주 보고 있나?'",
+        "originallink": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533706",
+        "link": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533706",
+        "description": "배우 변우석이 29일 오후, 서울 성동구 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사 'DISCOVER YOUR ACTIVE SUMMER'에 참석했다. 디스커버리 익스페디션의 여름 시즌 브랜드... ",
+        "pubDate": "Wed, 29 Apr 2026 04:14:00 GMT"
+      },
+      {
+        "title": "변우석 '귀여운 볼하트' [★포토]",
+        "originallink": "https://www.starnewskorea.com/photo/2026/04/29/2026042913135966978",
+        "link": "https://m.entertain.naver.com/article/108/0003431284",
+        "description": "배우 변우석이 29일 오후 서울 성수동에서 진행된 '디스커버리 익스페디션 여름 브랜드 체험 행사'에 참석해 포즈를 취하고 있다. 2026.04.29",
+        "pubDate": "Wed, 29 Apr 2026 04:14:00 GMT"
+      },
+      {
+        "title": "변우석, 비주얼 체크 [포토]",
+        "originallink": "https://www.mk.co.kr/article/12030666",
+        "link": "https://m.entertain.naver.com/article/009/0005673065",
+        "description": "배우 변우석이 29일 오후 성수동 쎈느에서 열린 브랜드 ‘디스커버리 익스페디션’ 여름 시즌 체험 행사에 참석해 포즈를 취하고 있다.",
+        "pubDate": "Wed, 29 Apr 2026 04:13:00 GMT"
+      },
+      {
+        "title": "변우석 '상큼하죠~'[★포토]",
+        "originallink": "https://www.starnewskorea.com/photo/2026/04/29/2026042913124631322",
+        "link": "https://m.entertain.naver.com/article/108/0003431283",
+        "description": "배우 변우석이 29일 오후 서울 성수동에서 진행된 '디스커버리 익스페디션 여름 브랜드 체험 행사'에 참석해 포즈를 취하고 있다. 2026.04.29",
+        "pubDate": "Wed, 29 Apr 2026 04:13:00 GMT"
+      },
+      {
+        "title": "[포토] 변우석, 볼콕 1초전!",
+        "originallink": "https://www.sportschosun.com/entertainment/2026-04-29/202604290100195870012849",
+        "link": "https://m.entertain.naver.com/article/076/0004400617",
+        "description": "배우 변우석이 29일 서울 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사에 참석해 포즈를 취하고 있다. 성수동=허상욱 기자 /2026.04.29/",
+        "pubDate": "Wed, 29 Apr 2026 04:13:00 GMT"
+      },
+      {
+        "title": "[포토] 변우석, 달콤미소",
+        "originallink": "https://www.sportschosun.com/entertainment/2026-04-29/202604290100195880012850",
+        "link": "https://m.entertain.naver.com/article/076/0004400618",
+        "description": "배우 변우석이 29일 서울 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사에 참석해 포즈를 취하고 있다. 성수동=허상욱 기자 /2026.04.29/",
+        "pubDate": "Wed, 29 Apr 2026 04:13:00 GMT"
+      },
+      {
+        "title": "[S포토] 변우석, '이안대군은 한 끼를 먹어도 반찬이 10가지가 넘어'",
+        "originallink": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533705",
+        "link": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533705",
+        "description": "배우 변우석이 29일 오후, 서울 성동구 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사 'DISCOVER YOUR ACTIVE SUMMER'에 참석했다. 디스커버리 익스페디션의 여름 시즌 브랜드... ",
+        "pubDate": "Wed, 29 Apr 2026 04:12:00 GMT"
+      },
+      {
+        "title": "[S포토] 변우석, '이완은 사랑입니다'",
+        "originallink": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533704",
+        "link": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533704",
+        "description": "배우 변우석이 29일 오후, 서울 성동구 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사 'DISCOVER YOUR ACTIVE SUMMER'에 참석했다. 디스커버리 익스페디션의 여름 시즌 브랜드... ",
+        "pubDate": "Wed, 29 Apr 2026 04:12:00 GMT"
+      },
+      {
+        "title": "[S포토] 변우석, '희주랑 뛰러 갈까?'",
+        "originallink": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533702",
+        "link": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533702",
+        "description": "배우 변우석이 29일 오후, 서울 성동구 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사 'DISCOVER YOUR ACTIVE SUMMER'에 참석했다. 디스커버리 익스페디션의 여름 시즌 브랜드... ",
+        "pubDate": "Wed, 29 Apr 2026 04:10:00 GMT"
+      },
+      {
+        "title": "[S포토] 변우석, '이안대군 두둥등장'",
+        "originallink": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533703",
+        "link": "https://www.stardailynews.co.kr/news/articleView.html?idxno=533703",
+        "description": "배우 변우석이 29일 오후, 서울 성동구 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사 'DISCOVER YOUR ACTIVE SUMMER'에 참석했다. 디스커버리 익스페디션의 여름 시즌 브랜드... ",
+        "pubDate": "Wed, 29 Apr 2026 04:10:00 GMT"
+      },
+      {
+        "title": "[포토] 변우석, 볼콕 포즈도 잘생김",
+        "originallink": "https://www.sportschosun.com/entertainment/2026-04-29/202604290100195860012848",
+        "link": "https://m.entertain.naver.com/article/076/0004400616",
+        "description": "배우 변우석이 29일 서울 성수동 쎈느에서 열린 디스커버리 익스페디션 여름 시즌 브랜드 체험 행사에 참석해 포즈를 취하고 있다. 성수동=허상욱 기자 /2026.04.29/",
+        "pubDate": "Wed, 29 Apr 2026 04:08:00 GMT"
+      },
       {
         "title": "디스커버리 익스페디션, 변우석과 함께한 가볍고 시원한 여름 캠페인 비주얼 공개",
         "originallink": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1INkNTbXB4MGxDQnZhSjQyX09Ia1cxMW51NTlrRjhPRm1RdXFqaWViQ293RlBobUJQdFRoRGRJME9MRmhYOXV0Rk5EMVNINmRRT3NPZWwzUTFlMEMwTHdMVTZzS0NlUQ?oc=5",
@@ -584,48 +1387,43 @@
         "link": "http://www.newsa.co.kr/news/articleView.html?idxno=340875",
         "description": "1뉴스종합패션뷰티디스커버리 익스페디션, 트렌디한 볼륨감의 '액티브 웰니스 라이프스타일' 패딩 부츠 라인 출시! 2전국뉴스전북이미선 도의원 후보, “하위 20% 누구 ...",
         "pubDate": "Wed, 22 Apr 2026 05:23:18 GMT"
+      }
+    ],
+    "MLB": [
+      {
+        "title": "F&F, 기업가치 2200억 디퓨저 신흥 강자 '쑥쑥컴퍼니' 전격 인수... K-뷰티...",
+        "originallink": "http://www.lkp.news/news/articleView.html?idxno=79675",
+        "link": "http://www.lkp.news/news/articleView.html?idxno=79675",
+        "description": "시장에서는 F&F의 이번 행보를 'K-패션'을 넘어 'K-뷰티'로 비즈니스 생태계를 넓히는 중장기 전략의 신호탄으로 해석하고 있다. 과거 MLB, 디스커버리(Discovery) 등 외부 IP를 성공적인 글로벌 메가 브랜드로 안착시킨... ",
+        "pubDate": "Wed, 29 Apr 2026 01:22:00 GMT"
       },
       {
-        "title": "더울수록 손이 가네… 달아오르는 ‘냉감 의류’ 전쟁",
-        "originallink": "https://v.daum.net/v/5GiwhlQ93l?f=p",
-        "link": "https://v.daum.net/v/5GiwhlQ93l?f=p",
-        "description": "짧아진 봄과 함께 이른 더위가 찾아오면서 패션업계가 냉감 소재 의류를 예년보다 일찍 선보이고 있다. 성인복은 물론이고 유아복까지 냉감 제품군을 확대하고,...",
-        "pubDate": "Wed, 22 Apr 2026 03:00:00 GMT"
+        "title": "F&F, '헤트라스' 인수 추진…뷰티 포트폴리오 확대",
+        "originallink": "http://www.apparelnews.co.kr/news/news_view/?cat=CAT11Z&idx=224880",
+        "link": "http://www.apparelnews.co.kr/news/news_view/?cat=CAT11Z&idx=224880",
+        "description": "[어패럴뉴스 오경천 기자] F&F가 디퓨저 시장의 신흥 강자 '헤트라스'의 운영사인 쑥쑥컴퍼니 인수를 위한 투자에 나서며, 라이프스타일 사업 확장의 발판을 마련했다.",
+        "pubDate": "Sun, 26 Apr 2026 12:57:09 GMT"
       },
       {
-        "title": "발렌티노, 2026 가을 캠페인 공개 - 뉴스에이",
-        "originallink": "http://m.newsa.co.kr/news/articleView.html?idxno=340919",
-        "link": "http://m.newsa.co.kr/news/articleView.html?idxno=340919",
-        "description": "1뉴스종합패션뷰티디스커버리 익스페디션, 트렌디한 볼륨감의 '액티브 웰니스 라이프스타일' 패딩 부츠 라인 출시! 2전국뉴스전북이미선 도의원 후보, “하위 20% 누구 ...",
-        "pubDate": "Wed, 22 Apr 2026 03:00:00 GMT"
+        "title": "‘황제주’ 넘보던 F&F, 실적과 주가 ‘엇갈린’ 이유는 [정답은 TSR]",
+        "originallink": "http://www.fntimes.com/html/view.php?ud=202604231540205882b5b890e35c_18",
+        "link": "http://www.fntimes.com/html/view.php?ud=202604231540205882b5b890e35c_18",
+        "description": "패션기업 F&F는 한때 주가가 100만 원 수준에 이르며 ‘황제주’로 불렸다. 대표 브랜드 MLB와 디스커버리가 국내를 넘어 중국 등 해외 시장에서 흥행을 이어가면서 성장 기대감을 키운 결과다. 실적 역시 큰 흔들림... ",
+        "pubDate": "Thu, 23 Apr 2026 22:02:00 GMT"
       },
       {
-        "title": "빅뱅, 데뷔 20주년 맞아 비스테이지에 공식 팬 커뮤니티 오픈 예고",
-        "originallink": "http://m.newsa.co.kr/news/articleView.html?idxno=340910",
-        "link": "http://m.newsa.co.kr/news/articleView.html?idxno=340910",
-        "description": "인기기사. 1뉴스종합패션뷰티디스커버리 익스페디션, 트렌디한 볼륨감의 '액티브 웰니스 라이프스타일' 패딩 부츠 라인 출시! 2전국뉴스전북이미선 도의원 후보, “하위 ...",
-        "pubDate": "Wed, 22 Apr 2026 03:00:00 GMT"
+        "title": "‘황제주’ 넘보던 F&F, 실적과 주가 ‘엇갈린’ 이유는 [정답은 TSR]",
+        "originallink": "https://www.fntimes.com/html/view.php?ud=202604231540205882b5b890e35c_18",
+        "link": "https://www.fntimes.com/html/view.php?ud=202604231540205882b5b890e35c_18",
+        "description": "패션기업 F&F는 한때 주가가 100만 원 수준에 이르며 '황제주'로 불렸다. 대표 브랜드 MLB와 디스커버리가 국내를 넘어 중국 등 해외 시장에서 흥행을 이어가면서 성장...",
+        "pubDate": "Thu, 23 Apr 2026 21:44:31 GMT"
       },
       {
-        "title": "듀베티카, 김지원과 '26 SUMMER' 화보 공개 - 뉴스에이 모바일 사이트",
-        "originallink": "http://m.newsa.co.kr/news/articleView.html?idxno=340858",
-        "link": "http://m.newsa.co.kr/news/articleView.html?idxno=340858",
-        "description": "1뉴스종합패션뷰티디스커버리 익스페디션, 트렌디한 볼륨감의 '액티브 웰니스 라이프스타일' 패딩 부츠 라인 출시! 2연예·스포츠연예심형탁 x 히라이 사야x 심하루 ...",
-        "pubDate": "Wed, 22 Apr 2026 03:00:00 GMT"
-      },
-      {
-        "title": "영원무역홀딩스 '국제 FABI 패션 초대전시' 개최",
-        "originallink": "https://www.itnk.co.kr/news/articleView.html?idxno=81031",
-        "link": "https://www.itnk.co.kr/news/articleView.html?idxno=81031",
-        "description": "디스커버리 익스페디션 앰버서더 에스파 닝닝. 최신뉴스. FITI시험연구원, 한국ESG인권경영인증원과 ESG 기반 지속가능경영 ...",
-        "pubDate": "Wed, 22 Apr 2026 03:00:00 GMT"
-      },
-      {
-        "title": "공차코리아X붕괴: 스타레일, 콜라보 프로모션 전개",
-        "originallink": "http://m.newsa.co.kr/news/articleView.html?idxno=340870",
-        "link": "http://m.newsa.co.kr/news/articleView.html?idxno=340870",
-        "description": "1뉴스종합패션뷰티디스커버리 익스페디션, 트렌디한 볼륨감의 '액티브 웰니스 라이프스타일' 패딩 부츠 라인 출시! 2연예·스포츠연예심형탁 x 히라이 사야x 심하루 ...",
-        "pubDate": "Wed, 22 Apr 2026 03:00:00 GMT"
+        "title": "F&F 투자분석 2026. 04. 22",
+        "originallink": "https://www.judal.co.kr/?view=stockAI&shareToken=HZwX3dS3UfiKr9S8",
+        "link": "https://www.judal.co.kr/?view=stockAI&shareToken=HZwX3dS3UfiKr9S8",
+        "description": "F&F: 장기 성장 잠재력 기반, 적극 매수! F&F는 MLB, DISCOVERY 등 글로벌 라이선스 브랜드를 성공적으로 운영하는 패션 기업입니다. 2025년 연결기준 매출 약 1조...",
+        "pubDate": "Wed, 22 Apr 2026 10:40:46 GMT"
       }
     ],
     "세르지오타키니": [
@@ -634,6 +1432,13 @@
         "originallink": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1NTjZGcllRWlRtYmI1dXhlV252WVdESzRvRkFtdzllVWI3TlNvNHY4dnpveDZnUkNUMGViS2xXYmpjb3NRRE9xRFpRZ3J0ZG9nOUtUdlpBSHRDM2hlUDZmWmUzYVlpVXY1aldQM0djQk1QLW43?oc=5",
         "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1NTjZGcllRWlRtYmI1dXhlV252WVdESzRvRkFtdzllVWI3TlNvNHY4dnpveDZnUkNUMGViS2xXYmpjb3NRRE9xRFpRZ3J0ZG9nOUtUdlpBSHRDM2hlUDZmWmUzYVlpVXY1aldQM0djQk1QLW43?oc=5",
         "description": "<a href=\"https://news.google.com/rss/articles/CBMidEFVX3lxTE1NTjZGcllRWlRtYmI1dXhlV252WVdESzRvRkFtdzllVWI3TlNvNHY4dnpveDZnUkNUMGViS2xXYmpjb3NRRE9xRFpRZ3J0ZG9nOUtUdlpBSHRDM2hlUDZmWmUzYVlpVXY1aldQM0djQk1QLW43?oc=5\" target=\"_blank\">세르지오 타키니, '웰니스 라이프스타일' 정체성 강화</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">어패럴뉴스</font>",
+        "pubDate": "Tue, 28 Apr 2026 13:09:19 GMT"
+      },
+      {
+        "title": "세르지오 타키니, '웰니스 라이프스타일' 정체성 강화",
+        "originallink": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1LUGlnSmNEbDlzZFBSS1pDQTQ1d1hXeTZOOG5rQ05EdEo4Nl9kZ0YzNktfblFLcEJJckNaSmdpVEMzVHl1WG5Xb1FNZjVtNzI5Q1NfZmhocnpOMTlMX09qc3dMeF9ZOW1Sa1hIMV9UVnJTNzhuTFE?oc=5",
+        "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1LUGlnSmNEbDlzZFBSS1pDQTQ1d1hXeTZOOG5rQ05EdEo4Nl9kZ0YzNktfblFLcEJJckNaSmdpVEMzVHl1WG5Xb1FNZjVtNzI5Q1NfZmhocnpOMTlMX09qc3dMeF9ZOW1Sa1hIMV9UVnJTNzhuTFE?oc=5",
+        "description": "<a href=\"https://news.google.com/rss/articles/CBMidkFVX3lxTE1LUGlnSmNEbDlzZFBSS1pDQTQ1d1hXeTZOOG5rQ05EdEo4Nl9kZ0YzNktfblFLcEJJckNaSmdpVEMzVHl1WG5Xb1FNZjVtNzI5Q1NfZmhocnpOMTlMX09qc3dMeF9ZOW1Sa1hIMV9UVnJTNzhuTFE?oc=5\" target=\"_blank\">세르지오 타키니, '웰니스 라이프스타일' 정체성 강화</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">어패럴뉴스</font>",
         "pubDate": "Tue, 28 Apr 2026 13:09:19 GMT"
       },
       {
@@ -791,48 +1596,6 @@
         "link": "https://www.kstarfashion.com/ko-kr/articles/252401",
         "description": "최근 3040 여성 소비자 사이에서 지속 가능한 프리미엄 웰니스룩과 리조트-시티 스타일이 주목받고 있다. 이러한 트렌드 속에서 이탈리아 프리미엄 라이프스타일...",
         "pubDate": "Wed, 22 Apr 2026 05:23:38 GMT"
-      },
-      {
-        "title": "‘미식·경험·상생’…유통·뷰티 업계, ‘오감 만족’ 콘텐츠로 소비자 공략 나선다",
-        "originallink": "https://www.dailypop.kr/news/articleView.html?idxno=98222",
-        "link": "https://www.dailypop.kr/news/articleView.html?idxno=98222",
-        "description": "유통 및 뷰티 업계가 단순한 제품 판매를 넘어 고객의 일상에 깊숙이 침투하는 '경험 마케팅'과 '사회적 가치' 실현에 집중하고 있다. 유명 셰프와의 미식 협업부터...",
-        "pubDate": "Wed, 22 Apr 2026 03:00:00 GMT"
-      },
-      {
-        "title": "듀베티카, 김지원과 '26 SUMMER' 화보 공개 - 뉴스에이 모바일 사이트",
-        "originallink": "http://m.newsa.co.kr/news/articleView.html?idxno=340858",
-        "link": "http://m.newsa.co.kr/news/articleView.html?idxno=340858",
-        "description": "이번 26SS 시즌은 듀베티카의 강점인 '가벼움'을 여름 시즌에 맞춰 프리미엄 웰니스 라이프스타일로 확장한 것이 특징이다. 소재와 실루엣, 착용감이 주는 본질적인 가치에 ...",
-        "pubDate": "Wed, 22 Apr 2026 03:00:00 GMT"
-      },
-      {
-        "title": "불가리, 배우 김지원과 함께한 '에클레티카' 화보 공개 - 패션서울",
-        "originallink": "https://fashionseoul.com/271370",
-        "link": "https://fashionseoul.com/271370",
-        "description": "김지원듀베티카화보 · 김지원, 프리미엄 웰니스 무드는 이런것. 2026년 4월 21일. 불가리송은X스테델릭프레스스크리닝개최. 불가리X송은X스테델릭 뮤지엄, 국경 넘은 예술 ...",
-        "pubDate": "Wed, 22 Apr 2026 03:00:00 GMT"
-      },
-      {
-        "title": "김지원, 정제된 우아함",
-        "originallink": "https://m.anewsa.com/article_sub3.php?number=3152399",
-        "link": "https://m.anewsa.com/article_sub3.php?number=3152399",
-        "description": "최근 3040 여성 소비자를 중심으로 지속가능한 프리미엄 웰니스룩과 리조트-시티 스타일이 부상하는 가운데, 듀베티카는 일상과 여행을 아우르는 여름 스타일을 제안...",
-        "pubDate": "Wed, 22 Apr 2026 03:00:00 GMT"
-      },
-      {
-        "title": "베스띠벨리, ‘스타필드 빌리지 운정점 오픈’",
-        "originallink": "https://www.tinnews.co.kr/31067",
-        "link": "https://www.tinnews.co.kr/31067",
-        "description": "신규 B.I 공개, 타임리스 감성 브랜드 정체성 강화 ㈜신원(대표 박정주)의 여성복 브랜드 '베스띠벨리(BESTI BELLI)'가 경기도 파주에 위치한 스타필드 빌리지 운정점 1...",
-        "pubDate": "Wed, 22 Apr 2026 03:00:00 GMT"
-      },
-      {
-        "title": "대한산악연맹, 2026 아시안게임 출전 선수 및 국가대표 명단 발표",
-        "originallink": "http://www.cdnews.co.kr/news/articleView.html?idxno=101884",
-        "link": "http://www.cdnews.co.kr/news/articleView.html?idxno=101884",
-        "description": "5뉴스뷰티·패션듀베티카, 김지원과 여름 감성 담은 리조트 화보 공개. set_A2 ... 듀베티카, 김지원과 여름 감성 담은 리조트 화보 공개 · 가민, HDEX와 협업... '포 ...",
-        "pubDate": "Wed, 22 Apr 2026 03:00:00 GMT"
       }
     ],
     "디스커버리키즈": [
@@ -996,55 +1759,6 @@
         "link": "https://news.nate.com/view/20260422n28409?mid=e0600",
         "description": "한눈에 보는 오늘 : 사회 - 뉴스 : 롯데백화점 광복점 전경. 롯데백화점 제공.롯데백화점 광복점은 오는 24일부터 다음 달 5일까지 식품부터 패션ㆍ리빙까지 전 상품군...",
         "pubDate": "Wed, 22 Apr 2026 07:41:20 GMT"
-      },
-      {
-        "title": "부산 롯데百 광복점, 슈퍼 해피 패밀리 위크 개최",
-        "originallink": "https://news.nate.com/view/20260422n16567?isq=11327&mid=e0600",
-        "link": "https://news.nate.com/view/20260422n16567?isq=11327&mid=e0600",
-        "description": "한눈에 보는 오늘 : 사회 - 뉴스 : [부산=뉴시스] 부산 중구 롯데백화점 광복점. (사진=롯데백화점 제공) 2026.04.22. photo@newsis.com *재판매 및 DB 금지 [부산=...",
-        "pubDate": "Wed, 22 Apr 2026 03:55:52 GMT"
-      },
-      {
-        "title": "부산 롯데百 광복점, 슈퍼 해피 패밀리 위크 개최",
-        "originallink": "https://www.newsis.com/view/NISX20260422_0003601689",
-        "link": "https://n.news.naver.com/mnews/article/003/0013902755?sid=102",
-        "description": "어린이날을 맞아 인기 아동 브랜드인 내셔널지오그래픽키즈, 프렌치캣, 디스커버리키즈, NBA키즈 등 한정 수량 특가 상품을 선보이며, 8층 특설매장에서는 아이들의 동심을 자극할 '일루아키키' 완구 특집전도 연다.... ",
-        "pubDate": "Wed, 22 Apr 2026 03:43:00 GMT"
-      },
-      {
-        "title": "부산 롯데百 광복점, 슈퍼 해피 패밀리 위크 개최",
-        "originallink": "https://mobile.newsis.com/view_amp.html?ar_id=NISX20260422_0003601689",
-        "link": "https://mobile.newsis.com/view_amp.html?ar_id=NISX20260422_0003601689",
-        "description": "[부산=뉴시스] 하경민 기자 = 부산 롯데백화점 광복점은 오는 24일부터 5월5일까지 식품부터 패션·리빙까지 전 상품군이 참여하는 가정의 달 테마 행사 '슈퍼 해피...",
-        "pubDate": "Wed, 22 Apr 2026 03:23:26 GMT"
-      },
-      {
-        "title": "가정의 달, 쇼핑이 축제 되다… 롯데百 광복점, ‘Super Happy Family Week’...",
-        "originallink": "https://view.asiae.co.kr/article/2026042212121174099",
-        "link": "https://n.news.naver.com/mnews/article/277/0005753198?sid=102",
-        "description": "▲어린이날·어버이날 선물, '특가 큐레이션'으로 부담은 낮추고 감동은 높이고 먼저 어린이날을 겨냥해 인기 아동 브랜드인 '내셔널지오그래픽키즈', '프렌치캣'의 상·하의 세트와 '디스커버리키즈', 'NBA키즈'의 볼캡... ",
-        "pubDate": "Wed, 22 Apr 2026 03:12:00 GMT"
-      },
-      {
-        "title": "한국관광의 내일을 이끌 벤처 100곳, 힘찬 첫발 - 뉴스에이",
-        "originallink": "http://m.newsa.co.kr/news/articleView.html?idxno=340912",
-        "link": "http://m.newsa.co.kr/news/articleView.html?idxno=340912",
-        "description": "올해는 인공지능(AI)을 활용한 관광 서비스 아이템이 두드러졌다. △AI 기반 아동 동반 관광객 실시간 동선 최적화 서비스 '하노라 키즈트립' △AI 기반 관광사업자용 다국어 ...",
-        "pubDate": "Wed, 22 Apr 2026 03:00:00 GMT"
-      },
-      {
-        "title": "메쎄 프랑크푸르트, 'Val:ue Milan' 2027년 2월 밀라노서 개최",
-        "originallink": "https://www.itnk.co.kr/news/articleView.html?idxno=81041",
-        "link": "https://www.itnk.co.kr/news/articleView.html?idxno=81041",
-        "description": "행사는 2027년 2월 3일부터 5일까지 이탈리아 밀라노 포르타 누오바 지역의 더 몰(The Mall)에서 열린다. 메쎄 프랑크푸르트는 글로벌 패션 허브인 밀라노를 기반으로 고급 ...",
-        "pubDate": "Wed, 22 Apr 2026 03:00:00 GMT"
-      },
-      {
-        "title": "가정의 달, 쇼핑이 축제 되다… 롯데百 광복점, ‘Super Happy Family Week’ 개최",
-        "originallink": "https://v.daum.net/v/WDyYrRXSjP?f=p",
-        "link": "https://v.daum.net/v/WDyYrRXSjP?f=p",
-        "description": "롯데백화점 광복점은 오는 4월 24일부터 5월 5일까지 식품부터 패션·리빙까지 전 상품군이 참여하는 가정의 달 테마 행사 '슈퍼 해피 패밀리 위크(Super Happy Family...",
-        "pubDate": "Wed, 22 Apr 2026 03:00:00 GMT"
       }
     ],
     "MLB키즈": [
